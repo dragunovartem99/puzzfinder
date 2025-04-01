@@ -17,7 +17,8 @@
 :root {
 	font-family: "Pixelated MS Sans Serif", monospace;
 	color: var(--text-color);
-	-webkit-font-smoothing: none;
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
 }
 
 *,
@@ -30,10 +31,36 @@ body {
 	margin: 0;
 }
 
-button {
+button,
+select {
 	font-family: inherit;
 	font-size: inherit;
+}
+
+button {
 	min-width: 90px;
-	min-height: 30px;
+	min-height: 28px;
 	cursor: pointer;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	select[multiple] {
+		height: initial;
+		padding-right: initial;
+		background-image: initial;
+		outline: initial;
+		background-color: white;
+	}
+	select[multiple]:focus {
+		color: initial;
+	}
+	select[multiple]:focus option {
+		color: initial;
+		background-color: initial;
+	}
+}
+
+select[multiple] option:checked {
+	background-color: var(--dialog-blue-light);
+	color: var(--button-highlight);
 }

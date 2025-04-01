@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import TheForm from "./TheForm.vue";
 import TheGitHub from "./TheGitHub.vue";
 
 const emit = defineEmits(["close-clicked"]);
@@ -10,12 +11,12 @@ const tabs = ref([
 	{ text: "GitHub", isSelected: false },
 ]);
 
-function openTab(tab) {
+function openTab(tab: any) {
 	tabs.value.forEach((tab) => (tab.isSelected = false));
 	tab.isSelected = true;
 }
 
-const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)?.text);
+const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.text);
 </script>
 
 <template>
@@ -40,7 +41,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)?.tex
 				<p>Diagrams: "Smart" (1992) by Christoph Wirth.</p>
 			</section>
 			<section>
-				<button>Find</button>
+				<TheForm />
 			</section>
 			<section>
 				<menu role="tablist">
