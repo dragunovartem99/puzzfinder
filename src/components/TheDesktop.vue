@@ -42,9 +42,7 @@ const shortcuts = [
 <style scoped>
 .desktop {
 	background-color: teal;
-	position: fixed;
-	height: 100vh;
-	width: 100%;
+	height: 100dvh;
 	padding: 20px 10px;
 }
 .shortcuts {

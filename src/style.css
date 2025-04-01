@@ -1,3 +1,5 @@
+@import url("./css/98.css");
+
 @font-face {
 	font-family: "Pixelated MS Sans Serif";
 	src: url("/ms_sans_serif.woff2") format("woff2");
@@ -14,6 +16,11 @@
 
 :root {
 	font-family: "Pixelated MS Sans Serif";
+	color: var(--text-color);
+}
+
+*, *::before, *::after {
+	box-sizing: border-box;
 }
 
 body {
