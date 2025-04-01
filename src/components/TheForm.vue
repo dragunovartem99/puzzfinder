@@ -1,28 +1,36 @@
+<script setup lang="ts">
+import { findPuzzles } from "../api/findPuzzles.ts";
+import { formToPayload } from "../utils/formToPayload.ts";
+
+function handleSubmit(event) {
+	findPuzzles(formToPayload(event.target));
+}
+</script>
 <template>
-	<form @submit.prevent>
+	<form @submit.prevent="handleSubmit">
 		<div class="form-control">
 			<label>Themes (hold Shift or Ctrl for multiple)</label>
-			<select multiple size="5">
-				<option>Mate in 1</option>
-				<option>Mate in 2</option>
-				<option>Mate in 3</option>
-				<option>Mate in 4</option>
-				<option>Mate in 5</option>
+			<select name="themes" multiple size="5">
+				<option value="mateIn1">Mate in 1</option>
+				<option value="mateIn2">Mate in 2</option>
+				<option value="mateIn3">Mate in 3</option>
+				<option value="mateIn4">Mate in 4</option>
+				<option value="mateIn5">Mate in 5</option>
 			</select>
 		</div>
 		<div class="form-control">
 			<label>Order by</label>
-			<select>
-				<option>Highest rating</option>
-				<option>Highest moves number</option>
-				<option>Highest popularity</option>
-				<option>Highest times played</option>
-				<option>Lowest rating</option>
-				<option>Lowest moves number</option>
-				<option>Lowest popularity</option>
-				<option>Lowest times played</option>
-				<option>id (default)</option>
-				<option>id (reversed)</option>
+			<select name="orderBy">
+				<option value="rating-desc">Highest rating</option>
+				<option value="moveNumber-desc">Highest moves number</option>
+				<option value="popularity-desc">Highest popularity</option>
+				<option value="nbPlays-desc">Highest times played</option>
+				<option value="rating-asc">Lowest rating</option>
+				<option value="movesNumber-asc">Lowest moves number</option>
+				<option value="popularity-asc">Lowest popularity</option>
+				<option value="nbPlays-asc">Lowest times played</option>
+				<option value="id-asc">id (default)</option>
+				<option value="id-desc">id (reversed)</option>
 			</select>
 		</div>
 		<button>Find</button>
