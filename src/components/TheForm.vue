@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { findPuzzles } from "../api/findPuzzles.ts";
 import { formToPayload } from "../utils/formToPayload.ts";
+import { puzzleThemes } from "../static/puzzleThemes.js";
 
 function handleSubmit(event) {
 	findPuzzles(formToPayload(event.target));
@@ -11,18 +12,14 @@ function handleSubmit(event) {
 		<div class="form-control">
 			<label>Themes (hold Shift or Ctrl for multiple)</label>
 			<select name="themes" multiple size="5">
-				<option value="mateIn1">Mate in 1</option>
-				<option value="mateIn2">Mate in 2</option>
-				<option value="mateIn3">Mate in 3</option>
-				<option value="mateIn4">Mate in 4</option>
-				<option value="mateIn5">Mate in 5</option>
+				<option v-for="theme of puzzleThemes" :value="theme.value">{{ theme.text }}</option>
 			</select>
 		</div>
 		<div class="form-control">
 			<label>Order by</label>
 			<select name="orderBy">
 				<option value="rating-desc">Highest rating</option>
-				<option value="moveNumber-desc">Highest moves number</option>
+				<option value="movesNumber-desc">Highest moves number</option>
 				<option value="popularity-desc">Highest popularity</option>
 				<option value="nbPlays-desc">Highest times played</option>
 				<option value="rating-asc">Lowest rating</option>
