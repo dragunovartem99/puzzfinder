@@ -15,14 +15,25 @@
 }
 
 :root {
-	font-family: "Pixelated MS Sans Serif";
+	font-family: "Pixelated MS Sans Serif", monospace;
 	color: var(--text-color);
+	-webkit-font-smoothing: none;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 }
 
 body {
 	margin: 0;
+}
+
+button {
+	font-family: inherit;
+	font-size: inherit;
+	min-width: 90px;
+	min-height: 30px;
+	cursor: pointer;
 }
