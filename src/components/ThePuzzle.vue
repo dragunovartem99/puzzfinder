@@ -1,19 +1,39 @@
 <script setup lang="ts">
+import { computed } from "vue";
+import { puzzleThemes } from "../static/puzzleThemes.ts";
+import { formatNumber } from "../utils/formatNumber.ts";
+
 const props = defineProps<{ puzzle: any }>();
+const themes = computed(() =>
+	props.puzzle.themes
+		.map((value: string) =>
+			puzzleThemes.find((puzzle) => puzzle.value === value)!.text.toLowerCase()
+		)
+		.join(", ")
+);
+const played = computed(() => formatNumber(props.puzzle.nbPlays));
+
+const movesNumber = computed(() =>
+	props.puzzle.movesNumber === 1 ? "1 move" : `${props.puzzle.movesNumber} moves`
+);
 </script>
 
 <template>
 	<article class="window">
 		<div class="title-bar">
-			<div class="title-bar-text">{{ puzzle.movesNumber }} moves</div>
+			<div class="title-bar-text">{{ movesNumber }}</div>
 		</div>
 		<div class="window-body">
 			<a class="puzzle-link" :href="`https://lichess.org/training/${puzzle.puzzleId}`">
 				<html-diagram :fen="puzzle.fen"></html-diagram>
 			</a>
 			<p><b>Rating:</b> {{ puzzle.rating }}</p>
-			<p><b>Themes:</b> {{ puzzle.themes }}</p>
-			<a :href="puzzle.gameUrl" target="_blank">View game</a>
+			<p><b>Themes:</b> {{ themes }}</p>
+			<a :href="puzzle.gameUrl" target="_blank" class="game-link">View game</a>
+		</div>
+		<div class="status-bar">
+			<p class="status-bar-field"><b>Played:</b> {{ played }}</p>
+			<p class="status-bar-field"><b>Popularity:</b> {{ puzzle.popularity }}</p>
 		</div>
 	</article>
 </template>
@@ -21,15 +41,20 @@ const props = defineProps<{ puzzle: any }>();
 <style scoped>
 .window {
 	background-color: var(--button-face);
-}
-.window-body {
-	/* display: flex; */
-	/* flex-direction: column; */
+	display: flex;
+	flex-direction: column;
 }
 .title-bar {
 	background: linear-gradient(90deg, var(--text-color), var(--dialog-gray));
 }
 .puzzle-link {
 	text-decoration: none;
+}
+.game-link {
+	display: block;
+	margin-bottom: 10px;
+}
+.status-bar {
+	margin-top: auto;
 }
 </style>
