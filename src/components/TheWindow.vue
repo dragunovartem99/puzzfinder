@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+
+import { results } from "../state/results.ts";
 import TheForm from "./TheForm.vue";
 import TheGitHub from "./TheGitHub.vue";
 
@@ -56,7 +58,10 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 				</menu>
 				<div class="window" role="tabpanel">
 					<div class="window-body">
-						<TheGitHub v-if="selectedTab === 'GitHub'"/>
+						<div class="results" v-if="selectedTab === 'Results'">
+							{{ results }}
+						</div>
+						<TheGitHub v-if="selectedTab === 'GitHub'" />
 					</div>
 				</div>
 			</section>
@@ -70,8 +75,10 @@ main.window {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: calc(100% - 20px);
 	max-width: 800px;
+	width: calc(100% - 20px);
+	max-height: calc(100% - 20px);
+	overflow: scroll;
 }
 section + section {
 	margin-top: 20px;

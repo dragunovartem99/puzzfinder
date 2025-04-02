@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import { findPuzzles } from "../api/findPuzzles.ts";
-import { formToPayload } from "../utils/formToPayload.ts";
-import { puzzleThemes } from "../static/puzzleThemes.js";
-
-function handleSubmit(event) {
-	findPuzzles(formToPayload(event.target));
-}
+import { search } from "../state/search.ts"
+import { sumbitSearchForm } from "../actions/submitSearchForm";
+import { puzzleThemes } from "../static/puzzleThemes.ts";
 </script>
+
 <template>
-	<form @submit.prevent="handleSubmit">
+	<form @submit.prevent="sumbitSearchForm">
 		<div class="form-control">
 			<label>Themes (hold Shift or Ctrl for multiple)</label>
-			<select name="themes" multiple size="5">
+			<select multiple size="5" v-model="search.filters.themes">
 				<option v-for="theme of puzzleThemes" :value="theme.value">{{ theme.text }}</option>
 			</select>
 		</div>
 		<div class="form-control">
 			<label>Order by</label>
-			<select name="orderBy">
+			<select v-model="search.sort">
 				<option value="rating-desc">Highest rating</option>
 				<option value="movesNumber-desc">Highest moves number</option>
 				<option value="popularity-desc">Highest popularity</option>
@@ -26,8 +23,8 @@ function handleSubmit(event) {
 				<option value="movesNumber-asc">Lowest moves number</option>
 				<option value="popularity-asc">Lowest popularity</option>
 				<option value="nbPlays-asc">Lowest times played</option>
-				<option value="id-asc">id (default)</option>
-				<option value="id-desc">id (reversed)</option>
+				<option value="puzzleId-asc">Puzzle ID</option>
+				<option value="puzzleId-desc">Puzzle ID (reversed)</option>
 			</select>
 		</div>
 		<button>Find</button>
