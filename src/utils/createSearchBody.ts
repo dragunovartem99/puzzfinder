@@ -1,5 +1,5 @@
-export function createSearchBody({ search, pagination }: any) {
-	const payload = JSON.parse(JSON.stringify({ ...search, pagination }));
+export function createSearchBody(state: any) {
+	const payload = JSON.parse(JSON.stringify(state));
 
 	const [sortField, sortOrder] = payload.sort.split("-");
 

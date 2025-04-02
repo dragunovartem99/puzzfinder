@@ -7,11 +7,12 @@ import { findPuzzles } from "../api/findPuzzles";
 
 export async function sumbitSearchForm() {
 	const body = createSearchBody({
-		search: search.value,
+		...search.value,
 		pagination: pagination.value,
 	});
 
 	const response = await findPuzzles(body);
+
 	results.value = response.data;
 	pagination.value = response.pagination;
 }
