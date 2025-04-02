@@ -2,7 +2,7 @@
 
 flow="puzzfinder"
 
-tmux has-session -t "$flow" 2>/dev/null;
+tmux has-session -t =$flow 2>/dev/null;
 
 if [[ $? -ne 0 ]]; then
 	tmux new-session -d -s $flow
@@ -15,4 +15,4 @@ if [[ $? -ne 0 ]]; then
 	tmux send-keys -t $flow:"node" "npm run dev -- --host" ENTER
 fi
 
-tmux attach-session -t $flow:"nvim"
+tmux attach-session -t =$flow:"nvim"
