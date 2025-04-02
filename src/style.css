@@ -1,6 +1,11 @@
 @import url("./css/98.css");
 
 @font-face {
+	font-family: "Diagram Smart";
+	src: url("/DiagramSmart.woff2") format("woff2");
+}
+
+@font-face {
 	font-family: "Pixelated MS Sans Serif";
 	src: url("/ms_sans_serif.woff2") format("woff2");
 	font-weight: normal;
@@ -16,6 +21,7 @@
 
 :root {
 	font-family: "Pixelated MS Sans Serif", monospace;
+	--diagram-font: "Diagram Smart";
 	color: var(--text-color);
 	-webkit-font-smoothing: antialiased;
 	font-synthesis: none;
