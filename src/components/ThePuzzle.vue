@@ -24,7 +24,11 @@ const movesNumber = computed(() =>
 			<div class="title-bar-text">{{ movesNumber }}</div>
 		</div>
 		<div class="window-body">
-			<a class="puzzle-link" :href="`https://lichess.org/training/${puzzle.puzzleId}`">
+			<a
+				class="puzzle-link"
+				:href="`https://lichess.org/training/${puzzle.puzzleId}`"
+				target="_blank"
+			>
 				<html-diagram :fen="puzzle.fen"></html-diagram>
 			</a>
 			<p><b>Rating:</b> {{ puzzle.rating }}</p>
