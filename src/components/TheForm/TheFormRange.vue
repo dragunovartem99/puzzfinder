@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import type { NumberRange } from "../../types/types";
 
-defineProps(["model", "label", "id"]);
+defineProps<{ model: NumberRange; label: string; id: string }>();
 const isExact = ref(false);
 </script>
 
