@@ -3,6 +3,7 @@ import { computed, ref } from "vue";
 import { results } from "../state/results.ts";
 import { pagination } from "../state/pagination";
 
+import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm/TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
@@ -39,15 +40,8 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 			</div>
 		</div>
 		<div class="window-body scroll">
-			<section>
-				<p>
-					Find hidden treasures in Lichess' multi-million puzzle database using filters.
-				</p>
-				<p>Diagrams: "Smart" (1992) by Christoph Wirth.</p>
-			</section>
-			<section>
-				<TheForm />
-			</section>
+			<section><TheDescription /></section>
+			<section><TheForm /></section>
 			<section>
 				<menu role="tablist">
 					<li
@@ -90,12 +84,12 @@ main.window {
 
 .scroll {
 	overflow-y: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 .scroll::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 .results {
