@@ -8,5 +8,5 @@ export const search = ref({
 		nbPlays: {},
 		themes: [],
 	},
-	sort: "puzzleId-asc",
+	sort: "rating-desc",
 });
