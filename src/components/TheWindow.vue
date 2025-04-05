@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { results } from "../state/results.ts";
+import { pagination } from "../state/pagination";
 
 import TheForm from "./TheForm/TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
+import { formatNumber } from "../utils/formatNumber";
 
 const emit = defineEmits(["close-clicked"]);
 
@@ -66,6 +68,9 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 					</div>
 				</div>
 			</section>
+		</div>
+		<div class="status-bar">
+			<p class="status-bar-field"><b>Results:</b> {{ formatNumber(pagination.total) }}</p>
 		</div>
 	</main>
 </template>
