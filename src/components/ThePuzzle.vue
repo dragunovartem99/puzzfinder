@@ -10,7 +10,10 @@ const themes = computed(() =>
 	props.puzzle.themes
 		.filter((value: string) => value !== "mate")
 		.map((value: string) =>
-			puzzleThemes.find((puzzle) => puzzle.value === value)!.text.toLowerCase()
+			puzzleThemes
+				.flatMap((group) => group.options)
+				.find((puzzle) => puzzle.value === value)!
+				.text.toLowerCase()
 		)
 		.join(", ")
 );

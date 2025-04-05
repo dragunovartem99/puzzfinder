@@ -20,9 +20,11 @@ import TheFormRange from "./TheFormRange.vue";
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
 			<select multiple size="10" v-model="search.filters.themes">
-				<option v-for="theme of puzzleThemes" :value="theme.value">
-					{{ theme.text }}
-				</option>
+				<optgroup v-for="group of puzzleThemes" :label="group.label">
+					<option v-for="option of group.options" :value="option.value">
+						{{ option.text }}
+					</option>
+				</optgroup>
 			</select>
 		</div>
 		<div class="results">
