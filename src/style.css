@@ -40,7 +40,7 @@ body {
 @media (hover: hover) and (pointer: fine) {
 	select[multiple] {
 		height: initial;
-		padding-right: initial;
+		padding-right: 6px;
 		background-image: initial;
 		outline: initial;
 		background-color: white;
