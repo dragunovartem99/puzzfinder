@@ -5,22 +5,22 @@ const shortcuts = [
 	{
 		label: "Puzzfinder",
 		onClick: () => emit("app-clicked"),
-		icon: "/logo.png"
+		icon: "logo.png"
 	},
 	{
 		label: "Lichess Accuracy",
 		link: "https://dragunovartem99.github.io/lichess-accuracy",
-		icon: "/shortcuts/lichess-accuracy.png"
+		icon: "shortcuts/lichess-accuracy.png"
 	},
 	{
 		label: "Vue PGN Viewer",
 		link: "https://dragunovartem99.github.io/vue-pgn-viewer",
-		icon: "/shortcuts/vue-pgn-viewer.png"
+		icon: "shortcuts/vue-pgn-viewer.png"
 	},
 	{
 		label: "HTML Diagram",
 		link: "https://dragunovartem99.github.io/html-diagram",
-		icon: "/shortcuts/html-diagram.png"
+		icon: "shortcuts/html-diagram.png"
 	},
 ];
 </script>
