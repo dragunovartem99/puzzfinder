@@ -56,7 +56,7 @@ const movesNumber = computed(() =>
 }
 .game-link {
 	display: block;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .status-bar {
 	margin-top: auto;

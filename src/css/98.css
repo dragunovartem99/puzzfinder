@@ -269,15 +269,15 @@ input[type="reset"]:disabled,
 }
 
 .status-bar {
-	margin: 0px 1px;
+	margin: 0px 1.5px;
 	display: flex;
-	gap: 1px;
+	gap: 1.5px;
 }
 
 .status-bar-field {
 	box-shadow: var(--border-status-field);
 	flex-grow: 1;
-	padding: 2px 3px;
+	padding: 3px 4.5px;
 	margin: 0;
 }
 
