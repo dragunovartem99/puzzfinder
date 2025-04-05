@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import { results } from "../state/results.ts";
 
-import TheForm from "./TheForm.vue";
+import TheForm from "./TheForm/TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
 

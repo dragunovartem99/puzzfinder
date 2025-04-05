@@ -1,4 +1,4 @@
-@import url("./css/98.css");
+@import url("./css/98.css"); /* scale 1.455 is ok */
 
 @font-face {
 	font-family: "Diagram Smart";
@@ -37,18 +37,6 @@ body {
 	margin: 0;
 }
 
-button,
-select {
-	font-family: inherit;
-	font-size: inherit;
-}
-
-button {
-	min-width: 90px;
-	min-height: 28px;
-	cursor: pointer;
-}
-
 @media (hover: hover) and (pointer: fine) {
 	select[multiple] {
 		height: initial;
@@ -69,4 +57,14 @@ button {
 select[multiple] option:checked {
 	background-color: var(--dialog-blue-light);
 	color: var(--button-highlight);
+}
+
+.form-control {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.form-control label {
+	font-weight: bold;
 }
