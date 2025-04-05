@@ -5,13 +5,16 @@ import { puzzleThemes } from "../static/puzzleThemes.ts";
 import { formatNumber } from "../utils/formatNumber.ts";
 
 const props = defineProps<{ puzzle: Puzzle }>();
+
 const themes = computed(() =>
 	props.puzzle.themes
+		.filter((value: string) => value !== "mate")
 		.map((value: string) =>
 			puzzleThemes.find((puzzle) => puzzle.value === value)!.text.toLowerCase()
 		)
 		.join(", ")
 );
+
 const played = computed(() => formatNumber(props.puzzle.nbPlays));
 
 const movesNumber = computed(() =>
