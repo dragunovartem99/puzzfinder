@@ -65,6 +65,6 @@ select[multiple] option:checked {
 	gap: 5px;
 }
 
-.form-control label {
+.form-control > :first-child {
 	font-weight: bold;
 }
