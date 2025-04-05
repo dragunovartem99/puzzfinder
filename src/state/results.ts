@@ -1,3 +1,5 @@
-import { ref } from "vue"
+import { ref } from "vue";
+import type { Ref } from "vue";
+import type { Puzzle } from "../types";
 
-export const results = ref([]);
+export const results: Ref<Puzzle[]> = ref([]);

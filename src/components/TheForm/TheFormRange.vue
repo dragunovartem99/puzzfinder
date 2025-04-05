@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { NumberRange } from "../../types/types";
+import type { NumberRange } from "../../types";
 
-defineProps<{ model: NumberRange; label: string; id: string }>();
+defineProps<{ model: Partial<NumberRange>; label: string; id: string }>();
 const isExact = ref(false);
 </script>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { search } from "@/state/search.ts";
-import { sumbitSearchForm } from "@/actions/submitSearchForm";
-import { puzzleThemes } from "@/static/puzzleThemes.ts";
+import { search } from "../../state/search.ts";
+import { sumbitSearchForm } from "../../actions/submitSearchForm";
+import { puzzleThemes } from "../../static/puzzleThemes.ts";
 import TheFormRange from "./TheFormRange.vue";
 </script>
 

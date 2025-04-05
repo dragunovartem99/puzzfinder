@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import type { Puzzle } from "../types";
 import { puzzleThemes } from "../static/puzzleThemes.ts";
 import { formatNumber } from "../utils/formatNumber.ts";
 
-const props = defineProps<{ puzzle: any }>();
+const props = defineProps<{ puzzle: Puzzle }>();
 const themes = computed(() =>
 	props.puzzle.themes
 		.map((value: string) =>

@@ -1,4 +1,4 @@
-export async function findPuzzles(body) {
+export async function findPuzzles(body: any) {
 	const response = await fetch("https://puzzfinder.99x.space/puzzles", {
 	// const response = await fetch("http://192.168.1.199:50000/puzzles", {
 		method: "POST",
