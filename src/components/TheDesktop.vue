@@ -43,7 +43,7 @@ const shortcuts = [
 .desktop {
 	background-color: teal;
 	height: 100dvh;
-	padding: 20px 10px;
+	padding: 10px;
 }
 .shortcuts {
 	display: inline-flex;
