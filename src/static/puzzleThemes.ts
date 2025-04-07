@@ -30,7 +30,7 @@ export const puzzleThemes = [
 			{ value: "quietMove", text: "Quiet move" },
 			{ value: "xRayAttack", text: "X-ray attack" },
 			{ value: "zugzwang", text: "Zugzwang" },
-		]
+		],
 	},
 	{
 		label: "Dev experiments",
@@ -106,5 +106,4 @@ export const puzzleThemes = [
 			{ value: "superGM", text: "Super GM games" },
 		],
 	},
-
 ];

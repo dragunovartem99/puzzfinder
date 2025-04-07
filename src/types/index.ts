@@ -25,13 +25,13 @@ export type SearchPayload = {
 		popularity: NumberRange;
 		nbPlays: NumberRange;
 		themes: string[];
-	}
+	};
 	sort: {
 		field: string;
 		order: string;
-	}
+	};
 	pagination: {
 		page: number;
 		limit: number;
-	}
-}
+	};
+};
