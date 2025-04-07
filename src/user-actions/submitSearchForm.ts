@@ -2,11 +2,11 @@ import { search } from "../state/search";
 import { pagination } from "../state/pagination";
 import { results } from "../state/results";
 
-import { createSearchBody } from "../utils/createSearchBody";
+import { createSearchPayload } from "../utils/createSearchPayload";
 import { findPuzzles } from "../api/findPuzzles";
 
 export async function sumbitSearchForm() {
-	const body = createSearchBody({
+	const body = createSearchPayload({
 		...search.value,
 		pagination: pagination.value,
 	});

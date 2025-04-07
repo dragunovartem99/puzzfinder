@@ -1,21 +1,46 @@
 <script setup lang="ts">
 import { search } from "../../state/search.ts";
-import { sumbitSearchForm } from "../../actions/submitSearchForm";
-import { puzzleThemes } from "../../static/puzzleThemes.ts";
+import { sumbitSearchForm } from "../../user-actions/submitSearchForm";
+import { puzzleThemes } from "../../static/puzzleThemes";
 import TheFormRange from "./TheFormRange.vue";
+
+const ranges = [
+	{
+		control: { label: "Rating", id: "rating" },
+		model: search.value.filters.rating,
+	},
+	{
+		control: { label: "Moves number", id: "moves-number" },
+		model: search.value.filters.movesNumber,
+	},
+	{
+		control: { label: "Popularity", id: "popularity" },
+		model: search.value.filters.popularity,
+	},
+	{
+		control: { label: "Times played", id: "nb-plays" },
+		model: search.value.filters.nbPlays,
+	},
+];
+
+const sortOptions = [
+	{ value: "rating-desc", text: "Highest rating" },
+	{ value: "movesNumber-desc", text: "Highest moves number" },
+	{ value: "popularity-desc", text: "Highest popularity" },
+	{ value: "nbPlays-desc", text: "Highest times played" },
+	{ value: "rating-asc", text: "Lowest rating" },
+	{ value: "movesNumber-asc", text: "Lowest moves number" },
+	{ value: "popularity-asc", text: "Lowest popularity" },
+	{ value: "nbPlays-asc", text: "Lowest times played" },
+	{ value: "puzzleId-asc", text: "Puzzle ID" },
+	{ value: "puzzleId-desc", text: "Puzzle ID (reversed)" },
+];
 </script>
 
 <template>
 	<form @submit.prevent="sumbitSearchForm">
 		<div class="ranges">
-			<TheFormRange :model="search.filters.rating" label="Rating" :id="'rating'" />
-			<TheFormRange
-				:model="search.filters.movesNumber"
-				label="Moves number"
-				id="moves-number"
-			/>
-			<TheFormRange :model="search.filters.popularity" label="Popularity" id="popularity" />
-			<TheFormRange :model="search.filters.nbPlays" label="Times played" id="nb-plays" />
+			<TheFormRange v-for="{ model, control } of ranges" :model :control />
 		</div>
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
@@ -31,16 +56,9 @@ import TheFormRange from "./TheFormRange.vue";
 			<div class="form-control">
 				<label>Order by</label>
 				<select v-model="search.sort">
-					<option value="rating-desc">Highest rating</option>
-					<option value="movesNumber-desc">Highest moves number</option>
-					<option value="popularity-desc">Highest popularity</option>
-					<option value="nbPlays-desc">Highest times played</option>
-					<option value="rating-asc">Lowest rating</option>
-					<option value="movesNumber-asc">Lowest moves number</option>
-					<option value="popularity-asc">Lowest popularity</option>
-					<option value="nbPlays-asc">Lowest times played</option>
-					<option value="puzzleId-asc">Puzzle ID</option>
-					<option value="puzzleId-desc">Puzzle ID (reversed)</option>
+					<option v-for="option in sortOptions" :value="option.value">
+						{{ option.text }}
+					</option>
 				</select>
 			</div>
 			<button>Find</button>

@@ -17,3 +17,21 @@ export type NumberRange = {
 	max: number;
 	equals: number;
 };
+
+export type SearchPayload = {
+	filters: {
+		rating: NumberRange;
+		movesNumber: NumberRange;
+		popularity: NumberRange;
+		nbPlays: NumberRange;
+		themes: string[];
+	}
+	sort: {
+		field: string;
+		order: string;
+	}
+	pagination: {
+		page: number;
+		limit: number;
+	}
+}

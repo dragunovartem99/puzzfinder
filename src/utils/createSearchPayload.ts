@@ -1,4 +1,4 @@
-export function createSearchBody(state: any) {
+export function createSearchPayload(state: any) {
 	const payload = JSON.parse(JSON.stringify(state));
 
 	const [sortField, sortOrder] = payload.sort.split("-");

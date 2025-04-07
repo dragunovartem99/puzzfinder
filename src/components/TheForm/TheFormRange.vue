@@ -1,22 +1,32 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import type { NumberRange } from "../../types";
 
-defineProps<{ model: Partial<NumberRange>; label: string; id: string }>();
+const props = defineProps<{
+	model: Partial<NumberRange>;
+	control: { label: string; id: string };
+}>();
+
 const isExact = ref(false);
+
+watch(isExact, () => {
+	props.model.min = undefined;
+	props.model.max = undefined;
+	props.model.equals = undefined;
+});
 </script>
 
 <template>
 	<div class="form-control">
-		<label>{{ label }}</label>
+		<label>{{ control.label }}</label>
 		<div class="range">
 			<template v-if="!isExact">
 				<input placeholder="Min" type="number" v-model="model.min" />
 				<input placeholder="Max" type="number" v-model="model.max" />
 			</template>
 			<input v-else placeholder="Equals" type="number" v-model="model.equals" />
-			<input :id type="checkbox" v-model="isExact" />
-			<label :for="id">Exact</label>
+			<input :id="control.id" type="checkbox" v-model="isExact" />
+			<label :for="control.id">Exact</label>
 		</div>
 	</div>
 </template>
