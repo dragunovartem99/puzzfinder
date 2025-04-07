@@ -23,6 +23,11 @@ function openTab(tab: any) {
 }
 
 const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.text);
+
+const paginationStatus = computed(() => {
+	if (!pagination.value.totalPages) return;
+	return `<b>Page:</b> ${pagination.value.page} of ${pagination.value.totalPages}`;
+});
 </script>
 
 <template>
@@ -64,7 +69,10 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 			</section>
 		</div>
 		<div class="status-bar">
-			<p class="status-bar-field"><b>Results:</b> {{ formatNumber(pagination.total) }}</p>
+			<p class="status-bar-field">
+				<b>Results:</b> {{ formatNumber(pagination.total || 0) }}
+			</p>
+			<p class="status-bar-field" v-html="paginationStatus"></p>
 		</div>
 	</main>
 </template>
@@ -82,6 +90,10 @@ main.window {
 	flex-direction: column;
 }
 
+.status-bar-field {
+	flex: 1;
+}
+
 .scroll {
 	overflow-y: auto;
 	-ms-overflow-style: none;
@@ -97,6 +109,7 @@ main.window {
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 20px;
 }
+
 section + section {
 	margin-top: 20px;
 }
