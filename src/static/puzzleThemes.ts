@@ -33,7 +33,7 @@ export const puzzleThemes = [
 		]
 	},
 	{
-		label: "Test",
+		label: "Dev experiments",
 		options: [
 			{ value: "mateIn1", text: "Mate in 1" },
 			{ value: "mateIn2", text: "Mate in 2" },
