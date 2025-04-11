@@ -1,11 +1,17 @@
 <script setup lang="ts">
-defineProps<{ icon: string; label: string; link?: string }>();
+defineProps<{
+	shortcut: {
+		icon: string;
+		label: string;
+		link?: string;
+	};
+}>();
 </script>
 
 <template>
-	<a :href="link" target="_blank">
-		<img :src="icon" />
-		<p>{{ label }}</p>
+	<a :href="shortcut.link" target="_blank">
+		<img :src="shortcut.icon" />
+		<p>{{ shortcut.label }}</p>
 	</a>
 </template>
 

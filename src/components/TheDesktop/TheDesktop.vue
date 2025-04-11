@@ -28,13 +28,7 @@ const shortcuts = [
 <template>
 	<div class="desktop">
 		<div class="shortcuts">
-			<TheShortcut
-				v-for="shortcut of shortcuts"
-				@click="shortcut.onClick"
-				:icon="shortcut.icon"
-				:label="shortcut.label"
-				:link="shortcut.link"
-			/>
+			<TheShortcut v-for="shortcut of shortcuts" @click="shortcut.onClick" :shortcut />
 		</div>
 	</div>
 </template>
