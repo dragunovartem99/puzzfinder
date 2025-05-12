@@ -13,7 +13,7 @@ const emit = defineEmits(["close-clicked"]);
 
 const tabs = ref([
 	{ text: "Results", isSelected: true },
-	{ text: "Favorites", isSelected: false },
+	// { text: "Favorites", isSelected: false },
 	{ text: "GitHub", isSelected: false },
 ]);
 
