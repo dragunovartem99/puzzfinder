@@ -1,5 +1,11 @@
-# Vue 3 + TypeScript + Vite
+# <img src="/logo.png" width="30"> Puzzfinder API
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Discover hidden gems in Lichess' multi-million puzzle database with fast, filter-based searches
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+The project consists of three components:
+
+- [Client-side web interface](https://github.com/dragunovartem99/puzzfinder)
+- [Application programming interface](https://github.com/dragunovartem99/puzzfinder-api)
+- [SQLite database with chess puzzles](https://github.com/dragunovartem99/puzzfinder-db)
+
+Any server-side advice/help will be very welcomed! This is my first full-stack project.
