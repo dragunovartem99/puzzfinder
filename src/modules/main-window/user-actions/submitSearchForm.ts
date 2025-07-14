@@ -22,9 +22,9 @@ function createSearchPayload(): SearchPayload {
 	const [sortField, sortOrder] = search.value.sort.split("-");
 
 	const payload: SearchPayload = {
-		...search.value,
+		filters: { ...search.value.filters },
 		sort: { field: sortField, order: sortOrder },
-		pagination: pagination.value,
+		pagination: { ...pagination.value },
 	};
 
 	return payload;
