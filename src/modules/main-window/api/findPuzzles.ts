@@ -1,14 +1,17 @@
-import type { SearchPayload } from "../types";
+import { httpRequest } from "../../shared/utils/httpRequest";
+import type { Puzzle, SearchPayload } from "../types";
 
-export async function findPuzzles(body: SearchPayload) {
-	const response = await fetch("https://puzzfinder.99x.space/puzzles", {
+type ReturnValue = {
+	data: Puzzle[];
+	pagination: any;
+};
+
+export async function findPuzzles(body: SearchPayload): Promise<ReturnValue> {
+	const puzzles = await httpRequest<ReturnValue>({
+		url: "https://puzzfinder.99x.space/puzzles",
 		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(body),
+		payload: body,
 	});
 
-	if (!response.ok) throw new Error("Something went wrong");
-
-	const { data, pagination } = await response.json();
-	return { data, pagination };
+	return puzzles;
 }
