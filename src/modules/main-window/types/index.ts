@@ -1,3 +1,5 @@
+import type { NumberRange } from "../../shared/types";
+
 export type Puzzle = {
 	puzzleId: string;
 	fen: string;
@@ -10,12 +12,6 @@ export type Puzzle = {
 	themes: string[];
 	gameUrl: string;
 	openingTags?: string;
-};
-
-export type NumberRange = {
-	min: number;
-	max: number;
-	equals: number;
 };
 
 export type SearchPayload = {

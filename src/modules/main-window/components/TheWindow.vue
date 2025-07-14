@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, inject } from "vue";
 import { results } from "../state/results";
 import { pagination } from "../state/pagination";
 
@@ -8,13 +8,13 @@ import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
+
 import { formatNumber } from "../../shared/utils/formatNumber";
 
-const emit = defineEmits(["close-clicked"]);
+const toggleMainWindow = inject<() => void>("toggle-main-window");
 
 const tabs = ref([
 	{ text: "Results", isSelected: true },
-	// { text: "Favorites", isSelected: false },
 	{ text: "GitHub", isSelected: false },
 ]);
 
@@ -32,7 +32,7 @@ const paginationStatus = computed(() => {
 </script>
 
 <template>
-	<TheWindow class="main">
+	<TheWindow class="main" @close-clicked="toggleMainWindow">
 		<template #title>
 			<div class="title-bar-text">
 				<img

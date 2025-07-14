@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TheShortcut from "./TheShortcut.vue";
-const emit = defineEmits(["app-clicked"]);
+const emit = defineEmits<{ "app-clicked": [] }>();
+
 const shortcuts = [
 	{
 		label: "Puzzfinder",
