@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { search } from "../../state/search.ts";
-import { sumbitSearchForm } from "../../user-actions/submitSearchForm";
-import { puzzleThemes } from "../../static/puzzleThemes";
-import TheFormRange from "./TheFormRange.vue";
+import { search } from "../state/search";
+import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
+import { puzzleThemes } from "../../../static/puzzleThemes";
+import { FormRange } from "../../shared";
 
 const ranges = [
 	{
@@ -38,9 +38,9 @@ const sortOptions = [
 </script>
 
 <template>
-	<form @submit.prevent="sumbitSearchForm">
+	<form @submit.prevent="submitSearchForm">
 		<div class="ranges">
-			<TheFormRange v-for="{ model, control } of ranges" :model :control />
+			<FormRange v-for="{ model, control } of ranges" :model :control />
 		</div>
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>

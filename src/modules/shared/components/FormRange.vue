@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import type { NumberRange } from "../../types";
+import type { NumberRange } from "../types";
 
 const props = defineProps<{
 	model: Partial<NumberRange>;

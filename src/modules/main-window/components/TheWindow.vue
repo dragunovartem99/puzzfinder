@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import { results } from "../state/results.ts";
+import { computed, ref, inject } from "vue";
+import { results } from "../state/results";
 import { pagination } from "../state/pagination";
 
+import { TheWindow } from "../../shared";
 import TheDescription from "./TheDescription.vue";
-import TheForm from "./TheForm/TheForm.vue";
+import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
-import { formatNumber } from "../utils/formatNumber";
 
-const emit = defineEmits(["close-clicked"]);
+import { formatNumber } from "../../shared/utils/formatNumber";
+
+const toggleMainWindow = inject<() => void>("toggle-main-window");
 
 const tabs = ref([
 	{ text: "Results", isSelected: true },
-	// { text: "Favorites", isSelected: false },
 	{ text: "GitHub", isSelected: false },
 ]);
 
@@ -31,8 +32,8 @@ const paginationStatus = computed(() => {
 </script>
 
 <template>
-	<main class="window">
-		<div class="title-bar">
+	<TheWindow class="main" @close-clicked="toggleMainWindow">
+		<template #title>
 			<div class="title-bar-text">
 				<img
 					src="/logo.png"
@@ -40,11 +41,8 @@ const paginationStatus = computed(() => {
 				/>
 				Puzzfinder
 			</div>
-			<div class="title-bar-controls">
-				<button @click="emit('close-clicked')" aria-label="Close"></button>
-			</div>
-		</div>
-		<div class="window-body scroll">
+		</template>
+		<template #body>
 			<section><TheDescription /></section>
 			<section><TheForm /></section>
 			<section>
@@ -67,18 +65,18 @@ const paginationStatus = computed(() => {
 					</div>
 				</div>
 			</section>
-		</div>
-		<div class="status-bar">
+		</template>
+		<template #status>
 			<p class="status-bar-field">
 				<b>Results:</b> {{ formatNumber(pagination.total || 0) }}
 			</p>
 			<p class="status-bar-field" v-html="paginationStatus"></p>
-		</div>
-	</main>
+		</template>
+	</TheWindow>
 </template>
 
 <style scoped>
-main.window {
+.main {
 	position: absolute;
 	left: 50%;
 	top: 50%;
@@ -92,16 +90,6 @@ main.window {
 
 .status-bar-field {
 	flex: 1;
-}
-
-.scroll {
-	overflow-y: auto;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-}
-
-.scroll::-webkit-scrollbar {
-	display: none;
 }
 
 .results {
