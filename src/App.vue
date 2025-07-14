@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import TheDesktop from "./components/TheDesktop/TheDesktop.vue";
-import TheWindow from "./components/TheWindow.vue";
+
+import { TheDesktop } from "./modules/desktop";
+import TheWindow from "./modules/main-window/components/TheWindow.vue";
 
 const isOpen = ref(true);
 </script>

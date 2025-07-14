@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheShortcut from "./TheDesktopShortcut.vue";
+import TheShortcut from "./TheShortcut.vue";
 const emit = defineEmits(["app-clicked"]);
 const shortcuts = [
 	{
