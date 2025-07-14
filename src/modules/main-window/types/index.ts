@@ -16,10 +16,10 @@ export type Puzzle = {
 
 export type SearchPayload = {
 	filters: {
-		rating: NumberRange;
-		movesNumber: NumberRange;
-		popularity: NumberRange;
-		nbPlays: NumberRange;
+		rating: Partial<NumberRange>;
+		movesNumber: Partial<NumberRange>;
+		popularity: Partial<NumberRange>;
+		nbPlays: Partial<NumberRange>;
 		themes: string[];
 	};
 	sort: {

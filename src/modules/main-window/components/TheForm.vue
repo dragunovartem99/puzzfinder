@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { search } from "../state/search";
-import { sumbitSearchForm } from "../utils/submitSearchForm";
+import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
 import { puzzleThemes } from "../../../static/puzzleThemes";
 import { FormRange } from "../../shared";
 
@@ -38,7 +38,7 @@ const sortOptions = [
 </script>
 
 <template>
-	<form @submit.prevent="sumbitSearchForm">
+	<form @submit.prevent="submitSearchForm">
 		<div class="ranges">
 			<FormRange v-for="{ model, control } of ranges" :model :control />
 		</div>
