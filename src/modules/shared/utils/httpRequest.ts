@@ -17,5 +17,5 @@ export async function httpRequest<Data>(input: Input): Promise<Data> {
 		throw new Error("Something went wrong");
 	}
 
-	return (await response.json() as Data);
+	return (await response.json()) as Data;
 }
