@@ -1,11 +1,11 @@
 <script setup lang="ts">
-defineProps<{
-	shortcut: {
-		icon: string;
-		label: string;
-		link?: string;
-	};
-}>();
+type Shortcut = {
+	icon: string;
+	label: string;
+	link?: string;
+};
+
+defineProps<{ shortcut: Shortcut }>();
 </script>
 
 <template>

@@ -3,13 +3,13 @@ import { computed, ref, inject } from "vue";
 import { results } from "../state/results";
 import { pagination } from "../state/pagination";
 
-import { TheWindow } from "../../shared";
+import { formatNumber } from "@/shared/utils/formatNumber";
+
+import TheWindow from "@/shared/components/TheWindow.vue";
 import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
-
-import { formatNumber } from "../../shared/utils/formatNumber";
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
 

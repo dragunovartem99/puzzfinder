@@ -1,6 +1,7 @@
 import { ref, computed, type UnwrapRef } from "vue";
+import type { Pagination } from "../types";
 
-const privateState = ref({
+const privateState = ref<Pagination>({
 	page: 1,
 	limit: 24,
 	total: 0,

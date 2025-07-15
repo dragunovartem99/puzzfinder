@@ -1,4 +1,4 @@
-import { httpRequest } from "../../shared/utils/httpRequest";
+import { httpRequest } from "@/shared/utils/httpRequest";
 import type { Puzzle, SearchPayload } from "../types";
 
 type ReturnValue = {
