@@ -4,8 +4,8 @@ import { results } from "../state/results";
 import { pagination } from "../state/pagination";
 
 import { formatNumber } from "@/shared/utils/formatNumber";
-
 import TheWindow from "@/shared/components/TheWindow.vue";
+
 import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
