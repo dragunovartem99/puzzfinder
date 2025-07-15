@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { search } from "../state/search";
 import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
-import { puzzleThemes } from "../../../static/puzzleThemes";
-import { FormRange } from "../../shared";
+
+import { puzzleThemes } from "../static/puzzleThemes";
+import FormRange from "./FormRange.vue";
 
 const ranges = [
 	{

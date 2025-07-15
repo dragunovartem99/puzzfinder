@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { provide, ref } from "vue";
 
-import { TheDesktop } from "./modules/desktop";
-import { TheWindow } from "./modules/main-window";
+import { TheDesktop } from "../modules/desktop";
+import { MainWindow } from "../modules/main-window";
 
 const isOpen = ref(true);
 
@@ -15,5 +15,5 @@ provide("toggle-main-window", toggleMainWindow);
 
 <template>
 	<TheDesktop @app-clicked="toggleMainWindow" />
-	<TheWindow v-show="isOpen" />
+	<MainWindow v-show="isOpen" />
 </template>

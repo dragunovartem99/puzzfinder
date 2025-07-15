@@ -1,1 +1,1 @@
-export { default as TheWindow } from "./components/TheWindow.vue";
+export { default as MainWindow } from "./components/MainWindow.vue";
