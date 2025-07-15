@@ -1,9 +1,9 @@
+import type { Pagination, Puzzle, SearchPayload } from "../types";
 import { httpRequest } from "@/shared/utils/httpRequest";
-import type { Puzzle, SearchPayload } from "../types";
 
 type ReturnValue = {
 	data: Puzzle[];
-	pagination: any;
+	pagination: Pagination;
 };
 
 export async function findPuzzles(body: SearchPayload): Promise<ReturnValue> {
