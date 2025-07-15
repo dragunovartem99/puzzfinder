@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { Puzzle } from "../types";
+
 import { puzzleThemes } from "../static/puzzleThemes";
 import { hiddenThemes } from "../static/hiddenThemes";
 import { formatNumber } from "@/shared/utils/formatNumber.ts";

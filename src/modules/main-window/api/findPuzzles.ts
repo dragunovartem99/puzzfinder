@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { httpRequest } from "@/shared/utils/httpRequest";
+=======
+import { httpRequest } from "../../shared/utils/httpRequest";
+>>>>>>> main
 import type { Puzzle, SearchPayload } from "../types";
 
 type ReturnValue = {

@@ -1,3 +1,8 @@
+<<<<<<< HEAD:src/host/css/style.css
+=======
+@import url("./modules/shared/css/98.css"); /* scale 1.455 is ok */
+
+>>>>>>> main:src/style.css
 @font-face {
 	font-family: "Diagram Smart";
 	src: url("/DiagramSmart.woff2") format("woff2");

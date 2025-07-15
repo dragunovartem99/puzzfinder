@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 export type NumberRange = {
 	min: number;
 	max: number;
 	equals: number;
 };
+=======
+import type { NumberRange } from "../../shared/types";
+>>>>>>> main
 
 type Filters = {
 	rating: Partial<NumberRange>;
@@ -29,6 +33,7 @@ export type Search = {
 	sort: SortString;
 };
 
+<<<<<<< HEAD
 export type Pagination = {
 	page: number;
 	limit: number;
@@ -36,13 +41,22 @@ export type Pagination = {
 	totalPages: number;
 };
 
+=======
+>>>>>>> main
 export type SearchPayload = {
 	filters: Filters;
 	sort: {
 		field: string;
 		order: string;
 	};
+<<<<<<< HEAD
 	pagination: Pick<Pagination, "page" | "limit">;
+=======
+	pagination: {
+		page: number;
+		limit: number;
+	};
+>>>>>>> main
 };
 
 export type Puzzle = {
