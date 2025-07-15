@@ -3,23 +3,14 @@ import { computed, ref, inject } from "vue";
 import { results } from "../state/results";
 import { pagination } from "../state/pagination";
 
-<<<<<<<< HEAD:src/modules/main-window/components/MainWindow.vue
 import { formatNumber } from "@/shared/utils/formatNumber";
 import TheWindow from "@/shared/components/TheWindow.vue";
 
-========
-import { TheWindow } from "../../shared";
->>>>>>>> main:src/modules/main-window/components/TheWindow.vue
 import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
 
-<<<<<<<< HEAD:src/modules/main-window/components/MainWindow.vue
-========
-import { formatNumber } from "../../shared/utils/formatNumber";
-
->>>>>>>> main:src/modules/main-window/components/TheWindow.vue
 const toggleMainWindow = inject<() => void>("toggle-main-window");
 
 const tabs = ref([
