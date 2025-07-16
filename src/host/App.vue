@@ -4,10 +4,10 @@ import { provide, ref } from "vue";
 import { TheDesktop } from "../modules/desktop";
 import { MainWindow } from "../modules/main-window";
 
-const isOpen = ref(true);
+const isMainWindowOpen = ref(true);
 
 function toggleMainWindow() {
-	isOpen.value = !isOpen.value;
+	isMainWindowOpen.value = !isMainWindowOpen.value;
 }
 
 provide("toggle-main-window", toggleMainWindow);
@@ -15,5 +15,5 @@ provide("toggle-main-window", toggleMainWindow);
 
 <template>
 	<TheDesktop @app-clicked="toggleMainWindow" />
-	<MainWindow v-show="isOpen" />
+	<MainWindow v-show="isMainWindowOpen" />
 </template>
