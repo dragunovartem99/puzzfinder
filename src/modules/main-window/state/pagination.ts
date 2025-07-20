@@ -12,4 +12,12 @@ export function setPagination(pagination: UnwrapRef<typeof privateState>) {
 	privateState.value = pagination;
 }
 
+export function toPrevPage() {
+	privateState.value.page++;
+}
+
+export function toNextPage() {
+	privateState.value.page++;
+}
+
 export const pagination = computed(() => privateState.value);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, inject, watch } from "vue";
-import { results } from "../state/results";
-import { pagination } from "../state/pagination";
+import { results } from "../state/results.ts";
+import { pagination, toPrevPage, toNextPage } from "../state/pagination";
 
 import { formatNumber } from "@/shared/utils/formatNumber";
 import TheWindow from "@/shared/components/TheWindow.vue";
@@ -14,7 +14,10 @@ import { submitSearchForm } from "../user-actions/submitSearchForm";
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
 
-type Tab = { text: string; isSelected: boolean };
+type Tab = {
+	text: string;
+	isSelected: boolean;
+};
 
 const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
@@ -27,9 +30,6 @@ function openTab(tab: Tab) {
 }
 
 const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.text);
-
-const toPrevPage = () => pagination.value.page--;
-const toNextPage = () => pagination.value.page++;
 
 watch(() => pagination.value.page, submitSearchForm);
 </script>

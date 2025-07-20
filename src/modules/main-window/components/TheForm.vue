@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { search } from "../state/search";
+import { search } from "../state/form.ts";
 import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
 
 import { puzzleThemes } from "../static/puzzleThemes";

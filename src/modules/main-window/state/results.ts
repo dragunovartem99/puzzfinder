@@ -1,10 +1,23 @@
-import { computed, ref } from "vue";
+import { computed, reactive } from "vue";
 import type { Puzzle } from "../types";
 
-const privateState = ref<Puzzle[]>([]);
+type State = {
+	results: Puzzle[];
+	isLoading: boolean;
+};
 
-export function setPuzzles(puzzles: Puzzle[]): void {
-	privateState.value = puzzles;
+const privateState: State = reactive({
+	results: [],
+	isLoading: false,
+});
+
+export function setResults(puzzles: Puzzle[]): void {
+	privateState.results = puzzles;
 }
 
-export const results = computed(() => privateState.value);
+export function setIsLoading(state: boolean): void {
+	privateState.isLoading = state;
+}
+
+export const results = computed(() => privateState.results);
+export const isLoading = computed(() => privateState.isLoading);

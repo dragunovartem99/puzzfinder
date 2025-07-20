@@ -2,16 +2,16 @@ import type { SearchPayload } from "../types";
 
 import { findPuzzles } from "../api/findPuzzles";
 
-import { search } from "../state/search";
+import { search } from "../state/form";
 import { pagination, setPagination } from "../state/pagination";
-import { setPuzzles } from "../state/results";
+import { setResults } from "../state/results";
 
 export async function submitSearchForm(): Promise<void> {
 	const body: SearchPayload = createSearchPayload();
 
 	try {
 		const { data: puzzles, pagination } = await findPuzzles(body);
-		setPuzzles(puzzles);
+		setResults(puzzles);
 		setPagination(pagination);
 	} catch (e) {
 		console.error((e as Error).toString());
