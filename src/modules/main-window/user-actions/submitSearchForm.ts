@@ -4,17 +4,21 @@ import { findPuzzles } from "../api/findPuzzles";
 
 import { search } from "../state/form";
 import { pagination, setPagination } from "../state/pagination";
-import { setResults } from "../state/results";
+import { setIsLoading, setResults } from "../state/results";
 
 export async function submitSearchForm(): Promise<void> {
 	const body: SearchPayload = createSearchPayload();
 
 	try {
+		setIsLoading(true);
 		const { data: puzzles, pagination } = await findPuzzles(body);
 		setResults(puzzles);
 		setPagination(pagination);
 	} catch (e) {
-		console.error((e as Error).toString());
+		console.error(e);
+		setResults([]);
+	} finally {
+		setIsLoading(false);
 	}
 }
 

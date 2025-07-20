@@ -13,7 +13,7 @@ export function setPagination(pagination: UnwrapRef<typeof privateState>) {
 }
 
 export function toPrevPage() {
-	privateState.value.page++;
+	privateState.value.page--;
 }
 
 export function toNextPage() {

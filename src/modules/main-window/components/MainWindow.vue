@@ -1,23 +1,17 @@
 <script setup lang="ts">
-import { computed, ref, inject, watch } from "vue";
-import { results } from "../state/results.ts";
-import { pagination, toPrevPage, toNextPage } from "../state/pagination";
+import { computed, ref, inject } from "vue";
+import { results, isLoading } from "../state/results.ts";
 
-import { formatNumber } from "@/shared/utils/formatNumber";
 import TheWindow from "@/shared/components/TheWindow.vue";
-
 import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
-import { submitSearchForm } from "../user-actions/submitSearchForm";
+import ThePagination from "./ThePagination.vue";
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
 
-type Tab = {
-	text: string;
-	isSelected: boolean;
-};
+type Tab = { text: string; isSelected: boolean };
 
 const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
@@ -30,8 +24,6 @@ function openTab(tab: Tab) {
 }
 
 const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.text);
-
-watch(() => pagination.value.page, submitSearchForm);
 </script>
 
 <template>
@@ -61,7 +53,12 @@ watch(() => pagination.value.page, submitSearchForm);
 				</menu>
 				<div class="window" role="tabpanel">
 					<div class="window-body">
-						<div class="results" v-if="selectedTab === 'Results'">
+						<template v-if="isLoading">
+							<div class="progress-indicator segmented">
+								<span class="progress-indicator-bar" style="width: 20%" />
+							</div>
+						</template>
+						<div class="results" v-else-if="selectedTab === 'Results'">
 							<ThePuzzle v-for="puzzle of results" :puzzle :key="puzzle.puzzleId" />
 						</div>
 						<TheGitHub v-if="selectedTab === 'GitHub'" />
@@ -70,16 +67,7 @@ watch(() => pagination.value.page, submitSearchForm);
 			</section>
 		</template>
 		<template #status>
-			<div class="status-bar-field">
-				<b>Results:</b> {{ formatNumber(pagination.total || 0) }}
-			</div>
-			<div class="status-bar-field pagination" v-if="pagination.totalPages > 1">
-				<p><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</p>
-				<div class="controls">
-					<a v-if="pagination.page > 1" href="" @click.prevent="toPrevPage">Prev page</a>
-					<a href="" @click.prevent="toNextPage">Next page</a>
-				</div>
-			</div>
+			<ThePagination />
 		</template>
 	</TheWindow>
 </template>
@@ -109,20 +97,5 @@ watch(() => pagination.value.page, submitSearchForm);
 
 section + section {
 	margin-top: 20px;
-}
-
-.pagination {
-	display: flex;
-	justify-content: space-between;
-	gap: 20px;
-}
-
-.pagination p {
-	margin: 0;
-}
-
-.controls {
-	display: flex;
-	gap: 10px;
 }
 </style>
