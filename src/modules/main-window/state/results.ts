@@ -15,7 +15,7 @@ function setIsLoading(value: boolean): void {
 
 export function useResults() {
 	return {
-		results: readonly(results),
+		results,
 		isLoading: readonly(isLoading),
 		setResults,
 		setIsLoading,
