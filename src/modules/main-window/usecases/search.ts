@@ -2,12 +2,12 @@ import type { Search, SearchPayload } from "../types";
 
 import { unref, type MaybeRef } from "vue";
 
-import { findPuzzles } from "../api/findPuzzles";
+import { findPuzzles } from "../api/findPuzzles.ts";
 
-import { pagination, setPagination } from "../state/pagination";
-import { setIsLoading, setResults } from "../state/results";
+import { pagination, setPagination } from "../state/pagination.ts";
+import { setIsLoading, setResults } from "../state/results.ts";
 
-import { useSearch } from "../state/search";
+import { useSearch } from "../state/search.ts";
 
 const { search, setSearch } = useSearch();
 

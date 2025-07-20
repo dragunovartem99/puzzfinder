@@ -11,7 +11,7 @@ const { search } = useSearch();
 const form = cloneRef(search);
 
 function handleSubmit() {
-	submitForm(form);
+	submitForm(cloneRef(form));
 }
 
 const ranges = [
