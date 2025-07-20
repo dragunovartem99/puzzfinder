@@ -7,6 +7,7 @@ import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
+import TheProgress from "./TheProgress.vue";
 import ThePagination from "./ThePagination.vue";
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
@@ -53,11 +54,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 				</menu>
 				<div class="window" role="tabpanel">
 					<div class="window-body">
-						<template v-if="isLoading">
-							<div class="progress-indicator segmented">
-								<span class="progress-indicator-bar" style="width: 20%" />
-							</div>
-						</template>
+						<TheProgress v-if="isLoading" />
 						<div class="results" v-else-if="selectedTab === 'Results'">
 							<ThePuzzle v-for="puzzle of results" :puzzle :key="puzzle.puzzleId" />
 						</div>
