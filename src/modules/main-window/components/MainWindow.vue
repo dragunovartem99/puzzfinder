@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, inject } from "vue";
+import { computed, ref, inject, watch } from "vue";
 import { results } from "../state/results";
 import { pagination } from "../state/pagination";
 
@@ -10,25 +10,28 @@ import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
+import { submitSearchForm } from "../user-actions/submitSearchForm";
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
 
-const tabs = ref([
+type Tab = { text: string; isSelected: boolean };
+
+const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
 	{ text: "GitHub", isSelected: false },
 ]);
 
-function openTab(tab: any) {
+function openTab(tab: Tab) {
 	tabs.value.forEach((tab) => (tab.isSelected = false));
 	tab.isSelected = true;
 }
 
 const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.text);
 
-const paginationStatus = computed(() => {
-	if (!pagination.value.totalPages) return;
-	return `<b>Page:</b> ${pagination.value.page} of ${pagination.value.totalPages}`;
-});
+const toPrevPage = () => pagination.value.page--;
+const toNextPage = () => pagination.value.page++;
+
+watch(() => pagination.value.page, submitSearchForm);
 </script>
 
 <template>
@@ -67,10 +70,16 @@ const paginationStatus = computed(() => {
 			</section>
 		</template>
 		<template #status>
-			<p class="status-bar-field">
+			<div class="status-bar-field">
 				<b>Results:</b> {{ formatNumber(pagination.total || 0) }}
-			</p>
-			<p class="status-bar-field" v-html="paginationStatus"></p>
+			</div>
+			<div class="status-bar-field pagination" v-if="pagination.totalPages > 1">
+				<p><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</p>
+				<div class="controls">
+					<a v-if="pagination.page > 1" href="" @click.prevent="toPrevPage">Prev page</a>
+					<a href="" @click.prevent="toNextPage">Next page</a>
+				</div>
+			</div>
 		</template>
 	</TheWindow>
 </template>
@@ -100,5 +109,20 @@ const paginationStatus = computed(() => {
 
 section + section {
 	margin-top: 20px;
+}
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+}
+
+.pagination p {
+	margin: 0;
+}
+
+.controls {
+	display: flex;
+	gap: 10px;
 }
 </style>
