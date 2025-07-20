@@ -2,16 +2,15 @@
 import type { Ref } from "vue";
 import type { Search } from "../types/index.ts";
 
-import { cloneRef } from "@/shared/utils/cloneRef.ts";
-
-import { useSearch } from "../state/form.ts";
-import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
-
-import { puzzleThemes } from "../static/puzzleThemes";
 import FormRange from "./FormRange.vue";
 
-const { search } = useSearch();
+import { cloneRef } from "@/shared/utils/cloneRef.ts";
+import { puzzleThemes } from "../static/puzzleThemes.ts";
 
+import { useSearch } from "../state/search.ts";
+import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
+
+const { search } = useSearch();
 const form = cloneRef(search as Ref<Search>); // remove readonly type
 
 const ranges = [
