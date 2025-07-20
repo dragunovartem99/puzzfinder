@@ -1,34 +1,30 @@
 <script setup lang="ts">
 import { computed, ref, inject } from "vue";
-import { results } from "../state/results";
-import { pagination } from "../state/pagination";
+import { results, isLoading } from "../state/results.ts";
 
-import { formatNumber } from "@/shared/utils/formatNumber";
 import TheWindow from "@/shared/components/TheWindow.vue";
-
 import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
 import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
+import TheProgress from "./TheProgress.vue";
+import ThePagination from "./ThePagination.vue";
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
 
-const tabs = ref([
+type Tab = { text: string; isSelected: boolean };
+
+const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
 	{ text: "GitHub", isSelected: false },
 ]);
 
-function openTab(tab: any) {
+function openTab(tab: Tab) {
 	tabs.value.forEach((tab) => (tab.isSelected = false));
 	tab.isSelected = true;
 }
 
 const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.text);
-
-const paginationStatus = computed(() => {
-	if (!pagination.value.totalPages) return;
-	return `<b>Page:</b> ${pagination.value.page} of ${pagination.value.totalPages}`;
-});
 </script>
 
 <template>
@@ -58,7 +54,8 @@ const paginationStatus = computed(() => {
 				</menu>
 				<div class="window" role="tabpanel">
 					<div class="window-body">
-						<div class="results" v-if="selectedTab === 'Results'">
+						<TheProgress v-if="isLoading" />
+						<div class="results" v-else-if="selectedTab === 'Results'">
 							<ThePuzzle v-for="puzzle of results" :puzzle :key="puzzle.puzzleId" />
 						</div>
 						<TheGitHub v-if="selectedTab === 'GitHub'" />
@@ -67,10 +64,7 @@ const paginationStatus = computed(() => {
 			</section>
 		</template>
 		<template #status>
-			<p class="status-bar-field">
-				<b>Results:</b> {{ formatNumber(pagination.total || 0) }}
-			</p>
-			<p class="status-bar-field" v-html="paginationStatus"></p>
+			<ThePagination />
 		</template>
 	</TheWindow>
 </template>

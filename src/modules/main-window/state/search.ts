@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import type { Search } from "../types";
 
-export const search = ref<Search>({
+const privateState = ref<Search>({
 	filters: {
 		rating: {},
 		movesNumber: {},
@@ -11,3 +11,14 @@ export const search = ref<Search>({
 	},
 	sort: "rating-desc",
 });
+
+function setSearch(search: Search): void {
+	privateState.value = search;
+}
+
+export function useSearch() {
+	return {
+		search: privateState,
+		setSearch,
+	};
+}

@@ -1,26 +1,35 @@
 <script setup lang="ts">
-import { search } from "../state/search";
-import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
-
-import { puzzleThemes } from "../static/puzzleThemes";
 import FormRange from "./FormRange.vue";
+
+import { cloneRef } from "@/shared/utils/cloneRef.ts";
+import { puzzleThemes } from "../static/puzzleThemes.ts";
+
+import { useSearch } from "../state/search.ts";
+import { submitForm } from "../usecases/search.ts";
+
+const { search } = useSearch();
+const form = cloneRef(search);
+
+function handleSubmit() {
+	submitForm(form);
+}
 
 const ranges = [
 	{
 		control: { label: "Rating", id: "rating" },
-		model: search.value.filters.rating,
+		model: form.value.filters.rating,
 	},
 	{
 		control: { label: "Moves number", id: "moves-number" },
-		model: search.value.filters.movesNumber,
+		model: form.value.filters.movesNumber,
 	},
 	{
 		control: { label: "Popularity", id: "popularity" },
-		model: search.value.filters.popularity,
+		model: form.value.filters.popularity,
 	},
 	{
 		control: { label: "Times played", id: "nb-plays" },
-		model: search.value.filters.nbPlays,
+		model: form.value.filters.nbPlays,
 	},
 ];
 
@@ -39,13 +48,13 @@ const sortOptions = [
 </script>
 
 <template>
-	<form @submit.prevent="submitSearchForm">
+	<form @submit.prevent="handleSubmit">
 		<div class="ranges">
 			<FormRange v-for="{ model, control } of ranges" :model :control />
 		</div>
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
-			<select multiple size="10" v-model="search.filters.themes">
+			<select multiple size="10" v-model="form.filters.themes">
 				<optgroup v-for="group of puzzleThemes" :label="group.label">
 					<option v-for="option of group.options" :value="option.value">
 						{{ option.text }}
@@ -56,7 +65,7 @@ const sortOptions = [
 		<div class="results">
 			<div class="form-control">
 				<label>Order by</label>
-				<select v-model="search.sort">
+				<select v-model="form.sort">
 					<option v-for="option in sortOptions" :value="option.value">
 						{{ option.text }}
 					</option>
