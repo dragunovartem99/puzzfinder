@@ -1,13 +1,12 @@
-import type { SearchPayload } from "../types";
+import type { Search, SearchPayload } from "../types";
 
 import { findPuzzles } from "../api/findPuzzles";
 
-import { search } from "../state/form";
 import { pagination, setPagination } from "../state/pagination";
 import { setIsLoading, setResults } from "../state/results";
 
-export async function submitSearchForm(): Promise<void> {
-	const body: SearchPayload = createSearchPayload();
+export async function submitSearchForm(search: Search): Promise<void> {
+	const body: SearchPayload = createSearchPayload(search);
 
 	try {
 		setIsLoading(true);
@@ -22,11 +21,11 @@ export async function submitSearchForm(): Promise<void> {
 	}
 }
 
-function createSearchPayload(): SearchPayload {
-	const [sortField, sortOrder] = search.value.sort.split("-");
+function createSearchPayload(search: Search): SearchPayload {
+	const [sortField, sortOrder] = search.sort.split("-");
 
 	const payload: SearchPayload = {
-		filters: { ...search.value.filters },
+		filters: { ...search.filters },
 		sort: { field: sortField, order: sortOrder },
 		pagination: { ...pagination.value },
 	};
