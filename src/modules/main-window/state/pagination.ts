@@ -1,23 +1,21 @@
-import { ref, computed, type UnwrapRef } from "vue";
 import type { Pagination } from "../types";
 
-const privateState = ref<Pagination>({
+import { ref, readonly } from "vue";
+
+const pagination = ref<Pagination>({
 	page: 1,
 	limit: 24,
 	total: 0,
 	totalPages: 0,
 });
 
-export function setPagination(pagination: UnwrapRef<typeof privateState>) {
-	privateState.value = pagination;
+function setPagination(newPagination: Pagination) {
+	pagination.value = newPagination;
 }
 
-export function toPrevPage() {
-	privateState.value.page--;
+export function usePagination() {
+	return {
+		pagination: readonly(pagination),
+		setPagination,
+	};
 }
-
-export function toNextPage() {
-	privateState.value.page++;
-}
-
-export const pagination = computed(() => privateState.value);

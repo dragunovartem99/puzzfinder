@@ -1,5 +1,6 @@
-import { ref } from "vue";
 import type { Search } from "../types";
+
+import { ref } from "vue";
 
 const privateState = ref<Search>({
 	filters: {

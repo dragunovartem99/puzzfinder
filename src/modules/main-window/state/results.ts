@@ -1,23 +1,23 @@
-import { computed, reactive } from "vue";
 import type { Puzzle } from "../types";
 
-type State = {
-	results: Puzzle[];
-	isLoading: boolean;
-};
+import { readonly, ref } from "vue";
 
-const privateState: State = reactive({
-	results: [],
-	isLoading: false,
-});
+const results = ref<Puzzle[]>([]);
+const isLoading = ref(false);
 
-export function setResults(puzzles: Puzzle[]): void {
-	privateState.results = puzzles;
+function setResults(puzzles: Puzzle[]): void {
+	results.value = puzzles;
 }
 
-export function setIsLoading(state: boolean): void {
-	privateState.isLoading = state;
+function setIsLoading(value: boolean): void {
+	isLoading.value = value;
 }
 
-export const results = computed(() => privateState.results);
-export const isLoading = computed(() => privateState.isLoading);
+export function useResults() {
+	return {
+		results: readonly(results),
+		isLoading: readonly(isLoading),
+		setResults,
+		setIsLoading,
+	};
+}

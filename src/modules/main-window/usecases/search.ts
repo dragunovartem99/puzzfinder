@@ -1,15 +1,17 @@
+import type { MaybeRef } from "vue";
 import type { Search, SearchPayload } from "../types";
 
-import { unref, type MaybeRef } from "vue";
+import { unref } from "vue";
 
 import { findPuzzles } from "../api/findPuzzles.ts";
 
-import { pagination, setPagination } from "../state/pagination.ts";
-import { setIsLoading, setResults } from "../state/results.ts";
-
+import { usePagination } from "../state/pagination.ts";
 import { useSearch } from "../state/search.ts";
+import { useResults } from "../state/results.ts";
 
 const { search, setSearch } = useSearch();
+const { setResults, setIsLoading } = useResults();
+const { pagination, setPagination } = usePagination();
 
 export async function submitForm(newSearch: MaybeRef<Search>): Promise<void> {
 	setSearch(unref(newSearch));

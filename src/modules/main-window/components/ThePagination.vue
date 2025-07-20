@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
-import { pagination } from "../state/pagination.ts";
+import { usePagination } from "../state/pagination.ts";
 import { changePage } from "../usecases/search.ts";
 
-function toPrevPage() {
-	changePage(pagination.value.page - 1);
-}
+const { pagination } = usePagination();
 
-function toNextPage() {
-	changePage(pagination.value.page + 1);
-}
+const toPrevPage = () => changePage(pagination.value.page - 1);
+const toNextPage = () => changePage(pagination.value.page + 1);
 </script>
 
 <template>

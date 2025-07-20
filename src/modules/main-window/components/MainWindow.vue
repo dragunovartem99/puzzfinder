@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, inject } from "vue";
-import { results, isLoading } from "../state/results.ts";
+import { useResults } from "../state/results.ts";
 
 import TheWindow from "@/shared/components/TheWindow.vue";
 import TheDescription from "./TheDescription.vue";
@@ -10,9 +10,10 @@ import TheGitHub from "./TheGitHub.vue";
 import TheProgress from "./TheProgress.vue";
 import ThePagination from "./ThePagination.vue";
 
-const toggleMainWindow = inject<() => void>("toggle-main-window");
-
 type Tab = { text: string; isSelected: boolean };
+
+const toggleMainWindow = inject<() => void>("toggle-main-window");
+const { results, isLoading } = useResults();
 
 const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
