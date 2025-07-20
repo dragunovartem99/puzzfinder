@@ -1,21 +1,41 @@
 import type { Search, SearchPayload } from "../types";
 
+import { unref, type MaybeRef } from "vue";
+
 import { findPuzzles } from "../api/findPuzzles";
 
 import { pagination, setPagination } from "../state/pagination";
 import { setIsLoading, setResults } from "../state/results";
 
-export async function submitSearchForm(search: Search): Promise<void> {
-	const body: SearchPayload = createSearchPayload(search);
+import { useSearch } from "../state/search";
 
+const { search, setSearch } = useSearch();
+
+export async function submitForm(search: MaybeRef<Search>): Promise<void> {
+	setSearch(unref(search));
+
+	const body: SearchPayload = createSearchPayload(unref(search));
+	body.pagination.page = 1;
+
+	findResults(body);
+}
+
+export async function changePage(page: MaybeRef<number>) {
+	const body: SearchPayload = createSearchPayload(unref(search));
+	body.pagination.page = unref(page);
+
+	findResults(body);
+}
+
+async function findResults(body: SearchPayload) {
 	try {
 		setIsLoading(true);
+
 		const { data: puzzles, pagination } = await findPuzzles(body);
 		setResults(puzzles);
 		setPagination(pagination);
 	} catch (e) {
 		console.error(e);
-		setResults([]);
 	} finally {
 		setIsLoading(false);
 	}

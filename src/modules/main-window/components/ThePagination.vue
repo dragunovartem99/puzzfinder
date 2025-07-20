@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { watch } from "vue";
-import { pagination, toPrevPage, toNextPage } from "../state/pagination";
-import { formatNumber } from "@/shared/utils/formatNumber";
-import { submitSearchForm } from "../user-actions/submitSearchForm";
+import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
-watch(() => pagination.value.page, submitSearchForm);
+import { pagination } from "../state/pagination.ts";
+import { changePage } from "../usecases/search.ts";
+
+function toPrevPage() {
+	changePage(pagination.value.page - 1);
+}
+
+function toNextPage() {
+	changePage(pagination.value.page + 1);
+}
 </script>
 
 <template>
-	<div class="status-bar-field"><b>Results:</b> {{ formatNumber(pagination.total || 0) }}</div>
-	<div class="status-bar-field pagination" v-if="pagination.totalPages > 1">
+	<div class="status-bar-field"><b>Results:</b> {{ formatNumber(pagination.total) }}</div>
+	<div class="status-bar-field pagination" v-if="pagination.totalPages">
 		<p><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</p>
 		<div class="controls">
 			<a v-if="pagination.page > 1" href="" @click.prevent="toPrevPage">Prev page</a>
-			<a href="" @click.prevent="toNextPage">Next page</a>
+			<a v-if="pagination.page !== pagination.totalPages" href="" @click.prevent="toNextPage">
+				Next page
+			</a>
 		</div>
 	</div>
 </template>

@@ -1,4 +1,4 @@
-import { readonly, ref } from "vue";
+import { ref } from "vue";
 import type { Search } from "../types";
 
 const privateState = ref<Search>({
@@ -18,7 +18,7 @@ function setSearch(search: Search): void {
 
 export function useSearch() {
 	return {
-		search: readonly(privateState),
+		search: privateState,
 		setSearch,
 	};
 }

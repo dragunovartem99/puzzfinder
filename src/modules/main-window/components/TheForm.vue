@@ -1,17 +1,18 @@
 <script setup lang="ts">
-import type { Ref } from "vue";
-import type { Search } from "../types/index.ts";
-
 import FormRange from "./FormRange.vue";
 
 import { cloneRef } from "@/shared/utils/cloneRef.ts";
 import { puzzleThemes } from "../static/puzzleThemes.ts";
 
 import { useSearch } from "../state/search.ts";
-import { submitSearchForm } from "../user-actions/submitSearchForm.ts";
+import { submitForm } from "../usecases/search.ts";
 
 const { search } = useSearch();
-const form = cloneRef(search as Ref<Search>); // remove readonly type
+const form = cloneRef(search);
+
+function handleSubmit() {
+	submitForm(form);
+}
 
 const ranges = [
 	{
@@ -44,10 +45,6 @@ const sortOptions = [
 	{ value: "puzzleId-asc", text: "Puzzle ID" },
 	{ value: "puzzleId-desc", text: "Puzzle ID (reversed)" },
 ];
-
-function handleSubmit() {
-	submitSearchForm(form.value);
-}
 </script>
 
 <template>
