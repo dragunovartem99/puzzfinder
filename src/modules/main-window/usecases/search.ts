@@ -11,27 +11,27 @@ import { useSearch } from "../state/search";
 
 const { search, setSearch } = useSearch();
 
-export async function submitForm(search: MaybeRef<Search>): Promise<void> {
-	setSearch(unref(search));
+export async function submitForm(newSearch: MaybeRef<Search>): Promise<void> {
+	setSearch(unref(newSearch));
 
-	const body: SearchPayload = createSearchPayload(unref(search));
-	body.pagination.page = 1;
+	const payload: SearchPayload = createSearchPayload(unref(search));
+	payload.pagination.page = 1;
 
-	findResults(body);
+	findResults(payload);
 }
 
-export async function changePage(page: MaybeRef<number>) {
-	const body: SearchPayload = createSearchPayload(unref(search));
-	body.pagination.page = unref(page);
+export async function changePage(newPage: MaybeRef<number>) {
+	const payload: SearchPayload = createSearchPayload(unref(search));
+	payload.pagination.page = unref(newPage);
 
-	findResults(body);
+	findResults(payload);
 }
 
-async function findResults(body: SearchPayload) {
+async function findResults(payload: SearchPayload) {
 	try {
 		setIsLoading(true);
 
-		const { data: puzzles, pagination } = await findPuzzles(body);
+		const { data: puzzles, pagination } = await findPuzzles(payload);
 		setResults(puzzles);
 		setPagination(pagination);
 	} catch (e) {
