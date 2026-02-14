@@ -12,8 +12,7 @@ const themes = computed(() =>
 	props.puzzle.themes
 		.filter((value: string) => !HIDDEN_THEMES.includes(value))
 		.map((value: string) =>
-			PUZZLE_THEMES
-				.flatMap((group) => group.options)
+			PUZZLE_THEMES.flatMap((group) => group.options)
 				.find((puzzle) => puzzle.value === value)! // ISSUE: this can lead to runtime error
 				.text.toLowerCase()
 		)

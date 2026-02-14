@@ -18,4 +18,3 @@ export type PaginationResponse = {
 	total: number;
 	totalPages: number;
 };
-

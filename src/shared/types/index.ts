@@ -1,1 +1,1 @@
-export type { PaginationResponse, PuzzleResponse } from './response';
+export type { PaginationResponse, PuzzleResponse } from "./response";
