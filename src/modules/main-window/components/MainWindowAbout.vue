@@ -16,6 +16,7 @@
 p {
 	margin-block: 5px;
 }
+
 b {
 	margin-inline: 2px;
 }

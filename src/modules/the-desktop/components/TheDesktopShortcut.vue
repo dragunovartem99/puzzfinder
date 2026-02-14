@@ -1,11 +1,9 @@
 <script setup lang="ts">
-type Shortcut = {
-	icon: string;
-	label: string;
-	link?: string;
-};
+import type { DesktopShortcut } from "../types";
 
-defineProps<{ shortcut: Shortcut }>();
+defineProps<{
+	shortcut: DesktopShortcut;
+}>();
 </script>
 
 <template>
@@ -28,9 +26,11 @@ a {
 	gap: 15px;
 	padding-block: 10px;
 }
+
 img {
 	width: 32px;
 }
+
 p {
 	color: white;
 	text-align: center;

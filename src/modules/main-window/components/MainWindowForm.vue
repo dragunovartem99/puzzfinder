@@ -4,7 +4,7 @@ import type { ApiRange } from "@/shared/types";
 
 import { ref } from "vue";
 
-import FormRange from "@/shared/components/FormRange.vue";
+import { FormRange } from "@/shared/components";
 import { PUZZLE_THEMES } from "@/shared/constants";
 import { getRawClone } from "@/shared/utils";
 
@@ -48,8 +48,11 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 </script>
 
 <template>
-	<form @submit.prevent="submitForm(form)">
-		<div class="ranges">
+	<form
+		class="main-window-form"
+		@submit.prevent="submitForm(form)"
+	>
+		<div class="main-window-form__ranges">
 			<FormRange
 				v-for="{ model, control } of ranges"
 				:model
@@ -76,7 +79,7 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 				</optgroup>
 			</select>
 		</div>
-		<div class="results">
+		<div class="main-window-form__results">
 			<div class="form-control">
 				<label>Order by</label>
 				<select v-model="form.sort">
@@ -94,23 +97,26 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 </template>
 
 <style scoped>
-form {
+.main-window-form {
 	display: flex;
 	gap: 20px;
 	margin-bottom: 20px;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
-.ranges {
+
+.main-window-form__ranges {
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
 }
-.results {
+
+.main-window-form__results {
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
 }
+
 button {
 	margin-top: auto;
 }

@@ -1,39 +1,43 @@
 <script setup lang="ts">
-import TheShortcut from "./TheShortcut.vue";
+import type { DesktopShortcut } from "../types";
+import TheDesktopShortcut from "./TheDesktopShortcut.vue";
 
-const emit = defineEmits<{ "app-clicked": [] }>();
+const emit = defineEmits<{
+	"app-clicked": [];
+}>();
 
-const shortcuts = [
+const shortcuts: Array<DesktopShortcut & { onClick?: () => void }> = [
 	{
 		label: "Puzzfinder",
-		onClick: () => emit("app-clicked"),
 		icon: "logo.png",
+		onClick: () => emit("app-clicked"),
 	},
 	{
 		label: "Lichess Accuracy",
-		link: "https://dragunovartem99.github.io/lichess-accuracy",
 		icon: "shortcuts/lichess-accuracy.png",
+		link: "https://dragunovartem99.github.io/lichess-accuracy",
 	},
 	{
 		label: "Vue PGN Viewer",
-		link: "https://dragunovartem99.github.io/vue-pgn-viewer",
 		icon: "shortcuts/vue-pgn-viewer.png",
+		link: "https://dragunovartem99.github.io/vue-pgn-viewer",
 	},
 	{
 		label: "HTML Diagram",
-		link: "https://dragunovartem99.github.io/html-diagram",
 		icon: "shortcuts/html-diagram.png",
+		link: "https://dragunovartem99.github.io/html-diagram",
 	},
 ];
 </script>
 
 <template>
 	<div class="desktop">
-		<div class="shortcuts">
-			<TheShortcut
+		<div class="desktop__shortcuts">
+			<TheDesktopShortcut
 				v-for="shortcut of shortcuts"
-				@click="shortcut.onClick"
 				:shortcut
+				:key="shortcut.label"
+				@click="shortcut.onClick"
 			/>
 		</div>
 	</div>
@@ -45,13 +49,15 @@ const shortcuts = [
 	height: 100dvh;
 	padding: 10px;
 }
-.shortcuts {
+
+.desktop__shortcuts {
 	display: inline-flex;
 	flex-wrap: wrap;
 	flex-direction: column;
 	gap: 10px;
 }
-.shortcuts > * {
+
+.desktop__shortcuts > * {
 	width: 80px;
 }
 </style>
