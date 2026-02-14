@@ -4,7 +4,7 @@ import { cloneRef } from "@/shared/utils/cloneRef.ts";
 import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes.ts";
 
 import { useSearch } from "../state/search.ts";
-import { submitForm } from "../usecases/search.ts";
+import { submitForm } from "../actions/search.ts";
 
 const { search } = useSearch();
 const form = cloneRef(search);

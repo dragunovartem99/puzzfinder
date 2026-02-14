@@ -1,6 +1,8 @@
-import type { Pagination } from "../types";
+import type { ApiPagination } from "@/shared/types";
 
 import { ref, readonly } from "vue";
+
+type Pagination = ApiPagination;
 
 const pagination = ref<Pagination>({
 	page: 1,

@@ -2,7 +2,7 @@
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
 import { usePagination } from "../state/pagination.ts";
-import { changePage } from "../usecases/search.ts";
+import { changePage } from "../actions/search.ts";
 
 const { pagination } = usePagination();
 
@@ -15,7 +15,7 @@ const toNextPage = () => changePage(pagination.value.page + 1);
 	<div class="status-bar-field pagination" v-if="pagination.totalPages">
 		<p><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</p>
 		<div class="controls">
-			<a v-if="pagination.page > 1" href="" @click.prevent="toPrevPage">Prev page</a>
+			<a v-if="pagination.page > 1" href="" @click.prevent="toPrevPage"> Prev page</a>
 			<a v-if="pagination.page !== pagination.totalPages" href="" @click.prevent="toNextPage">
 				Next page
 			</a>

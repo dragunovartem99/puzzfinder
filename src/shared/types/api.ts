@@ -1,4 +1,4 @@
-export type PuzzleResponse = {
+export type ApiPuzzle = {
 	puzzleId: string;
 	fen: string;
 	moves: string;
@@ -12,7 +12,7 @@ export type PuzzleResponse = {
 	openingTags?: string;
 };
 
-export type PaginationResponse = {
+export type ApiPagination = {
 	page: number;
 	limit: number;
 	total: number;

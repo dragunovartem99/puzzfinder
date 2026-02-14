@@ -7,10 +7,10 @@ import { findPuzzles } from "../api/findPuzzles.ts";
 
 import { usePagination } from "../state/pagination.ts";
 import { useSearch } from "../state/search.ts";
-import { useResults } from "../state/results.ts";
+import { usePuzzles } from "../state/puzzles.ts";
 
 const { search, setSearch } = useSearch();
-const { setResults, setIsLoading } = useResults();
+const { setApiPuzzles, setIsLoading } = usePuzzles();
 const { pagination, setPagination } = usePagination();
 
 export async function submitForm(newSearch: MaybeRef<Search>): Promise<void> {
@@ -34,7 +34,7 @@ async function findResults(payload: SearchPayload) {
 		setIsLoading(true);
 
 		const { data: puzzles, pagination } = await findPuzzles(payload);
-		setResults(puzzles);
+		setApiPuzzles(puzzles);
 		setPagination(pagination);
 	} catch (e) {
 		console.error(e);

@@ -1,21 +1,20 @@
 <script setup lang="ts">
 import { computed, ref, inject } from "vue";
-import { useResults } from "../state/results.ts";
+import { usePuzzles } from "../state/puzzles.ts";
 
 import TheWindow from "@/shared/components/TheWindow.vue";
 import ThePuzzle from "@/shared/components/ThePuzzle.vue";
 import TheProgress from "@/shared/components/TheProgress.vue";
 
 import MainWindowAbout from "./MainWindowAbout.vue";
-import MainWindowSource from "./MainWindowSource.vue";
 import MainWindowForm from "./MainWindowForm.vue";
-
-import ThePagination from "./ThePagination.vue";
+import MainWindowPages from "./MainWindowPages.vue";
+import MainWindowSource from "./MainWindowSource.vue";
 
 type Tab = { text: string; isSelected: boolean };
 
 const toggleMainWindow = inject<() => void>("toggle-main-window");
-const { results, isLoading } = useResults();
+const { puzzles, isLoading } = usePuzzles();
 
 const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
@@ -59,7 +58,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 					<div class="window-body">
 						<TheProgress v-if="isLoading" />
 						<div class="results" v-else-if="selectedTab === 'Results'">
-							<ThePuzzle v-for="puzzle of results" :puzzle :key="puzzle.puzzleId" />
+							<ThePuzzle v-for="puzzle of puzzles" :puzzle :key="puzzle.puzzleId" />
 						</div>
 						<MainWindowSource v-if="selectedTab === 'Source'" />
 					</div>
@@ -67,7 +66,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 			</section>
 		</template>
 		<template #status>
-			<ThePagination />
+			<MainWindowPages />
 		</template>
 	</TheWindow>
 </template>

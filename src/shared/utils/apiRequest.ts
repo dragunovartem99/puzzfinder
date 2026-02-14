@@ -6,7 +6,7 @@ type Input = {
 
 const API_BASE_URL = "https://puzzfinder.99x.space/api";
 
-export async function apiRequest<Data>(input: Input): Promise<Data> {
+export async function apiRequest<ApiType>(input: Input): Promise<ApiType> {
 	const { method, path, payload } = input;
 
 	const url = API_BASE_URL.concat(path);
@@ -21,5 +21,5 @@ export async function apiRequest<Data>(input: Input): Promise<Data> {
 		throw new Error("Something went wrong");
 	}
 
-	return (await response.json()) as Data;
+	return (await response.json()) as ApiType;
 }

@@ -1,4 +1,4 @@
-import type { PaginationResponse } from "@/shared/types";
+import type { ApiPagination } from "@/shared/types";
 
 export type NumberRange = {
 	min: number;
@@ -37,6 +37,6 @@ export type SearchPayload = {
 		field: string;
 		order: string;
 	};
-	pagination: Pick<PaginationResponse, "page" | "limit">;
+	pagination: Pick<ApiPagination, "page" | "limit">;
 };
 
