@@ -1,15 +1,17 @@
 <script setup lang="ts">
-const components = [
+type Link = { href: string; text: string };
+
+const links: Link[] = [
 	{
-		link: "https://github.com/dragunovartem99/puzzfinder",
+		href: "https://github.com/dragunovartem99/puzzfinder",
 		text: "Client-side web interface",
 	},
 	{
-		link: "https://github.com/dragunovartem99/puzzfinder-api",
+		href: "https://github.com/dragunovartem99/puzzfinder-api",
 		text: "Application programming interface",
 	},
 	{
-		link: "https://github.com/dragunovartem99/puzzfinder-db",
+		href: "https://github.com/dragunovartem99/puzzfinder-db",
 		text: "SQLite database with chess puzzles",
 	},
 ];
@@ -18,8 +20,8 @@ const components = [
 <template>
 	<p>The project consists of three components:</p>
 	<ul>
-		<li v-for="component of components">
-			<a :href="component.link" target="_blank"> {{ component.text }} </a>
+		<li v-for="link of links">
+			<a :href="link.href" target="_blank"> {{ link.text }} </a>
 		</li>
 	</ul>
 	<p>Any server-side advice/help will be very welcomed! This is my first full-stack project.</p>

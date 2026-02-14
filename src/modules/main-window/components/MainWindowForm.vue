@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import FormRange from "./FormRange.vue";
-
+import FormRange from "@/shared/components/FormRange.vue";
 import { cloneRef } from "@/shared/utils/cloneRef.ts";
 import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes.ts";
 
@@ -76,7 +75,7 @@ const sortOptions = [
 	</form>
 </template>
 
-<style>
+<style scoped>
 form {
 	display: flex;
 	gap: 20px;
