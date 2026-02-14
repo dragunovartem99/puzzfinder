@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { SortOption } from "../types";
-import type { ApiRange } from "@/shared/types";
 
 import { ref } from "vue";
 
 import { FormRange } from "@/shared/components";
 import { PUZZLE_THEMES } from "@/shared/constants";
 import { getRawClone } from "@/shared/utils";
+import type { RangeFilter } from "@/shared/types";
 
 import { useSearchForm } from "../state";
 import { submitForm } from "../actions";
@@ -14,7 +14,7 @@ import { submitForm } from "../actions";
 const { searchForm } = useSearchForm();
 const form = ref(getRawClone(searchForm));
 
-const ranges: Array<{ control: { label: string; id: string }; model: Partial<ApiRange> }> = [
+const ranges: Array<{ control: { label: string; id: string }; model: RangeFilter }> = [
 	{
 		control: { label: "Rating", id: "rating" },
 		model: form.value.filters.rating,

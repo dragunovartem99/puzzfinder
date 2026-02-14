@@ -1,25 +1,24 @@
-import type { ApiPuzzle } from "@/shared/types";
+import type { PuzzleResponse } from "@/shared/types";
 
 import { computed, readonly, ref } from "vue";
 
-type Puzzle = Omit<ApiPuzzle, "themes"> & { themes: string };
+type Puzzle = Omit<PuzzleResponse, "themes"> & { themes: string };
 
-const state = ref<ApiPuzzle[]>([]);
-
+const response = ref<PuzzleResponse[]>([]);
 const isLoading = ref(false);
 
-const puzzles = computed<Puzzle[]>(() => {
-	return state.value.map((apiPuzzle) => ({
+const puzzles = computed<Puzzle[]>(() =>
+	response.value.map((apiPuzzle) => ({
 		...apiPuzzle,
 		themes: apiPuzzle.themes.join(", "),
-	}));
-});
+	}))
+);
 
-function setApiPuzzles(puzzles: ApiPuzzle[]): void {
-	state.value = puzzles;
+function setPuzzles(value: PuzzleResponse[]) {
+	response.value = value;
 }
 
-function setIsLoading(value: boolean): void {
+function setIsLoading(value: boolean) {
 	isLoading.value = value;
 }
 
@@ -27,7 +26,7 @@ export function usePuzzles() {
 	return {
 		puzzles: readonly(puzzles),
 		isLoading: readonly(isLoading),
-		setApiPuzzles,
+		setPuzzles,
 		setIsLoading,
 	};
 }

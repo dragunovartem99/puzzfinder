@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import type { ApiPuzzle } from "../types";
+import type { Puzzle } from "../types";
 
+import { computed } from "vue";
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
-type Puzzle = Omit<ApiPuzzle, "themes"> & { themes: string };
-
-const props = defineProps<{ puzzle: Puzzle }>();
+const props = defineProps<{
+	puzzle: Puzzle;
+}>();
 
 const played = computed(() => formatNumber(props.puzzle.nbPlays));
 

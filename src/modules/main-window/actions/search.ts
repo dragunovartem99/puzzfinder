@@ -1,4 +1,5 @@
-import type { SearchForm, SearchPayload } from "../types";
+import type { SearchForm } from "../types";
+import type { SearchPayload } from "@/shared/types/api.ts";
 
 import { findPuzzles } from "../api/findPuzzles.ts";
 
@@ -6,17 +7,17 @@ import { useSearchForm, usePagination, usePuzzles } from "../state";
 import { createSearchPayload } from "./createSearchPayload.ts";
 
 const { searchForm, setSearchForm } = useSearchForm();
-const { setApiPuzzles, setIsLoading } = usePuzzles();
-const { pagination, setApiPagination } = usePagination();
+const { setPuzzles, setIsLoading } = usePuzzles();
+const { pagination, setPagination } = usePagination();
 
 async function findResults(payload: SearchPayload) {
 	try {
 		setIsLoading(true);
 
-		const { data, pagination } = await findPuzzles(payload);
+		const { data: puzzles, pagination } = await findPuzzles(payload);
 
-		setApiPuzzles(data);
-		setApiPagination(pagination);
+		setPuzzles(puzzles);
+		setPagination(pagination);
 	} catch (e) {
 		console.error(e);
 	} finally {

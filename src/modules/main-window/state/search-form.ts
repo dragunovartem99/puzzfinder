@@ -2,19 +2,21 @@ import type { SearchForm } from "../types";
 
 import { readonly, ref } from "vue";
 
+const emptyFilter = () => ({ equals: "", max: "", min: "" }) as const;
+
 const searchForm = ref<SearchForm>({
 	filters: {
-		rating: {},
-		movesNumber: {},
-		popularity: {},
-		nbPlays: {},
+		rating: emptyFilter(),
+		movesNumber: emptyFilter(),
+		popularity: emptyFilter(),
+		nbPlays: emptyFilter(),
 		themes: [],
 	},
 	sort: "rating-desc",
 });
 
-function setSearchForm(newSearchForm: SearchForm) {
-	searchForm.value = newSearchForm;
+function setSearchForm(value: SearchForm) {
+	searchForm.value = value;
 }
 
 export function useSearchForm() {

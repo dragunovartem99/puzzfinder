@@ -1,15 +1,14 @@
-import type { ApiPagination, ApiPuzzle } from "@/shared/types";
-import type { SearchPayload } from "../types";
+import type { PaginationResponse, PuzzleResponse, SearchPayload } from "@/shared/types";
 
 import { apiRequest } from "@/shared/utils/apiRequest";
 
-type ApiResponse = {
-	data: ApiPuzzle[];
-	pagination: ApiPagination;
+type Response = {
+	data: PuzzleResponse[];
+	pagination: PaginationResponse;
 };
 
 export async function findPuzzles(body: SearchPayload) {
-	const puzzles = await apiRequest<ApiResponse>({
+	const puzzles = await apiRequest<Response>({
 		method: "POST",
 		path: "/puzzles/search",
 		payload: body,

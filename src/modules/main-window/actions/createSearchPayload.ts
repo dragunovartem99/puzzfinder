@@ -1,11 +1,15 @@
 import { unref, type DeepReadonly, type MaybeRef } from "vue";
-import type { SearchForm, SearchPayload } from "../types";
-import type { ApiPagination } from "@/shared/types";
+import type { SearchForm } from "../types";
+import type { PaginationResponse, RangeFilter, RangePayload, SearchPayload } from "@/shared/types";
 
 type Params = {
 	searchForm: MaybeRef<SearchForm> | DeepReadonly<MaybeRef<SearchForm>>;
-	pagination: MaybeRef<ApiPagination>;
+	pagination: MaybeRef<PaginationResponse>;
 };
+
+function cleanRange(range: RangeFilter): RangePayload {
+	return Object.fromEntries(Object.entries(range).filter(([_, value]) => value !== ""));
+}
 
 export function createSearchPayload(params: Params): SearchPayload {
 	const { sort, filters } = unref(params.searchForm);
@@ -13,10 +17,10 @@ export function createSearchPayload(params: Params): SearchPayload {
 
 	return {
 		filters: {
-			rating: { ...filters.rating },
-			movesNumber: { ...filters.movesNumber },
-			popularity: { ...filters.popularity },
-			nbPlays: { ...filters.nbPlays },
+			rating: cleanRange(filters.rating),
+			movesNumber: cleanRange(filters.movesNumber),
+			popularity: cleanRange(filters.popularity),
+			nbPlays: cleanRange(filters.nbPlays),
 			themes: [...filters.themes],
 		},
 		sort: { field: sortField, order: sortOrder },

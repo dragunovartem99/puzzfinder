@@ -1,11 +1,9 @@
-import type { ApiRange, ApiPagination } from "@/shared/types";
+import type { SearchPayload, RangeFilter, RangePayload } from "@/shared/types";
 
-type Filters = {
-	rating: Partial<ApiRange>;
-	movesNumber: Partial<ApiRange>;
-	popularity: Partial<ApiRange>;
-	nbPlays: Partial<ApiRange>;
-	themes: string[];
+type FormFilters = {
+	[K in keyof SearchPayload["filters"]]: SearchPayload["filters"][K] extends RangePayload
+		? RangeFilter
+		: SearchPayload["filters"][K];
 };
 
 export type SortOption =
@@ -21,15 +19,6 @@ export type SortOption =
 	| "puzzleId-asc";
 
 export type SearchForm = {
-	filters: Filters;
+	filters: FormFilters;
 	sort: SortOption;
-};
-
-export type SearchPayload = {
-	filters: Filters;
-	sort: {
-		field: string;
-		order: string;
-	};
-	pagination: Pick<ApiPagination, "page" | "limit">;
 };
