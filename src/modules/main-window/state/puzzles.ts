@@ -4,19 +4,19 @@ import { computed, readonly, ref } from "vue";
 
 type Puzzle = Omit<ApiPuzzle, "themes"> & { themes: string };
 
-const apiPuzzles = ref<ApiPuzzle[]>([]);
+const state = ref<ApiPuzzle[]>([]);
 
 const isLoading = ref(false);
 
 const puzzles = computed<Puzzle[]>(() => {
-	return apiPuzzles.value.map((apiPuzzle) => ({
+	return state.value.map((apiPuzzle) => ({
 		...apiPuzzle,
 		themes: apiPuzzle.themes.join(", "),
 	}));
 });
 
 function setApiPuzzles(puzzles: ApiPuzzle[]): void {
-	apiPuzzles.value = puzzles;
+	state.value = puzzles;
 }
 
 function setIsLoading(value: boolean): void {

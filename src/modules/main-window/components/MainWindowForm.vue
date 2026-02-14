@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import FormRange from "@/shared/components/FormRange.vue";
-import { cloneRef } from "@/shared/utils/cloneRef.ts";
 import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes.ts";
 
-import { useSearch } from "../state/search.ts";
+import { useSearchForm } from "../state";
 import { submitForm } from "../actions/search.ts";
 import { unref } from "vue";
 
-const { search } = useSearch();
-const form = cloneRef(search);
+const form = unref(useSearchForm().searchForm);
 
 function handleSubmit() {
 	submitForm(unref(form));
@@ -17,19 +15,19 @@ function handleSubmit() {
 const ranges = [
 	{
 		control: { label: "Rating", id: "rating" },
-		model: form.value.filters.rating,
+		model: form.filters.rating,
 	},
 	{
 		control: { label: "Moves number", id: "moves-number" },
-		model: form.value.filters.movesNumber,
+		model: form.filters.movesNumber,
 	},
 	{
 		control: { label: "Popularity", id: "popularity" },
-		model: form.value.filters.popularity,
+		model: form.filters.popularity,
 	},
 	{
 		control: { label: "Times played", id: "nb-plays" },
-		model: form.value.filters.nbPlays,
+		model: form.filters.nbPlays,
 	},
 ];
 

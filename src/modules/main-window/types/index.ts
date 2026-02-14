@@ -1,20 +1,14 @@
-import type { ApiPagination } from "@/shared/types";
-
-export type NumberRange = {
-	min: number;
-	max: number;
-	equals: number;
-};
+import type { ApiRange, ApiPagination } from "@/shared/types";
 
 type Filters = {
-	rating: Partial<NumberRange>;
-	movesNumber: Partial<NumberRange>;
-	popularity: Partial<NumberRange>;
-	nbPlays: Partial<NumberRange>;
+	rating: Partial<ApiRange>;
+	movesNumber: Partial<ApiRange>;
+	popularity: Partial<ApiRange>;
+	nbPlays: Partial<ApiRange>;
 	themes: string[];
 };
 
-export type SortString =
+type SortString =
 	| "rating-desc"
 	| "rating-asc"
 	| "movesNumber-desc"
@@ -26,7 +20,7 @@ export type SortString =
 	| "puzzleId-desc"
 	| "puzzleId-asc";
 
-export type Search = {
+export type SearchForm = {
 	filters: Filters;
 	sort: SortString;
 };

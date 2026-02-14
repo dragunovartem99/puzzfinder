@@ -1,3 +1,9 @@
+export type ApiRange = {
+	min: number;
+	max: number;
+	equals: number;
+};
+
 export type ApiPuzzle = {
 	puzzleId: string;
 	fen: string;

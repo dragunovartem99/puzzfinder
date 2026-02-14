@@ -9,13 +9,13 @@ const pagination = ref<ApiPagination>({
 	totalPages: 0,
 });
 
-function setPagination(newPagination: ApiPagination) {
-	pagination.value = newPagination;
+function setApiPagination(newApiPagination: ApiPagination) {
+	pagination.value = newApiPagination;
 }
 
 export function usePagination() {
 	return {
 		pagination: readonly(pagination),
-		setPagination,
+		setApiPagination,
 	};
 }

@@ -1,30 +1,35 @@
-import type { MaybeRef } from "vue";
-import type { Search, SearchPayload } from "../types";
-
-import { unref } from "vue";
+import type { SearchForm, SearchPayload } from "../types";
 
 import { findPuzzles } from "../api/findPuzzles.ts";
 
-import { usePagination } from "../state/pagination.ts";
-import { useSearch } from "../state/search.ts";
-import { usePuzzles } from "../state/puzzles.ts";
+import { useSearchForm, usePagination, usePuzzles } from "../state";
 
-const { search, setSearch } = useSearch();
+const { searchForm, setSearchForm } = useSearchForm();
 const { setApiPuzzles, setIsLoading } = usePuzzles();
-const { pagination, setPagination } = usePagination();
+const { pagination, setApiPagination } = usePagination();
 
-export async function submitForm(newSearch: Search): Promise<void> {
-	setSearch(unref(newSearch));
+function createSearchPayload() {
+	const [sortField, sortOrder] = searchForm.value.sort.split("-");
 
-	const payload: SearchPayload = createSearchPayload(unref(search));
+	return {
+		filters: { ...searchForm.value.filters },
+		sort: { field: sortField, order: sortOrder },
+		pagination: { ...pagination.value },
+	};
+}
+
+export async function submitForm(newSearchForm: SearchForm) {
+	setSearchForm(newSearchForm);
+
+	const payload = createSearchPayload();
 	payload.pagination.page = 1;
 
 	findResults(payload);
 }
 
-export async function changePage(newPage: MaybeRef<number>) {
-	const payload: SearchPayload = createSearchPayload(unref(search));
-	payload.pagination.page = unref(newPage);
+export async function changePage(newPage: number) {
+	const payload = createSearchPayload();
+	payload.pagination.page = newPage;
 
 	findResults(payload);
 }
@@ -36,22 +41,10 @@ async function findResults(payload: SearchPayload) {
 		const { data: puzzles, pagination } = await findPuzzles(payload);
 
 		setApiPuzzles(puzzles);
-		setPagination(pagination);
+		setApiPagination(pagination);
 	} catch (e) {
 		console.error(e);
 	} finally {
 		setIsLoading(false);
 	}
-}
-
-function createSearchPayload(search: Search): SearchPayload {
-	const [sortField, sortOrder] = search.sort.split("-");
-
-	const payload: SearchPayload = {
-		filters: { ...search.filters },
-		sort: { field: sortField, order: sortOrder },
-		pagination: { ...pagination.value },
-	};
-
-	return payload;
 }
