@@ -2,8 +2,8 @@
 import { computed } from "vue";
 import type { Puzzle } from "../types";
 
-import { PUZZLE_THEMES } from "../constants/puzzleThemes";
-import { HIDDEN_THEMES } from "../constants/hiddenThemes";
+import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes";
+import { HIDDEN_THEMES } from "@/shared/constants/hiddenThemes";
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
 const props = defineProps<{ puzzle: Puzzle }>();
