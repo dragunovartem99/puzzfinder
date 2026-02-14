@@ -14,7 +14,7 @@ const themes = computed(() =>
 		.map((value: string) =>
 			puzzleThemes
 				.flatMap((group) => group.options)
-				.find((puzzle) => puzzle.value === value)!
+				.find((puzzle) => puzzle.value === value)! // ISSUE: this can lead to runtime error
 				.text.toLowerCase()
 		)
 		.join(", ")
