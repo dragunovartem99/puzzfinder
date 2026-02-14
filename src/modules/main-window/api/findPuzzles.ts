@@ -1,15 +1,17 @@
-import type { Pagination, Puzzle, SearchPayload } from "../types";
-import { httpRequest } from "@/shared/utils/httpRequest";
+import type { ApiPagination, ApiPuzzle } from "@/shared/types";
+import type { SearchPayload } from "../types";
 
-type ReturnValue = {
-	data: Puzzle[];
-	pagination: Pagination;
+import { apiRequest } from "@/shared/utils/apiRequest";
+
+type ApiResponse = {
+	data: ApiPuzzle[];
+	pagination: ApiPagination;
 };
 
-export async function findPuzzles(body: SearchPayload): Promise<ReturnValue> {
-	const puzzles = await httpRequest<ReturnValue>({
-		url: "https://puzzfinder.99x.space/api/puzzles/search",
+export async function findPuzzles(body: SearchPayload) {
+	const puzzles = await apiRequest<ApiResponse>({
 		method: "POST",
+		path: "/puzzles/search",
 		payload: body,
 	});
 

@@ -1,4 +1,4 @@
-export const hiddenThemes = [
+export const HIDDEN_THEMES = [
 	"mateIn1",
 	"mateIn2",
 	"mateIn3",

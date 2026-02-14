@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import { computed, ref, inject } from "vue";
-import { useResults } from "../state/results.ts";
+import { computed, ref } from "vue";
+import { usePuzzles } from "../state/puzzles.ts";
 
 import TheWindow from "@/shared/components/TheWindow.vue";
-import TheDescription from "./TheDescription.vue";
-import TheForm from "./TheForm.vue";
-import ThePuzzle from "./ThePuzzle.vue";
-import TheGitHub from "./TheGitHub.vue";
-import TheProgress from "./TheProgress.vue";
-import ThePagination from "./ThePagination.vue";
+import ThePuzzle from "@/shared/components/ThePuzzle.vue";
+import TheProgress from "@/shared/components/TheProgress.vue";
+
+import MainWindowAbout from "./MainWindowAbout.vue";
+import MainWindowForm from "./MainWindowForm.vue";
+import MainWindowPages from "./MainWindowPages.vue";
+import MainWindowSource from "./MainWindowSource.vue";
 
 type Tab = { text: string; isSelected: boolean };
 
-const toggleMainWindow = inject<() => void>("toggle-main-window");
-const { results, isLoading } = useResults();
+const emit = defineEmits<{ "close-main-window": [] }>();
+
+const { puzzles, isLoading } = usePuzzles();
 
 const tabs = ref<Tab[]>([
 	{ text: "Results", isSelected: true },
-	{ text: "GitHub", isSelected: false },
+	{ text: "Source", isSelected: false },
 ]);
 
 function openTab(tab: Tab) {
@@ -29,7 +31,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 </script>
 
 <template>
-	<TheWindow class="main" @close-clicked="toggleMainWindow">
+	<TheWindow class="main" @close-clicked="emit('close-main-window')">
 		<template #title>
 			<div class="title-bar-text">
 				<img
@@ -40,8 +42,8 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 			</div>
 		</template>
 		<template #body>
-			<section><TheDescription /></section>
-			<section><TheForm /></section>
+			<section><MainWindowAbout /></section>
+			<section><MainWindowForm /></section>
 			<section>
 				<menu role="tablist">
 					<li
@@ -57,15 +59,15 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 					<div class="window-body">
 						<TheProgress v-if="isLoading" />
 						<div class="results" v-else-if="selectedTab === 'Results'">
-							<ThePuzzle v-for="puzzle of results" :puzzle :key="puzzle.puzzleId" />
+							<ThePuzzle v-for="puzzle of puzzles" :puzzle :key="puzzle.puzzleId" />
 						</div>
-						<TheGitHub v-if="selectedTab === 'GitHub'" />
+						<MainWindowSource v-if="selectedTab === 'Source'" />
 					</div>
 				</div>
 			</section>
 		</template>
 		<template #status>
-			<ThePagination />
+			<MainWindowPages />
 		</template>
 	</TheWindow>
 </template>

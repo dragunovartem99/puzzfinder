@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import type { NumberRange } from "../types";
+import type { ApiRange } from "../types";
 
 const props = defineProps<{
-	model: Partial<NumberRange>;
+	model: Partial<ApiRange>;
 	control: { label: string; id: string };
 }>();
 

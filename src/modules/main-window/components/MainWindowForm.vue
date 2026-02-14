@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import FormRange from "./FormRange.vue";
+import type { SortOption } from "../types";
+import type { ApiRange } from "@/shared/types";
 
-import { cloneRef } from "@/shared/utils/cloneRef.ts";
-import { puzzleThemes } from "../static/puzzleThemes.ts";
+import { ref } from "vue";
 
-import { useSearch } from "../state/search.ts";
-import { submitForm } from "../usecases/search.ts";
+import FormRange from "@/shared/components/FormRange.vue";
+import { PUZZLE_THEMES } from "@/shared/constants";
+import { getRawClone } from "@/shared/utils";
 
-const { search } = useSearch();
-const form = cloneRef(search);
+import { useSearchForm } from "../state";
+import { submitForm } from "../actions";
 
-function handleSubmit() {
-	submitForm(cloneRef(form));
-}
+const { searchForm } = useSearchForm();
+const form = ref(getRawClone(searchForm));
 
-const ranges = [
+const ranges: Array<{ control: { label: string; id: string }; model: Partial<ApiRange> }> = [
 	{
 		control: { label: "Rating", id: "rating" },
 		model: form.value.filters.rating,
@@ -33,7 +33,7 @@ const ranges = [
 	},
 ];
 
-const sortOptions = [
+const sortOptions: Array<{ value: SortOption; text: string }> = [
 	{ value: "rating-desc", text: "Highest rating" },
 	{ value: "movesNumber-desc", text: "Highest moves number" },
 	{ value: "popularity-desc", text: "Highest popularity" },
@@ -48,14 +48,14 @@ const sortOptions = [
 </script>
 
 <template>
-	<form @submit.prevent="handleSubmit">
+	<form @submit.prevent="submitForm(form)">
 		<div class="ranges">
 			<FormRange v-for="{ model, control } of ranges" :model :control />
 		</div>
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
 			<select multiple size="10" v-model="form.filters.themes">
-				<optgroup v-for="group of puzzleThemes" :label="group.label">
+				<optgroup v-for="group of PUZZLE_THEMES" :label="group.label">
 					<option v-for="option of group.options" :value="option.value">
 						{{ option.text }}
 					</option>
@@ -76,7 +76,7 @@ const sortOptions = [
 	</form>
 </template>
 
-<style>
+<style scoped>
 form {
 	display: flex;
 	gap: 20px;

@@ -1,24 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Puzzle } from "../types";
+import type { ApiPuzzle } from "../types";
 
-import { puzzleThemes } from "../static/puzzleThemes";
-import { hiddenThemes } from "../static/hiddenThemes";
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
-const props = defineProps<{ puzzle: Puzzle }>();
+type Puzzle = Omit<ApiPuzzle, "themes"> & { themes: string };
 
-const themes = computed(() =>
-	props.puzzle.themes
-		.filter((value: string) => !hiddenThemes.includes(value))
-		.map((value: string) =>
-			puzzleThemes
-				.flatMap((group) => group.options)
-				.find((puzzle) => puzzle.value === value)! // ISSUE: this can lead to runtime error
-				.text.toLowerCase()
-		)
-		.join(", ")
-);
+const props = defineProps<{ puzzle: Puzzle }>();
 
 const played = computed(() => formatNumber(props.puzzle.nbPlays));
 
@@ -41,7 +29,7 @@ const movesNumber = computed(() =>
 				<html-diagram :fen="puzzle.fen"></html-diagram>
 			</a>
 			<p><b>Rating:</b> {{ puzzle.rating }}</p>
-			<p><b>Themes:</b> {{ themes }}</p>
+			<p><b>Themes:</b> {{ puzzle.themes }}</p>
 			<a :href="puzzle.gameUrl" target="_blank" class="game-link">View game</a>
 		</div>
 		<div class="status-bar">
