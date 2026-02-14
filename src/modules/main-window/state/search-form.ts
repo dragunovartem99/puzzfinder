@@ -1,6 +1,6 @@
 import type { SearchForm } from "../types";
 
-import { ref } from "vue";
+import { readonly, ref } from "vue";
 
 const searchForm = ref<SearchForm>({
 	filters: {
@@ -19,7 +19,7 @@ function setSearchForm(newSearchForm: SearchForm) {
 
 export function useSearchForm() {
 	return {
-		searchForm,
+		searchForm: readonly(searchForm),
 		setSearchForm,
 	};
 }

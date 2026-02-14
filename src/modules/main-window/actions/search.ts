@@ -9,10 +9,17 @@ const { setApiPuzzles, setIsLoading } = usePuzzles();
 const { pagination, setApiPagination } = usePagination();
 
 function createSearchPayload() {
-	const [sortField, sortOrder] = searchForm.value.sort.split("-");
+	const { sort, filters } = searchForm.value;
+	const [sortField, sortOrder] = sort.split("-");
 
 	return {
-		filters: { ...searchForm.value.filters },
+		filters: {
+			rating: { ...filters.rating },
+			movesNumber: { ...filters.movesNumber },
+			popularity: { ...filters.popularity },
+			nbPlays: { ...filters.nbPlays },
+			themes: [...filters.themes],
+		},
 		sort: { field: sortField, order: sortOrder },
 		pagination: { ...pagination.value },
 	};
