@@ -3,11 +3,12 @@ import { computed, ref, inject } from "vue";
 import { useResults } from "../state/results.ts";
 
 import TheWindow from "@/shared/components/TheWindow.vue";
+import ThePuzzle from "@/shared/components/ThePuzzle.vue";
+import TheProgress from "@/shared/components/TheProgress.vue";
+
 import TheDescription from "./TheDescription.vue";
 import TheForm from "./TheForm.vue";
-import ThePuzzle from "./ThePuzzle.vue";
 import TheGitHub from "./TheGitHub.vue";
-import TheProgress from "./TheProgress.vue";
 import ThePagination from "./ThePagination.vue";
 
 type Tab = { text: string; isSelected: boolean };
