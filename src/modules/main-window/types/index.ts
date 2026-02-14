@@ -8,7 +8,7 @@ type Filters = {
 	themes: string[];
 };
 
-type SortString =
+export type SortOption =
 	| "rating-desc"
 	| "rating-asc"
 	| "movesNumber-desc"
@@ -22,7 +22,7 @@ type SortString =
 
 export type SearchForm = {
 	filters: Filters;
-	sort: SortString;
+	sort: SortOption;
 };
 
 export type SearchPayload = {

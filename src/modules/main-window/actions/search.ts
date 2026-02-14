@@ -25,6 +25,21 @@ function createSearchPayload() {
 	};
 }
 
+async function findResults(payload: SearchPayload) {
+	try {
+		setIsLoading(true);
+
+		const { data, pagination } = await findPuzzles(payload);
+
+		setApiPuzzles(data);
+		setApiPagination(pagination);
+	} catch (e) {
+		console.error(e);
+	} finally {
+		setIsLoading(false);
+	}
+}
+
 export async function submitForm(newSearchForm: SearchForm) {
 	setSearchForm(newSearchForm);
 
@@ -39,19 +54,4 @@ export async function changePage(newPage: number) {
 	payload.pagination.page = newPage;
 
 	findResults(payload);
-}
-
-async function findResults(payload: SearchPayload) {
-	try {
-		setIsLoading(true);
-
-		const { data: puzzles, pagination } = await findPuzzles(payload);
-
-		setApiPuzzles(puzzles);
-		setApiPagination(pagination);
-	} catch (e) {
-		console.error(e);
-	} finally {
-		setIsLoading(false);
-	}
 }

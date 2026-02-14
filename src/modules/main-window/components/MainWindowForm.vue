@@ -1,37 +1,39 @@
 <script setup lang="ts">
+import type { SortOption } from "../types";
+import type { ApiRange } from "@/shared/types";
+
+import { ref } from "vue";
+
 import FormRange from "@/shared/components/FormRange.vue";
-import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes.ts";
+import { PUZZLE_THEMES } from "@/shared/constants";
+import { getRawClone } from "@/shared/utils";
 
 import { useSearchForm } from "../state";
-import { submitForm } from "../actions/search.ts";
-import { unref } from "vue";
+import { submitForm } from "../actions";
 
-const form = unref(useSearchForm().searchForm);
+const { searchForm } = useSearchForm();
+const form = ref(getRawClone(searchForm));
 
-function handleSubmit() {
-	submitForm(unref(form));
-}
-
-const ranges = [
+const ranges: Array<{ control: { label: string; id: string }; model: Partial<ApiRange> }> = [
 	{
 		control: { label: "Rating", id: "rating" },
-		model: form.filters.rating,
+		model: form.value.filters.rating,
 	},
 	{
 		control: { label: "Moves number", id: "moves-number" },
-		model: form.filters.movesNumber,
+		model: form.value.filters.movesNumber,
 	},
 	{
 		control: { label: "Popularity", id: "popularity" },
-		model: form.filters.popularity,
+		model: form.value.filters.popularity,
 	},
 	{
 		control: { label: "Times played", id: "nb-plays" },
-		model: form.filters.nbPlays,
+		model: form.value.filters.nbPlays,
 	},
 ];
 
-const sortOptions = [
+const sortOptions: Array<{ value: SortOption; text: string }> = [
 	{ value: "rating-desc", text: "Highest rating" },
 	{ value: "movesNumber-desc", text: "Highest moves number" },
 	{ value: "popularity-desc", text: "Highest popularity" },
@@ -46,7 +48,7 @@ const sortOptions = [
 </script>
 
 <template>
-	<form @submit.prevent="handleSubmit">
+	<form @submit.prevent="submitForm(form)">
 		<div class="ranges">
 			<FormRange
 				v-for="{ model, control } of ranges"
