@@ -1,3 +1,5 @@
+import type { PaginationResponse } from "@/shared/types";
+
 export type NumberRange = {
 	min: number;
 	max: number;
@@ -29,19 +31,12 @@ export type Search = {
 	sort: SortString;
 };
 
-export type Pagination = {
-	page: number;
-	limit: number;
-	total: number;
-	totalPages: number;
-};
-
 export type SearchPayload = {
 	filters: Filters;
 	sort: {
 		field: string;
 		order: string;
 	};
-	pagination: Pick<Pagination, "page" | "limit">;
+	pagination: Pick<PaginationResponse, "page" | "limit">;
 };
 

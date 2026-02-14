@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Puzzle } from "../types";
+import type { PuzzleResponse } from "../types";
 
 import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes";
 import { HIDDEN_THEMES } from "@/shared/constants/hiddenThemes";
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
-const props = defineProps<{ puzzle: Puzzle }>();
+const props = defineProps<{ puzzle: PuzzleResponse }>();
 
 const themes = computed(() =>
 	props.puzzle.themes
