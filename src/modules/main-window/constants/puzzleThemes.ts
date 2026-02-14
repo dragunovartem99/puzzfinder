@@ -1,4 +1,4 @@
-export const puzzleThemes = [
+export const PUZZLE_THEMES = [
 	{
 		label: "Motifs",
 		options: [

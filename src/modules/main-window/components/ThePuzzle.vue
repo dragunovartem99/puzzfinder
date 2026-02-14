@@ -2,17 +2,17 @@
 import { computed } from "vue";
 import type { Puzzle } from "../types";
 
-import { puzzleThemes } from "../static/puzzleThemes";
-import { hiddenThemes } from "../static/hiddenThemes";
+import { PUZZLE_THEMES } from "../constants/puzzleThemes";
+import { HIDDEN_THEMES } from "../constants/hiddenThemes";
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
 const props = defineProps<{ puzzle: Puzzle }>();
 
 const themes = computed(() =>
 	props.puzzle.themes
-		.filter((value: string) => !hiddenThemes.includes(value))
+		.filter((value: string) => !HIDDEN_THEMES.includes(value))
 		.map((value: string) =>
-			puzzleThemes
+			PUZZLE_THEMES
 				.flatMap((group) => group.options)
 				.find((puzzle) => puzzle.value === value)! // ISSUE: this can lead to runtime error
 				.text.toLowerCase()

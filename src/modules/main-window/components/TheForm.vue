@@ -2,7 +2,7 @@
 import FormRange from "./FormRange.vue";
 
 import { cloneRef } from "@/shared/utils/cloneRef.ts";
-import { puzzleThemes } from "../static/puzzleThemes.ts";
+import { PUZZLE_THEMES } from "../constants/puzzleThemes.ts";
 
 import { useSearch } from "../state/search.ts";
 import { submitForm } from "../usecases/search.ts";
@@ -55,7 +55,7 @@ const sortOptions = [
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
 			<select multiple size="10" v-model="form.filters.themes">
-				<optgroup v-for="group of puzzleThemes" :label="group.label">
+				<optgroup v-for="group of PUZZLE_THEMES" :label="group.label">
 					<option v-for="option of group.options" :value="option.value">
 						{{ option.text }}
 					</option>
