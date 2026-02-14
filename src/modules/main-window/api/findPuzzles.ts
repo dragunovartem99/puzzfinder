@@ -1,5 +1,5 @@
 import type { Pagination, Puzzle, SearchPayload } from "../types";
-import { httpRequest } from "@/shared/utils/httpRequest";
+import { apiRequest } from "@/shared/utils/apiRequest";
 
 type ReturnValue = {
 	data: Puzzle[];
@@ -7,9 +7,9 @@ type ReturnValue = {
 };
 
 export async function findPuzzles(body: SearchPayload): Promise<ReturnValue> {
-	const puzzles = await httpRequest<ReturnValue>({
-		url: "https://puzzfinder.99x.space/api/puzzles/search",
+	const puzzles = await apiRequest<ReturnValue>({
 		method: "POST",
+		path: "/puzzles/search",
 		payload: body,
 	});
 
