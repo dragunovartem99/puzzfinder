@@ -13,7 +13,7 @@ const { search, setSearch } = useSearch();
 const { setApiPuzzles, setIsLoading } = usePuzzles();
 const { pagination, setPagination } = usePagination();
 
-export async function submitForm(newSearch: MaybeRef<Search>): Promise<void> {
+export async function submitForm(newSearch: Search): Promise<void> {
 	setSearch(unref(newSearch));
 
 	const payload: SearchPayload = createSearchPayload(unref(search));
@@ -34,6 +34,7 @@ async function findResults(payload: SearchPayload) {
 		setIsLoading(true);
 
 		const { data: puzzles, pagination } = await findPuzzles(payload);
+
 		setApiPuzzles(puzzles);
 		setPagination(pagination);
 	} catch (e) {

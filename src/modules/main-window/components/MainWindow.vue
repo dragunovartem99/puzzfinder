@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, inject } from "vue";
+import { computed, ref } from "vue";
 import { usePuzzles } from "../state/puzzles.ts";
 
 import TheWindow from "@/shared/components/TheWindow.vue";
@@ -13,7 +13,8 @@ import MainWindowSource from "./MainWindowSource.vue";
 
 type Tab = { text: string; isSelected: boolean };
 
-const toggleMainWindow = inject<() => void>("toggle-main-window");
+const emit = defineEmits<{ "close-main-window": [] }>();
+
 const { puzzles, isLoading } = usePuzzles();
 
 const tabs = ref<Tab[]>([
@@ -30,7 +31,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 </script>
 
 <template>
-	<TheWindow class="main" @close-clicked="toggleMainWindow">
+	<TheWindow class="main" @close-clicked="emit('close-main-window')">
 		<template #title>
 			<div class="title-bar-text">
 				<img

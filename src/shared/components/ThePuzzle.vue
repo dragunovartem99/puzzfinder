@@ -4,7 +4,7 @@ import type { ApiPuzzle } from "../types";
 
 import { formatNumber } from "@/shared/utils/formatNumber.ts";
 
-type Puzzle = Omit<ApiPuzzle, 'themes'> & { themes: string };
+type Puzzle = Omit<ApiPuzzle, "themes"> & { themes: string };
 
 const props = defineProps<{ puzzle: Puzzle }>();
 

@@ -18,4 +18,3 @@ export type ApiPagination = {
 	total: number;
 	totalPages: number;
 };
-

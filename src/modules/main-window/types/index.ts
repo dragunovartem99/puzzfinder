@@ -39,4 +39,3 @@ export type SearchPayload = {
 	};
 	pagination: Pick<ApiPagination, "page" | "limit">;
 };
-

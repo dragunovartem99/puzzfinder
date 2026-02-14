@@ -5,12 +5,13 @@ import { PUZZLE_THEMES } from "@/shared/constants/puzzleThemes.ts";
 
 import { useSearch } from "../state/search.ts";
 import { submitForm } from "../actions/search.ts";
+import { unref } from "vue";
 
 const { search } = useSearch();
 const form = cloneRef(search);
 
 function handleSubmit() {
-	submitForm(cloneRef(form));
+	submitForm(unref(form));
 }
 
 const ranges = [

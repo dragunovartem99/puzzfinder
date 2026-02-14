@@ -1,1 +1,1 @@
-export type { ApiPagination, ApiPuzzle } from './api';
+export type { ApiPagination, ApiPuzzle } from "./api";

@@ -21,7 +21,9 @@ const links: Link[] = [
 	<p>The project consists of three components:</p>
 	<ul>
 		<li v-for="link of links">
-			<a :href="link.href" target="_blank"> {{ link.text }} </a>
+			<a :href="link.href" target="_blank">
+				{{ link.text }}
+			</a>
 		</li>
 	</ul>
 	<p>Any server-side advice/help will be very welcomed! This is my first full-stack project.</p>
