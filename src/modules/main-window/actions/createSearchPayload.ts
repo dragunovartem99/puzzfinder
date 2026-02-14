@@ -4,8 +4,8 @@ import type { ApiPagination } from "@/shared/types";
 
 type Input = {
 	searchForm: MaybeRef<SearchForm> | DeepReadonly<MaybeRef<SearchForm>>;
-	pagination: MaybeRef<ApiPagination>,
-}
+	pagination: MaybeRef<ApiPagination>;
+};
 
 export function createSearchPayload(input: Input): SearchPayload {
 	const { sort, filters } = unref(input.searchForm);
