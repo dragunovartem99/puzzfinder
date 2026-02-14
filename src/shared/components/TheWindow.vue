@@ -7,10 +7,7 @@ const emit = defineEmits<{ "close-clicked": [] }>();
 		<div class="title-bar">
 			<slot name="title"></slot>
 			<div class="title-bar-controls">
-				<button
-					@click="emit('close-clicked')"
-					aria-label="Close"
-				></button>
+				<button @click="emit('close-clicked')" aria-label="Close"></button>
 			</div>
 		</div>
 		<div class="window-body scroll">

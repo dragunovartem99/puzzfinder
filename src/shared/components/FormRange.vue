@@ -21,28 +21,11 @@ watch(isExact, () => {
 		<label>{{ control.label }}</label>
 		<div class="range">
 			<template v-if="!isExact">
-				<input
-					placeholder="Min"
-					type="number"
-					v-model="model.min"
-				/>
-				<input
-					placeholder="Max"
-					type="number"
-					v-model="model.max"
-				/>
+				<input placeholder="Min" type="number" v-model="model.min" />
+				<input placeholder="Max" type="number" v-model="model.max" />
 			</template>
-			<input
-				v-else
-				placeholder="Equals"
-				type="number"
-				v-model="model.equals"
-			/>
-			<input
-				:id="control.id"
-				type="checkbox"
-				v-model="isExact"
-			/>
+			<input v-else placeholder="Equals" type="number" v-model="model.equals" />
+			<input :id="control.id" type="checkbox" v-model="isExact" />
 			<label :for="control.id">Exact</label>
 		</div>
 	</div>

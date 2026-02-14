@@ -1,1 +1,1 @@
-export { changePage, submitForm } from './search';
+export { changePage, submitForm } from "./search";

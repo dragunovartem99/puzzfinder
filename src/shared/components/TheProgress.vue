@@ -23,9 +23,6 @@ onUnmounted(() => timeoutId && clearTimeout(timeoutId));
 
 <template>
 	<div class="progress-indicator segmented">
-		<span
-			class="progress-indicator-bar"
-			:style
-		/>
+		<span class="progress-indicator-bar" :style />
 	</div>
 </template>

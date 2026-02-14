@@ -12,24 +12,11 @@ const toNextPage = () => changePage(pagination.value.page + 1);
 
 <template>
 	<div class="status-bar-field"><b>Results:</b> {{ formatNumber(pagination.total) }}</div>
-	<div
-		class="status-bar-field pagination"
-		v-if="pagination.totalPages"
-	>
+	<div class="status-bar-field pagination" v-if="pagination.totalPages">
 		<p><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</p>
 		<div class="controls">
-			<a
-				v-if="pagination.page > 1"
-				href=""
-				@click.prevent="toPrevPage"
-			>
-				Prev page</a
-			>
-			<a
-				v-if="pagination.page !== pagination.totalPages"
-				href=""
-				@click.prevent="toNextPage"
-			>
+			<a v-if="pagination.page > 1" href="" @click.prevent="toPrevPage"> Prev page</a>
+			<a v-if="pagination.page !== pagination.totalPages" href="" @click.prevent="toNextPage">
 				Next page
 			</a>
 		</div>

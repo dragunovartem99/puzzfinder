@@ -31,10 +31,7 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 </script>
 
 <template>
-	<TheWindow
-		class="main"
-		@close-clicked="emit('close-main-window')"
-	>
+	<TheWindow class="main" @close-clicked="emit('close-main-window')">
 		<template #title>
 			<div class="title-bar-text">
 				<img
@@ -58,21 +55,11 @@ const selectedTab = computed(() => tabs.value.find((tab) => tab.isSelected)!.tex
 						<a>{{ tab.text }}</a>
 					</li>
 				</menu>
-				<div
-					class="window"
-					role="tabpanel"
-				>
+				<div class="window" role="tabpanel">
 					<div class="window-body">
 						<TheProgress v-if="isLoading" />
-						<div
-							class="results"
-							v-else-if="selectedTab === 'Results'"
-						>
-							<ThePuzzle
-								v-for="puzzle of puzzles"
-								:puzzle
-								:key="puzzle.puzzleId"
-							/>
+						<div class="results" v-else-if="selectedTab === 'Results'">
+							<ThePuzzle v-for="puzzle of puzzles" :puzzle :key="puzzle.puzzleId" />
 						</div>
 						<MainWindowSource v-if="selectedTab === 'Source'" />
 					</div>

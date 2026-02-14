@@ -9,10 +9,7 @@ defineProps<{ shortcut: Shortcut }>();
 </script>
 
 <template>
-	<a
-		:href="shortcut.link"
-		target="_blank"
-	>
+	<a :href="shortcut.link" target="_blank">
 		<img :src="shortcut.icon" />
 		<p>{{ shortcut.label }}</p>
 	</a>
