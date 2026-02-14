@@ -30,7 +30,12 @@ const movesNumber = computed(() =>
 			</a>
 			<p><b>Rating:</b> {{ puzzle.rating }}</p>
 			<p><b>Themes:</b> {{ puzzle.themes }}</p>
-			<a :href="puzzle.gameUrl" target="_blank" class="game-link">View game</a>
+			<a
+				:href="puzzle.gameUrl"
+				target="_blank"
+				class="game-link"
+				>View game</a
+			>
 		</div>
 		<div class="status-bar">
 			<p class="status-bar-field"><b>Played:</b> {{ played }}</p>

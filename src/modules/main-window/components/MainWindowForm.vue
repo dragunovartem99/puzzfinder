@@ -48,13 +48,27 @@ const sortOptions = [
 <template>
 	<form @submit.prevent="handleSubmit">
 		<div class="ranges">
-			<FormRange v-for="{ model, control } of ranges" :model :control />
+			<FormRange
+				v-for="{ model, control } of ranges"
+				:model
+				:control
+			/>
 		</div>
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
-			<select multiple size="10" v-model="form.filters.themes">
-				<optgroup v-for="group of PUZZLE_THEMES" :label="group.label">
-					<option v-for="option of group.options" :value="option.value">
+			<select
+				multiple
+				size="10"
+				v-model="form.filters.themes"
+			>
+				<optgroup
+					v-for="group of PUZZLE_THEMES"
+					:label="group.label"
+				>
+					<option
+						v-for="option of group.options"
+						:value="option.value"
+					>
 						{{ option.text }}
 					</option>
 				</optgroup>
@@ -64,7 +78,10 @@ const sortOptions = [
 			<div class="form-control">
 				<label>Order by</label>
 				<select v-model="form.sort">
-					<option v-for="option in sortOptions" :value="option.value">
+					<option
+						v-for="option in sortOptions"
+						:value="option.value"
+					>
 						{{ option.text }}
 					</option>
 				</select>

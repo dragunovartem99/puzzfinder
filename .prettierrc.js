@@ -19,5 +19,5 @@ export default {
 	vueIndentScriptAndStyle: false,
 	endOfLine: "lf",
 	embeddedLanguageFormatting: "auto",
-	singleAttributePerLine: false,
+	singleAttributePerLine: true,
 };

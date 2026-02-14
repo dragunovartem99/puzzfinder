@@ -21,7 +21,10 @@ const links: Link[] = [
 	<p>The project consists of three components:</p>
 	<ul>
 		<li v-for="link of links">
-			<a :href="link.href" target="_blank">
+			<a
+				:href="link.href"
+				target="_blank"
+			>
 				{{ link.text }}
 			</a>
 		</li>

@@ -13,5 +13,8 @@ function toggleMainWindow() {
 
 <template>
 	<TheDesktop @app-clicked="toggleMainWindow" />
-	<MainWindow v-show="isMainWindowOpen" @close-main-window="toggleMainWindow" />
+	<MainWindow
+		v-show="isMainWindowOpen"
+		@close-main-window="toggleMainWindow"
+	/>
 </template>
