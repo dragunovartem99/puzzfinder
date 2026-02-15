@@ -28,7 +28,8 @@
 		"lint:check": "eslint",
 		"prepare": "husky",
 		"preview": "vite preview",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"tsc:check": "vue-tsc --noEmit --skipLibCheck"
 	},
 	"prettier": "@dragunovartem99/prettier-config",
 	"dependencies": {
