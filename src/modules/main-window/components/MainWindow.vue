@@ -42,8 +42,8 @@ function openTab(tab: Tab) {
 		<template #title>
 			<div class="title-bar-text">
 				<img
+					class="main-window__logo"
 					src="/logo.png"
-					style="width: 15px; transform: scale(1.1); margin-right: 2px"
 				/>
 				Puzzfinder
 			</div>
@@ -72,8 +72,10 @@ function openTab(tab: Tab) {
 					role="tabpanel"
 				>
 					<div class="window-body">
-						<TheProgress v-if="isLoading" />
-						<MainWindowPuzzles v-else-if="selectedTab === 'Results'" />
+						<template v-if="selectedTab === 'Results'">
+							<TheProgress v-if="isLoading" />
+							<MainWindowPuzzles />
+						</template>
 						<MainWindowSource v-if="selectedTab === 'Source'" />
 					</div>
 				</div>
@@ -96,6 +98,12 @@ function openTab(tab: Tab) {
 	max-height: calc(100% - 20px);
 	display: flex;
 	flex-direction: column;
+}
+
+.main-window__logo {
+	width: 15px;
+	transform: scale(1.1);
+	margin-right: 2px;
 }
 
 .status-bar-field {
