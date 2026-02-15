@@ -1,3 +1,5 @@
+<!-- TODO: fix this unfortunate data flow -->
+<!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import type { RangeFilter } from "../types";
@@ -16,6 +18,7 @@ watch(isExact, () => {
 });
 </script>
 
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
 	<div class="form-control">
 		<label>{{ control.label }}</label>

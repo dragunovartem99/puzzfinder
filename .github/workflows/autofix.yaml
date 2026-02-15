@@ -18,8 +18,8 @@ jobs:
               uses: actions/setup-node@v4
             - name: Install dependencies
               run: npm ci
-            # - name: Run ESLint
-            #   run: npm run lint -- --fix
+            - name: Run ESLint
+              run: npm run lint -- --fix
             - name: Run Prettier
               run: npm run format
             - name: Use Autofix
