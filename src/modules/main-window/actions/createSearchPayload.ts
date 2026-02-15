@@ -13,7 +13,7 @@ function cleanRange(range: RangeFilter): RangePayload {
 
 export function createSearchPayload(params: Params): SearchPayload {
 	const { sort, filters } = unref(params.searchForm);
-	const [sortField, sortOrder] = sort.split("-");
+	const [sortField = "", sortOrder = ""] = sort.split("-");
 
 	return {
 		filters: {
