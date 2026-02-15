@@ -14,22 +14,22 @@ import { submitForm } from "../actions";
 const { searchForm } = useSearchForm();
 const form = ref(getRawClone(searchForm));
 
-const ranges: Array<{ control: { label: string; id: string }; model: RangeFilter }> = [
+const ranges: Array<{ control: { label: string; id: string }; range: RangeFilter }> = [
 	{
 		control: { label: "Rating", id: "rating" },
-		model: form.value.filters.rating,
+		range: form.value.filters.rating,
 	},
 	{
 		control: { label: "Moves number", id: "moves-number" },
-		model: form.value.filters.movesNumber,
+		range: form.value.filters.movesNumber,
 	},
 	{
 		control: { label: "Popularity", id: "popularity" },
-		model: form.value.filters.popularity,
+		range: form.value.filters.popularity,
 	},
 	{
 		control: { label: "Times played", id: "nb-plays" },
-		model: form.value.filters.nbPlays,
+		range: form.value.filters.nbPlays,
 	},
 ];
 
@@ -54,10 +54,11 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 	>
 		<div class="main-window-form__ranges">
 			<FormRange
-				v-for="{ model, control } of ranges"
-				:key="control.id"
-				:model
-				:control
+				v-for="entry of ranges"
+				:key="entry.control.id"
+				:range="entry.range"
+				:control="entry.control"
+				@update-range="(range) => (entry.range = range)"
 			/>
 		</div>
 		<div class="form-control">

@@ -74,7 +74,7 @@ function openTab(tab: Tab) {
 					<div class="window-body">
 						<template v-if="selectedTab === 'Results'">
 							<TheProgress v-if="isLoading" />
-							<MainWindowPuzzles />
+							<MainWindowPuzzles v-else />
 						</template>
 						<MainWindowSource v-if="selectedTab === 'Source'" />
 					</div>

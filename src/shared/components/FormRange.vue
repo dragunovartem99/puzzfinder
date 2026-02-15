@@ -1,24 +1,31 @@
-<!-- TODO: fix this unfortunate data flow -->
-<!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
-import { ref, watch } from "vue";
 import type { RangeFilter } from "../types";
 
+import { ref, watch } from "vue";
+import { getRawClone } from "../utils";
+
 const props = defineProps<{
-	model: Partial<RangeFilter>;
+	range: RangeFilter;
 	control: { label: string; id: string };
 }>();
 
+const emit = defineEmits<{
+	"update-range": [range: RangeFilter];
+}>();
+
+const model = ref(getRawClone(props.range));
+
 const isExact = ref(false);
 
+watch(model.value, () => {
+	emit("update-range", model.value);
+});
+
 watch(isExact, () => {
-	props.model.min = undefined;
-	props.model.max = undefined;
-	props.model.equals = undefined;
+	model.value = { equals: "", max: "", min: "" };
 });
 </script>
 
-<!-- eslint-disable vue/no-mutating-props -->
 <template>
 	<div class="form-control">
 		<label>{{ control.label }}</label>
