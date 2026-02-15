@@ -1,3 +1,5 @@
+<!-- TODO: fix this unfortunate data flow -->
+<!-- eslint-disable vue/no-mutating-props -->
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import type { RangeFilter } from "../types";
@@ -16,32 +18,33 @@ watch(isExact, () => {
 });
 </script>
 
+<!-- eslint-disable vue/no-mutating-props -->
 <template>
 	<div class="form-control">
 		<label>{{ control.label }}</label>
 		<div class="range">
 			<template v-if="!isExact">
 				<input
+					v-model="model.min"
 					placeholder="Min"
 					type="number"
-					v-model="model.min"
 				/>
 				<input
+					v-model="model.max"
 					placeholder="Max"
 					type="number"
-					v-model="model.max"
 				/>
 			</template>
 			<input
 				v-else
+				v-model="model.equals"
 				placeholder="Equals"
 				type="number"
-				v-model="model.equals"
 			/>
 			<input
 				:id="control.id"
-				type="checkbox"
 				v-model="isExact"
+				type="checkbox"
 			/>
 			<label :for="control.id">Exact</label>
 		</div>

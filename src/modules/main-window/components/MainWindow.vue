@@ -59,9 +59,10 @@ function openTab(tab: Tab) {
 				<menu role="tablist">
 					<li
 						v-for="tab of tabs"
-						@click="openTab(tab)"
+						:key="tab.text"
 						:aria-selected="tab.isSelected"
 						role="tab"
+						@click="openTab(tab)"
 					>
 						<a>{{ tab.text }}</a>
 					</li>

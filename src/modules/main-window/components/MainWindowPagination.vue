@@ -13,8 +13,8 @@ const toNextPage = () => changePage(pagination.value.page + 1);
 <template>
 	<div class="status-bar-field"><b>Results:</b> {{ formatNumber(pagination.total) }}</div>
 	<div
-		class="status-bar-field pagination"
 		v-if="pagination.totalPages"
+		class="status-bar-field pagination"
 	>
 		<p><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</p>
 		<div class="controls">

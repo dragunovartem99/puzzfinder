@@ -20,7 +20,10 @@ const links: Link[] = [
 <template>
 	<p>The project consists of three components:</p>
 	<ul>
-		<li v-for="link of links">
+		<li
+			v-for="link of links"
+			:key="link.text"
+		>
 			<a
 				:href="link.href"
 				target="_blank"

@@ -8,8 +8,8 @@ const { puzzles } = usePuzzles();
 	<div class="main-window-puzzles">
 		<ThePuzzle
 			v-for="puzzle of puzzles"
-			:puzzle
 			:key="puzzle.puzzleId"
+			:puzzle
 		/>
 	</div>
 </template>
