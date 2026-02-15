@@ -29,7 +29,7 @@
 		"prepare": "husky",
 		"preview": "vite preview",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"tsc:check": "vue-tsc -b --noEmit"
+		"types:check": "vue-tsc -b --noEmit"
 	},
 	"prettier": "@dragunovartem99/prettier-config",
 	"dependencies": {
