@@ -8,8 +8,8 @@ const emit = defineEmits<{ "close-clicked": [] }>();
 			<slot name="title"></slot>
 			<div class="title-bar-controls">
 				<button
-					@click="emit('close-clicked')"
 					aria-label="Close"
+					@click="emit('close-clicked')"
 				></button>
 			</div>
 		</div>

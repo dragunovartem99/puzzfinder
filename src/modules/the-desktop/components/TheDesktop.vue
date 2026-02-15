@@ -35,8 +35,8 @@ const shortcuts: Array<DesktopShortcut & { onClick?: () => void }> = [
 		<div class="desktop__shortcuts">
 			<TheDesktopShortcut
 				v-for="shortcut of shortcuts"
-				:shortcut
 				:key="shortcut.label"
+				:shortcut
 				@click="shortcut.onClick"
 			/>
 		</div>

@@ -8,7 +8,7 @@ type Params = {
 };
 
 function cleanRange(range: RangeFilter): RangePayload {
-	return Object.fromEntries(Object.entries(range).filter(([_, value]) => value !== ""));
+	return Object.fromEntries(Object.entries(range).filter(([, value]) => value !== ""));
 }
 
 export function createSearchPayload(params: Params): SearchPayload {

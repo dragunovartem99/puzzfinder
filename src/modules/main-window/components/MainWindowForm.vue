@@ -55,6 +55,7 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 		<div class="main-window-form__ranges">
 			<FormRange
 				v-for="{ model, control } of ranges"
+				:key="control.id"
 				:model
 				:control
 			/>
@@ -62,16 +63,18 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 		<div class="form-control">
 			<label>Themes - use Ctrl or Shift</label>
 			<select
+				v-model="form.filters.themes"
 				multiple
 				size="10"
-				v-model="form.filters.themes"
 			>
 				<optgroup
 					v-for="group of PUZZLE_THEMES"
+					:key="group.label"
 					:label="group.label"
 				>
 					<option
 						v-for="option of group.options"
+						:key="option.value"
 						:value="option.value"
 					>
 						{{ option.text }}
@@ -85,6 +88,7 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 				<select v-model="form.sort">
 					<option
 						v-for="option in sortOptions"
+						:key="option.value"
 						:value="option.value"
 					>
 						{{ option.text }}
