@@ -23,7 +23,9 @@ watch(model.value, () => {
 });
 
 watch(isExact, () => {
-	model.value = { equals: "", max: "", min: "" };
+	model.value.equals = "";
+	model.value.max = "";
+	model.value.min = "";
 });
 </script>
 
