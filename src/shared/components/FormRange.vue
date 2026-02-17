@@ -6,7 +6,8 @@ import { getRawClone } from "../utils";
 
 const props = defineProps<{
 	range: RangeFilter;
-	control: { label: string; id: string };
+	label: string;
+	id: string;
 }>();
 
 const emit = defineEmits<{
@@ -28,7 +29,7 @@ watch(isExact, () => {
 
 <template>
 	<div class="form-control">
-		<label>{{ control.label }}</label>
+		<label>{{ label }}</label>
 		<div class="range">
 			<template v-if="!isExact">
 				<input
@@ -49,11 +50,11 @@ watch(isExact, () => {
 				type="number"
 			/>
 			<input
-				:id="control.id"
+				:id
 				v-model="isExact"
 				type="checkbox"
 			/>
-			<label :for="control.id">Exact</label>
+			<label :for="id">Exact</label>
 		</div>
 	</div>
 </template>

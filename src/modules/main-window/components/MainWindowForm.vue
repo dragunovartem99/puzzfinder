@@ -6,7 +6,7 @@ import { ref } from "vue";
 import { FormRange } from "@/shared/components";
 import { PUZZLE_THEMES } from "@/shared/constants";
 import { getRawClone } from "@/shared/utils";
-import type { RangeFilter } from "@/shared/types";
+import type { SearchFiltersPayload } from "@/shared/types";
 
 import { useSearchForm } from "../state";
 import { submitForm } from "../actions";
@@ -14,36 +14,24 @@ import { submitForm } from "../actions";
 const { searchForm } = useSearchForm();
 const form = ref(getRawClone(searchForm));
 
-const ranges: Array<{ control: { label: string; id: string }; range: RangeFilter }> = [
-	{
-		control: { label: "Rating", id: "rating" },
-		range: form.value.filters.rating,
-	},
-	{
-		control: { label: "Moves number", id: "moves-number" },
-		range: form.value.filters.movesNumber,
-	},
-	{
-		control: { label: "Popularity", id: "popularity" },
-		range: form.value.filters.popularity,
-	},
-	{
-		control: { label: "Times played", id: "nb-plays" },
-		range: form.value.filters.nbPlays,
-	},
+const ranges: Array<{ label: string; key: keyof Omit<SearchFiltersPayload, "themes"> }> = [
+	{ label: "Rating", key: "rating" },
+	{ label: "Moves number", key: "movesNumber" },
+	{ label: "Popularity", key: "popularity" },
+	{ label: "Times played", key: "nbPlays" },
 ];
 
-const sortOptions: Array<{ value: SortOption; text: string }> = [
-	{ value: "rating-desc", text: "Highest rating" },
-	{ value: "movesNumber-desc", text: "Highest moves number" },
-	{ value: "popularity-desc", text: "Highest popularity" },
-	{ value: "nbPlays-desc", text: "Highest times played" },
-	{ value: "rating-asc", text: "Lowest rating" },
-	{ value: "movesNumber-asc", text: "Lowest moves number" },
-	{ value: "popularity-asc", text: "Lowest popularity" },
-	{ value: "nbPlays-asc", text: "Lowest times played" },
-	{ value: "puzzleId-asc", text: "Puzzle ID" },
-	{ value: "puzzleId-desc", text: "Puzzle ID (reversed)" },
+const sortOptions: Array<{ label: string; key: SortOption }> = [
+	{ label: "Highest rating", key: "rating-desc" },
+	{ label: "Highest moves number", key: "movesNumber-desc" },
+	{ label: "Highest popularity", key: "popularity-desc" },
+	{ label: "Highest times played", key: "nbPlays-desc" },
+	{ label: "Lowest rating", key: "rating-asc" },
+	{ label: "Lowest moves number", key: "movesNumber-asc" },
+	{ label: "Lowest popularity", key: "popularity-asc" },
+	{ label: "Lowest times played", key: "nbPlays-asc" },
+	{ label: "Puzzle ID", key: "puzzleId-asc" },
+	{ label: "Puzzle ID (reversed)", key: "puzzleId-desc" },
 ];
 </script>
 
@@ -54,11 +42,12 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 	>
 		<div class="main-window-form__ranges">
 			<FormRange
-				v-for="entry of ranges"
-				:key="entry.control.id"
-				:range="entry.range"
-				:control="entry.control"
-				@update-range="(range) => (entry.range = range)"
+				v-for="{ label, key } of ranges"
+				:id="key"
+				:key
+				:label
+				:range="form.filters[key]"
+				@update-range="(range) => (form.filters[key] = range)"
 			/>
 		</div>
 		<div class="form-control">
@@ -89,10 +78,10 @@ const sortOptions: Array<{ value: SortOption; text: string }> = [
 				<select v-model="form.sort">
 					<option
 						v-for="option in sortOptions"
-						:key="option.value"
-						:value="option.value"
+						:key="option.key"
+						:value="option.key"
 					>
-						{{ option.text }}
+						{{ option.label }}
 					</option>
 				</select>
 			</div>
