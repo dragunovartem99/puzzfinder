@@ -8,14 +8,14 @@
 		"url": "https://github.com/dragunovartem99/puzzfinder/issues",
 		"email": "dragunovartem99@gmail.com"
 	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/dragunovartem99/puzzfinder.git"
-	},
 	"license": "MIT",
 	"author": {
 		"name": "Artem Dragunov",
 		"email": "dragunovartem99@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dragunovartem99/puzzfinder.git"
 	},
 	"type": "module",
 	"scripts": {
@@ -38,7 +38,7 @@
 	"devDependencies": {
 		"@dragunovartem99/eslint-config": "1.0.0",
 		"@dragunovartem99/flow": "^0.1.1",
-		"@dragunovartem99/oxfmt-config": "1.1.0",
+		"@dragunovartem99/oxfmt-config": "^1.2.0",
 		"@types/node": "^24.10.1",
 		"@vitejs/plugin-vue": "^6.0.2",
 		"@vue/tsconfig": "^0.8.1",
