@@ -38,11 +38,11 @@
 	"devDependencies": {
 		"@dragunovartem99/eslint-config": "1.0.0",
 		"@dragunovartem99/flow": "^0.1.1",
+		"@dragunovartem99/oxfmt-config": "1.1.0",
 		"@types/node": "^24.10.1",
 		"@vitejs/plugin-vue": "^6.0.2",
 		"@vue/tsconfig": "^0.8.1",
 		"husky": "^9.1.7",
-		"oxfmt": "^0.35.0",
 		"typescript": "~5.9.3",
 		"vite": "^7.3.1",
 		"vue-tsc": "^3.1.5"
