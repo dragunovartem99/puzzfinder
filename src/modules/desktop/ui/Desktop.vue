@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import type { UI } from "../types";
-
+import type { UI } from "@/types";
 import Shortcut from "./Shortcut.vue";
+
+const emit = defineEmits<{
+	mainAppStarted: [];
+}>();
 
 const shortcuts: UI.Shortcut[] = [
 	{
 		icon: "logo.png",
 		label: "Puzzfinder",
+		onclick: () => emit("mainAppStarted"),
 	},
 	{
 		icon: "shortcut/lichess-accuracy.png",
@@ -45,7 +49,7 @@ const shortcuts: UI.Shortcut[] = [
 <style lang="css" scoped>
 .desktop {
 	background-color: teal;
-	height: 100vh;
+	height: 100dvh;
 }
 
 ul {

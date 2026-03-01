@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UI } from "../types";
+import type { UI } from "@/types";
 
 const { shortcut } = defineProps<{
 	shortcut: UI.Shortcut;
@@ -34,6 +34,7 @@ const alt = `Shortcut of "${shortcut.label}"`;
 	font-size: 14px;
 	place-items: center;
 	text-decoration: none;
+	cursor: pointer;
 }
 
 img {
