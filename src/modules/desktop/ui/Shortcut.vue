@@ -27,10 +27,13 @@ const alt = `Shortcut of "${shortcut.label}"`;
 
 <style lang="css" scoped>
 .shortcut {
-	display: flex;
+	font-family: "Pixelated MS Sans Serif";
+	display: grid;
 	width: 80px;
-	flex-direction: column;
-	align-items: center;
+	height: 80px;
+	font-size: 14px;
+	place-items: center;
+	text-decoration: none;
 }
 
 img {

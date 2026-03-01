@@ -50,10 +50,11 @@ const shortcuts: UI.Shortcut[] = [
 }
 
 ul {
-	padding: 0;
+	padding: 10px;
 	list-style: none;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
+	gap: 20px;
 }
 </style>
