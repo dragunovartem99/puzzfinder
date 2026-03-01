@@ -5,16 +5,12 @@ const { shortcut } = defineProps<{
 	shortcut: UI.Shortcut;
 }>();
 
-const element = shortcut.url ? "a" : "div";
-const attributes = shortcut.url ? { href: shortcut.url, target: "_blank" } : null;
-
 const alt = `Shortcut of "${shortcut.label}"`;
 </script>
 
 <template>
-	<component
-		:is="element"
-		v-bind="attributes"
+	<a
+		:href="shortcut.url"
 		class="shortcut"
 	>
 		<img
@@ -22,23 +18,22 @@ const alt = `Shortcut of "${shortcut.label}"`;
 			:alt
 		/>
 		<span> {{ shortcut.label }} </span>
-	</component>
+	</a>
 </template>
 
 <style lang="css" scoped>
 .shortcut {
 	font-family: "Pixelated MS Sans Serif";
 	display: grid;
-	width: 80px;
-	height: 80px;
-	font-size: 14px;
+	width: 100px;
+	height: 100px;
 	place-items: center;
 	text-decoration: none;
 	cursor: pointer;
 }
 
 img {
-	width: 32px;
+	width: 40px;
 }
 
 span {

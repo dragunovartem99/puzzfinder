@@ -10,6 +10,7 @@ const shortcuts: UI.Shortcut[] = [
 	{
 		icon: "logo.png",
 		label: "Puzzfinder",
+		url: "#",
 		onclick: () => emit("mainAppStarted"),
 	},
 	{

@@ -1,7 +1,7 @@
 export type Shortcut = {
 	label: string;
 	icon: string;
-	url?: string;
+	url: string;
 	onclick?: () => void;
 };
 

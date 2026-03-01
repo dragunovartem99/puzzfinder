@@ -14,7 +14,6 @@
 		"type-check": "vue-tsc --build"
 	},
 	"dependencies": {
-		"98.css": "^0.1.21",
 		"vue": "^3.5.29"
 	},
 	"devDependencies": {

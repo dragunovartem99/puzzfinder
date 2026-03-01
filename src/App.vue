@@ -27,14 +27,15 @@ const window: UI.Window = {
 </template>
 
 <style>
-:root {
-	-webkit-font-smoothing: antialiased;
-	font-synthesis: none;
-}
-
 * {
 	margin: 0;
 	box-sizing: border-box;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	font-synthesis: none;
+	--ui-scale: 1.5;
 }
 
 .main-window {
