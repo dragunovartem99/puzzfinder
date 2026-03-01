@@ -13,7 +13,7 @@ const mainWindow: UI.Window = {
 </script>
 
 <template>
-	<Desktop @main-app-started="isMainWindowShown = true" />
+	<Desktop @main-shortcut-click="isMainWindowShown = true" />
 	<Window
 		v-show="isMainWindowShown"
 		:window="mainWindow"

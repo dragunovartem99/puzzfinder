@@ -3,7 +3,7 @@ import type { UI } from "@/types";
 import Shortcut from "./Shortcut.vue";
 
 const emit = defineEmits<{
-	mainAppStarted: [];
+	"main-shortcut-click": [];
 }>();
 
 const shortcuts: UI.Shortcut[] = [
@@ -11,7 +11,7 @@ const shortcuts: UI.Shortcut[] = [
 		icon: "logo.png",
 		label: "Puzzfinder",
 		url: "#",
-		onclick: () => emit("mainAppStarted"),
+		onclick: () => emit("main-shortcut-click"),
 	},
 	{
 		icon: "shortcut/lichess-accuracy.png",
