@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { UI } from "./types";
 import { Desktop } from "./modules/desktop";
-import { Window } from "./modules/window";
+import { type UI, Window } from "@/shared";
 
 const isMainWindowShown = ref(true);
 

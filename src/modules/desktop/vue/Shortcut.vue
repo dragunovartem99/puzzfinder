@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UI } from "@/types";
+import type { UI } from "@/shared";
 
 const { shortcut } = defineProps<{
 	shortcut: UI.Shortcut;

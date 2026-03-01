@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UI } from "@/types";
+import type { UI } from "../types";
 
 defineProps<{ window: UI.Window }>();
 
