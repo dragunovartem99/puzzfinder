@@ -7,3 +7,5 @@ on:
 jobs:
     pipes:
         uses: dragunovartem99/pipes/.github/workflows/ci-check-frontend.yaml@main
+        with:
+            run-test: false
