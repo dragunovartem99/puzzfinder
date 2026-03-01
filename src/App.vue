@@ -6,11 +6,9 @@ import { Window } from "./modules/window";
 
 const isMainWindowShown = ref(true);
 
-const window: UI.Window = {
+const mainWindow: UI.Window = {
 	title: "Puzzfinder",
-	controls: {
-		close: true,
-	},
+	controls: { close: true },
 };
 </script>
 
@@ -18,11 +16,11 @@ const window: UI.Window = {
 	<Desktop @main-app-started="isMainWindowShown = true" />
 	<Window
 		v-show="isMainWindowShown"
-		:window
+		:window="mainWindow"
 		class="main-window"
 		@close="isMainWindowShown = false"
 	>
-		<button>Hello</button>
+		<button>Search</button>
 	</Window>
 </template>
 
@@ -33,8 +31,6 @@ const window: UI.Window = {
 }
 
 body {
-	-webkit-font-smoothing: antialiased;
-	font-synthesis: none;
 	--ui-scale: 1.5;
 }
 

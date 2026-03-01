@@ -29,11 +29,10 @@ const alt = `Shortcut of "${shortcut.label}"`;
 	height: 100px;
 	place-items: center;
 	text-decoration: none;
-	cursor: pointer;
 }
 
 img {
-	width: 40px;
+	width: 32px;
 }
 
 span {
