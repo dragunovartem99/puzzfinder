@@ -8,8 +8,7 @@
 		"dev": "vite",
 		"format": "oxfmt src/",
 		"format:check": "oxfmt --check src/",
-		"lint": "oxlint --fix src/",
-		"lint:check": "oxlint src/",
+		"lint": "oxlint src/",
 		"preview": "vite preview",
 		"test:unit": "vitest",
 		"type-check": "vue-tsc --build"

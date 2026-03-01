@@ -1,27 +1,26 @@
 <script setup lang="ts">
-import { type UI } from "../types";
+import type { UI } from "../types";
 
 import Shortcut from "./Shortcut.vue";
 
 const shortcuts: UI.Shortcut[] = [
 	{
-		label: "Puzzfinder",
 		icon: "logo.png",
-		onclick: () => {},
+		label: "Puzzfinder",
 	},
 	{
-		label: "Lichess Accuracy",
 		icon: "shortcut/lichess-accuracy.png",
+		label: "Lichess Accuracy",
 		url: "https://dragunovartem99.github.io/lichess-accuracy/",
 	},
 	{
-		label: "Vue PGN Viewer",
 		icon: "shortcut/vue-pgn-viewer.png",
+		label: "Vue PGN Viewer",
 		url: "https://dragunovartem99.github.io/vue-pgn-viewer/",
 	},
 	{
-		label: "HTML Diagram",
 		icon: "shortcut/html-diagram.png",
+		label: "HTML Diagram",
 		url: "https://dragunovartem99.github.io/html-diagram/",
 	},
 ];
