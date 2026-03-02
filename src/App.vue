@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { Desktop } from "./modules/desktop";
-import { type UI, Window } from "@/shared";
+import { ref, type Component } from "vue";
+import { Desktop, Puzzfinder } from "@/modules";
+import type { UI } from "./shared";
 
-const isMainWindowShown = ref(true);
+const activeWindow = ref<UI.Window["id"] | null>("puzzfinder");
 
-const mainWindow: UI.Window = {
-	title: "Puzzfinder",
-	controls: { close: true },
+const windows: Record<UI.Window["id"], Component> = {
+	puzzfinder: Puzzfinder,
 };
 </script>
 
 <template>
-	<Desktop @main-shortcut-click="isMainWindowShown = true" />
-	<Window
-		v-show="isMainWindowShown"
-		:window="mainWindow"
-		class="main-window"
-		@close="isMainWindowShown = false"
-	>
-		<button>Search</button>
-	</Window>
+	<Desktop @shortcut-click="(windowID) => (activeWindow = windowID)" />
+	<template v-for="(window, windowID) in windows">
+		<component
+			:is="window"
+			v-if="activeWindow === windowID"
+			@close="activeWindow = null"
+			class="active-window"
+		/>
+	</template>
 </template>
 
 <style>
@@ -33,7 +32,7 @@ body {
 	--ui-scale: 1.5;
 }
 
-.main-window {
+.active-window {
 	position: absolute;
 	top: 50%;
 	left: 50%;

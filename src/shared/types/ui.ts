@@ -5,12 +5,14 @@ export type Shortcut = {
 	onclick?: () => void;
 };
 
-type Controls = {
-	close: boolean;
-};
+// can be extended to a union
+type WindowID = "puzzfinder";
 
 export type Window = {
+	id: WindowID;
 	title: string;
-	controls?: Partial<Controls>;
-	statusBar?: string[];
+	statusBar: string[];
+	controls: Partial<{
+		close: boolean;
+	}>;
 };
