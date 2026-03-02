@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { submitForm } from '../actions';
+import { searchPuzzles } from "../api";
+import { usePagination, usePuzzles } from "../state";
+
+async function submitForm() {
+	const response = await searchPuzzles();
+
+	if (response) {
+		usePuzzles().setState(response.data);
+		usePagination().setState(response.pagination);
+	}
+}
 </script>
 
 <template>
