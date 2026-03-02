@@ -3,6 +3,7 @@ import { type UI, Window, Tabs } from "@/shared";
 import { ref } from "vue";
 import GitHub from "./GitHub.vue";
 import Search from "./Search.vue";
+import Puzzles from "./Puzzles.vue";
 
 const emit = defineEmits<{
 	close: [];
@@ -55,6 +56,7 @@ const activeTab = ref<UI.Tab | undefined>(TABS[0]);
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
 		>
+			<Puzzles v-if="activeTab?.id === 'puzzles'" />
 			<GitHub v-if="activeTab?.id === 'github'" />
 		</Tabs>
 	</Window>
