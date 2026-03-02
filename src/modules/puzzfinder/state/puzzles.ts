@@ -1,4 +1,4 @@
-import { readonly, ref } from "vue";
+import { ref } from "vue";
 import { type API } from "@/shared";
 
 const state = ref<API.Puzzle[]>([]);
@@ -9,7 +9,7 @@ export function usePuzzles() {
 	}
 
 	return {
-		state: readonly(state),
+		state,
 		setState,
 	};
 }

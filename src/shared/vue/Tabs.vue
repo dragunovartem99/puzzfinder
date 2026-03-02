@@ -20,7 +20,7 @@ const emit = defineEmits<{
 			:aria-selected="tab.id === activeTab?.id"
 			@click="emit('tab-select', tab)"
 		>
-			<a href="#tabs">{{ tab.label }}</a>
+			<a>{{ tab.label }}</a>
 		</li>
 	</menu>
 	<div

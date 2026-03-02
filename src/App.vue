@@ -23,6 +23,15 @@ const windows: Record<UI.Window["id"], Component> = {
 </template>
 
 <style>
+@font-face {
+	font-family: "Diagram Smart";
+	src: url("/DiagramSmart.woff2") format("woff2");
+}
+
+:root {
+	--diagram-font: "Diagram Smart";
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -38,6 +47,6 @@ body {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 100%;
-	max-width: 800px;
+	max-width: 1000px;
 }
 </style>

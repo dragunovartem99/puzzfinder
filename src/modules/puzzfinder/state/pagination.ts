@@ -1,4 +1,4 @@
-import { readonly, ref } from "vue";
+import { ref } from "vue";
 import { type API } from "@/shared";
 
 const state = ref<API.Pagination | null>(null);
@@ -9,7 +9,7 @@ export function usePagination() {
 	}
 
 	return {
-		state: readonly(state),
+		state,
 		setState,
 	};
 }

@@ -22,3 +22,14 @@ export type Tab = {
 	id: string;
 	label: string;
 };
+
+export type Puzzle = {
+	id: string;
+	fen: string;
+	url: string;
+	gameUrl: string;
+	flipped: boolean;
+	rating: number;
+	themes: string;
+	duration: string;
+};

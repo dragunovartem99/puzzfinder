@@ -1,0 +1,1 @@
+export { mapPuzzle } from "./mapPuzzle";
