@@ -24,11 +24,13 @@ const alt = `Shortcut of "${shortcut.label}"`;
 <style lang="css" scoped>
 .shortcut {
 	font-family: "Pixelated MS Sans Serif";
-	display: grid;
-	width: 100px;
-	height: 100px;
-	place-items: center;
+	display: flex;
+	width: 90px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	text-decoration: none;
+	gap: 15px;
 }
 
 img {

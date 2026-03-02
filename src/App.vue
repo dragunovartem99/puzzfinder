@@ -24,11 +24,11 @@ const windows: Record<UI.Window["id"], Component> = {
 
 <style>
 * {
-	margin: 0;
 	box-sizing: border-box;
 }
 
 body {
+	margin: 0;
 	--ui-scale: 1.5;
 }
 

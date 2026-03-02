@@ -1,27 +1,61 @@
 <script setup lang="ts">
-import { type UI, Window } from "@/shared";
+import { type UI, Window, Tabs } from "@/shared";
+import { ref } from "vue";
+import GitHub from "./GitHub.vue";
+import Search from "./Search.vue";
 
 const emit = defineEmits<{
-	close: [windowID: UI.Window['id']];
+	close: [];
 }>();
 
 const PUZZFINDER_WINDOW: UI.Window = {
-	id: 'puzzfinder',
+	id: "puzzfinder",
 	title: "Puzzfinder",
 	controls: { close: true },
 	statusBar: [],
 };
 
-function handleClose(): void {
-	emit("close", PUZZFINDER_WINDOW.id);
-}
+const TABS: UI.Tab[] = [
+	{
+		id: "puzzles",
+		label: "Puzzles",
+	},
+	{
+		id: "github",
+		label: "GitHub",
+	},
+];
+
+const activeTab = ref<UI.Tab | undefined>(TABS[0]);
 </script>
 
 <template>
 	<Window
-		@close="handleClose"
+		@close="emit('close')"
 		:window="PUZZFINDER_WINDOW"
 	>
-		Hello
+		<p>
+			<b>Discover hidden gems</b> in Lichess'
+			<a
+				href="https://database.lichess.org/#puzzles"
+				target="_blank"
+			>
+				multi-million puzzle database
+			</a>
+			with fast, filter-based searches.
+		</p>
+		<p>Chessboards: "Smart" (1992) by <b>Christoph Wirth</b>.</p>
+
+		<Search />
+
+		<hr />
+
+		<Tabs
+			:tabs="TABS"
+			:active-tab
+			@tab-select="(tab) => (activeTab = tab)"
+		>
+			<GitHub v-if="activeTab?.id === 'github'" />
+		</Tabs>
 	</Window>
 </template>

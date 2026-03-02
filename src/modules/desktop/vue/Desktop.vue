@@ -3,7 +3,7 @@ import type { UI } from "@/shared";
 import Shortcut from "./Shortcut.vue";
 
 const emit = defineEmits<{
-	"shortcut-click": [windowID: UI.Window['id']];
+	"shortcut-click": [windowID: UI.Window["id"]];
 }>();
 
 const shortcuts: UI.Shortcut[] = [
@@ -11,7 +11,7 @@ const shortcuts: UI.Shortcut[] = [
 		icon: "logo.png",
 		label: "Puzzfinder",
 		url: "#",
-		onclick: () => emit("shortcut-click", 'puzzfinder'),
+		onclick: () => emit("shortcut-click", "puzzfinder"),
 	},
 	{
 		icon: "shortcut/lichess-accuracy.png",
@@ -54,11 +54,12 @@ const shortcuts: UI.Shortcut[] = [
 }
 
 ul {
-	padding: 10px;
+	margin: 0;
+	padding: 20px 10px;
 	list-style: none;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
-	gap: 20px;
+	gap: 30px;
 }
 </style>
