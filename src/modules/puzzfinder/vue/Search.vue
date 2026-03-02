@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { searchPuzzles } from '../api';
+</script>
 
 <template>
-	<form @submit.prevent="">
+	<form @submit.prevent="searchPuzzles">
 		<button>Search</button>
 	</form>
 </template>

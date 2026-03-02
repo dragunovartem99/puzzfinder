@@ -6,7 +6,7 @@
 		"pedantic": "warn",
 		"perf": "warn",
 		"style": "off",
-		"restriction": "warn",
+		"restriction": "off",
 		"nursery": "off"
 	},
 	"plugins": [

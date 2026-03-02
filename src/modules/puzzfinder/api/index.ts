@@ -1,0 +1,1 @@
+export { searchPuzzles } from './searchPuzzles';
