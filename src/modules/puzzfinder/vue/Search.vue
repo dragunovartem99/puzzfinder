@@ -10,7 +10,10 @@ async function submitForm() {
 	const [field = "", order = ""] = selectedOption.value.split("-");
 
 	const response = await searchPuzzles({
-		sort: { field, order },
+		sort: {
+			field,
+			order,
+		},
 	});
 
 	if (response) {

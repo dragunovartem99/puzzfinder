@@ -24,4 +24,8 @@ export type Search = {
 		field: string;
 		order: string;
 	};
+	pagination: {
+		page: number;
+		limit: number;
+	};
 };
