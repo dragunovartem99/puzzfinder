@@ -27,7 +27,7 @@ const TABS: UI.Tab[] = [
 	},
 ];
 
-const activeTab = ref<UI.Tab | undefined>(TABS[0]);
+const activeTab = ref<UI.Tab>(TABS[0]!);
 </script>
 
 <template>

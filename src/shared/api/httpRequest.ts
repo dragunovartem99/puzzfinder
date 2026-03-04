@@ -2,17 +2,21 @@ const API = "https://puzzfinder.99x.space/api";
 
 type Params = {
 	endpoint: string;
-	method: "GET" | "POST";
+	method?: "GET" | "POST";
+	payload?: unknown;
 };
 
 export async function httpRequest<T>(params: Params): Promise<T> {
-	const { endpoint, method } = params;
+	const initOptions: RequestInit = {
+		method: params.method ?? "GET",
+	};
 
-	const fullEndpoint = API + endpoint;
+	if (params.method === "POST") {
+		initOptions.headers = { "Content-Type": "application/json" };
+		initOptions.body = JSON.stringify(params.payload);
+	}
 
-	const response = await fetch(fullEndpoint, {
-		method,
-	});
+	const response = await fetch(API + params.endpoint, initOptions);
 
 	return response.json();
 }

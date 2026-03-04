@@ -1,6 +1,16 @@
-export type Link = {
-	url: string;
+export type Tab = {
 	label: string;
+	id: string;
+};
+
+export type Option = {
+	label: string;
+	key: string;
+};
+
+export type Link = {
+	label: string;
+	url: string;
 };
 
 export type Shortcut = Link & {
@@ -16,11 +26,6 @@ export type Window = {
 	controls: Partial<{
 		close: boolean;
 	}>;
-};
-
-export type Tab = {
-	id: string;
-	label: string;
 };
 
 export type Puzzle = {

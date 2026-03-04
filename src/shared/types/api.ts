@@ -18,3 +18,10 @@ export type Pagination = {
 	total: number;
 	totalPages: number;
 };
+
+export type Search = {
+	sort: {
+		field: string;
+		order: string;
+	};
+};

@@ -5,11 +5,12 @@ type Response = {
 	pagination: API.Pagination;
 };
 
-export async function searchPuzzles() {
+export async function searchPuzzles(search: API.Search) {
 	try {
 		const response = await httpRequest<Response>({
 			method: "POST",
 			endpoint: "/puzzles/search",
+			payload: search
 		});
 
 		return response;
