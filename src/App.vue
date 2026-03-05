@@ -3,9 +3,9 @@ import { ref, type Component } from "vue";
 import { Desktop, Puzzfinder } from "@/modules";
 import type { UI } from "./shared";
 
-const activeWindow = ref<UI.Window["id"] | null>("puzzfinder");
+const activeWindow = ref<UI.AppWindow["id"] | null>("puzzfinder");
 
-const windows: Record<UI.Window["id"], Component> = {
+const windows: Record<UI.AppWindow["id"], Component> = {
 	puzzfinder: Puzzfinder,
 };
 </script>

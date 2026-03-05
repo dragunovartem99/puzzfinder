@@ -1,28 +1,30 @@
 <script setup lang="ts">
 import type { UI } from "../types";
+import Window from "./Window.vue";
 
-defineProps<{ puzzle: UI.Puzzle }>();
+const props = defineProps<{ puzzle: UI.Puzzle }>();
+
+const PUZZLE_WINDOW: UI.Window = {
+	title: props.puzzle.duration,
+	controls: {},
+	statusBar: [],
+};
 </script>
 
 <template>
-	<article class="window">
-		<div class="title-bar">
-			<div class="title-bar-text">{{ puzzle.duration }}</div>
-		</div>
-		<div class="window-body">
-			<a
-				:href="puzzle.url"
-				target="_blank"
-			>
-				<html-diagram
-					:fen="puzzle.fen"
-					:flipped="puzzle.flipped ? 'flipped' : null"
-				/>
-			</a>
-			<p><b>Rating:</b> {{ puzzle.rating }}</p>
-			<p><b>Themes:</b> {{ puzzle.themes }}</p>
-		</div>
-	</article>
+	<Window :window="PUZZLE_WINDOW">
+		<a
+			:href="puzzle.url"
+			target="_blank"
+		>
+			<html-diagram
+				:fen="puzzle.fen"
+				:flipped="puzzle.flipped ? 'flipped' : null"
+			/>
+		</a>
+		<p><b>Rating:</b> {{ puzzle.rating }}</p>
+		<p><b>Themes:</b> {{ puzzle.themes }}</p>
+	</Window>
 </template>
 
 <style scoped>
@@ -32,12 +34,8 @@ defineProps<{ puzzle: UI.Puzzle }>();
 	flex-direction: column;
 }
 
-.title-bar {
+:deep(.title-bar) {
 	background: linear-gradient(90deg, var(--text-color), var(--dialog-gray));
-}
-
-.status-bar {
-	margin-top: auto;
 }
 
 a {

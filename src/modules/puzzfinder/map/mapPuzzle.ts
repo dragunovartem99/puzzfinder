@@ -1,21 +1,9 @@
 import type { API, UI } from "@/shared";
 
-export function mapUrl(puzzleId: API.Puzzle["puzzleId"]): UI.Puzzle["url"] {
-	return "https://lichess.org/training/" + puzzleId;
-}
-
-// WARN: Most likely, this should be stored in DB (side to move)
-export function isFlipped(fen: API.Puzzle["fen"]): UI.Puzzle["flipped"] {
-	return fen.includes("w");
-}
-
-export function mapThemes(themes: API.Puzzle["themes"]): UI.Puzzle["themes"] {
-	return themes.join(", ");
-}
-
-export function mapDuration(movesNumber: API.Puzzle["movesNumber"]): UI.Puzzle["duration"] {
-	return `${movesNumber} ${movesNumber > 1 ? "moves" : "move"}`;
-}
+import { isFlipped } from "./isFlipped";
+import { mapDuration } from "./mapDuration";
+import { mapThemes } from "./mapThemes";
+import { mapUrl } from "./mapUrl";
 
 export function mapPuzzle(puzzle: API.Puzzle): UI.Puzzle {
 	return {

@@ -19,13 +19,15 @@ export type Shortcut = Link & {
 };
 
 export type Window = {
-	// id can be extended to a union
-	id: "puzzfinder";
 	title: string;
 	statusBar: string[];
 	controls: Partial<{
 		close: boolean;
 	}>;
+};
+
+export type AppWindow = Window & {
+	id: "puzzfinder";
 };
 
 export type Puzzle = {
