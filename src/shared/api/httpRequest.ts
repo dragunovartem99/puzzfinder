@@ -1,10 +1,8 @@
 const API = "https://puzzfinder.99x.space/api";
 
-type Params = {
-	endpoint: string;
-	method?: "GET" | "POST";
-	payload?: unknown;
-};
+type Params =
+	| { endpoint: string; method?: "GET" }
+	| { endpoint: string; method: "POST"; payload: unknown };
 
 export async function httpRequest<T>(params: Params): Promise<T> {
 	const initOptions: RequestInit = {
