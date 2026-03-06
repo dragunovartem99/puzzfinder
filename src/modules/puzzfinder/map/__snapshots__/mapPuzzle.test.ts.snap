@@ -7,8 +7,10 @@ exports[`maps puzzle with full set of fields 1`] = `
   "flipped": false,
   "gameUrl": "https://lichess.org/4MWQCxQ6/black#32",
   "id": "0009B",
+  "popularity": 88,
   "rating": 1103,
   "themes": "advantage, middlegame, short",
+  "timesPlayed": 604,
   "url": "https://lichess.org/training/0009B",
 }
 `;

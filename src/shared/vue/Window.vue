@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useSlots } from "vue";
 import type { UI } from "../types";
 
 defineProps<{ window: UI.Window }>();
@@ -6,6 +7,8 @@ defineProps<{ window: UI.Window }>();
 const emit = defineEmits<{
 	close: [];
 }>();
+
+const slots = useSlots();
 </script>
 
 <template>
@@ -28,13 +31,14 @@ const emit = defineEmits<{
 		</div>
 		<div
 			class="status-bar"
-			v-if="window.statusBar?.length"
+			v-if="slots['status-bar']"
 		>
 			<p
 				class="status-bar-field"
-				v-for="field in window.statusBar"
+				v-for="(field, index) in slots['status-bar']()"
+				:key="index"
 			>
-				{{ field }}
+				<component :is="field" />
 			</p>
 		</div>
 	</div>

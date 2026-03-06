@@ -11,6 +11,8 @@ export function mapPuzzle(puzzle: API.Puzzle): UI.Puzzle {
 		id: puzzle.puzzleId,
 		rating: puzzle.rating,
 		gameUrl: puzzle.gameUrl,
+		timesPlayed: puzzle.nbPlays,
+		popularity: puzzle.popularity,
 		url: mapUrl(puzzle.puzzleId),
 		flipped: isFlipped(puzzle.fen),
 		themes: mapThemes(puzzle.themes),

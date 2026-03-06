@@ -20,8 +20,7 @@ export type Shortcut = Link & {
 
 export type Window = {
 	title: string;
-	statusBar: string[];
-	controls: Partial<{
+	controls?: Partial<{
 		close: boolean;
 	}>;
 };
@@ -39,4 +38,6 @@ export type Puzzle = {
 	rating: number;
 	themes: string;
 	duration: string;
+	popularity: number;
+	timesPlayed: number;
 };

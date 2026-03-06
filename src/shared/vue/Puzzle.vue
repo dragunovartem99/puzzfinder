@@ -7,7 +7,6 @@ const props = defineProps<{ puzzle: UI.Puzzle }>();
 const PUZZLE_WINDOW: UI.Window = {
 	title: props.puzzle.duration,
 	controls: {},
-	statusBar: [],
 };
 </script>
 
@@ -24,6 +23,10 @@ const PUZZLE_WINDOW: UI.Window = {
 		</a>
 		<p><b>Rating:</b> {{ puzzle.rating }}</p>
 		<p><b>Themes:</b> {{ puzzle.themes }}</p>
+		<template #status-bar>
+			<span><b>Played:</b> {{ puzzle.timesPlayed }}</span>
+			<span><b>Popularity:</b> {{ puzzle.popularity }}</span>
+		</template>
 	</Window>
 </template>
 
