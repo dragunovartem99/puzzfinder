@@ -4,16 +4,15 @@ import { ref } from "vue";
 import GitHub from "./GitHub.vue";
 import Search from "./Search.vue";
 import Puzzles from "./Puzzles.vue";
+import { usePagination } from "../state";
 
 const emit = defineEmits<{
 	close: [];
 }>();
 
 const PUZZFINDER_WINDOW: UI.Window = {
-	id: "puzzfinder",
 	title: "Puzzfinder",
 	controls: { close: true },
-	statusBar: [],
 };
 
 const TABS: UI.Tab[] = [
@@ -26,6 +25,8 @@ const TABS: UI.Tab[] = [
 		label: "GitHub",
 	},
 ];
+
+const { state: pagination } = usePagination();
 
 const activeTab = ref<UI.Tab>(TABS[0]!);
 </script>
@@ -47,9 +48,7 @@ const activeTab = ref<UI.Tab>(TABS[0]!);
 		</p>
 		<p>Chessboards: "Smart" (1992) by <b>Christoph Wirth</b>.</p>
 
-		<Search />
-
-		<hr />
+		<Search class="search" />
 
 		<Tabs
 			:tabs="TABS"
@@ -59,5 +58,19 @@ const activeTab = ref<UI.Tab>(TABS[0]!);
 			<Puzzles v-if="activeTab?.id === 'puzzles'" />
 			<GitHub v-if="activeTab?.id === 'github'" />
 		</Tabs>
+
+		<template
+			#status-bar
+			v-if="pagination"
+		>
+			<span><b>Results:</b> {{ pagination.total }}</span>
+			<span><b>Page:</b> {{ pagination.page }} of {{ pagination.totalPages }}</span>
+		</template>
 	</Window>
 </template>
+
+<style scoped>
+.search {
+	margin-bottom: 15px;
+}
+</style>
