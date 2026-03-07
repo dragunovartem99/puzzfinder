@@ -34,20 +34,3 @@ const emit = defineEmits<{
 		</div>
 	</div>
 </template>
-
-<style scoped>
-div[role="tabpanel"] {
-	flex-grow: 1;
-	min-height: 0;
-	display: flex;
-	flex-direction: column;
-}
-
-.window-body {
-	flex-grow: 1;
-	min-height: 0;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-}
-</style>

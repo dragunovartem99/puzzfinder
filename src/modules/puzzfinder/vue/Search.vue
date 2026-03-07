@@ -19,39 +19,43 @@ function submitForm() {
 
 <template>
 	<form @submit.prevent="submitForm">
-		<section>
-			<div class="field-row">
-				<label for="themes">Themes</label>
-				<MultiSelect
-					id="themes"
-					v-model="themes"
-					:groups="THEMES"
-					:size="12"
-				/>
-			</div>
-			<div class="field-row">
-				<label for="sort-options">Sort by</label>
-				<select
-					id="sort-options"
-					v-model="sort"
+		<div class="field-row">
+			<label for="themes">Themes</label>
+			<MultiSelect
+				id="themes"
+				v-model="themes"
+				:groups="THEMES"
+				:size="12"
+			/>
+		</div>
+		<div class="field-row">
+			<label for="sort-options">Sort by</label>
+			<select
+				id="sort-options"
+				v-model="sort"
+			>
+				<option
+					v-for="option in SORT_OPTIONS"
+					:key="option.key"
+					:value="option.key"
 				>
-					<option
-						v-for="option in SORT_OPTIONS"
-						:key="option.key"
-						:value="option.key"
-					>
-						{{ option.label }}
-					</option>
-				</select>
-			</div>
-		</section>
+					{{ option.label }}
+				</option>
+			</select>
+		</div>
 		<button>Search</button>
 	</form>
 </template>
 
 <style lang="css" scoped>
-section {
-	margin-bottom: 15px;
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+button {
+	margin-top: auto;
 }
 
 .field-row {

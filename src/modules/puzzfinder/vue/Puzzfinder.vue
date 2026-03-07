@@ -71,6 +71,7 @@ const pagination = computed(() => puzzles.value?.pagination ?? null);
 		/>
 
 		<Tabs
+			class="tabs"
 			:tabs="TABS"
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
@@ -117,8 +118,34 @@ const pagination = computed(() => puzzles.value?.pagination ?? null);
 .puzzfinder > :deep(.window-body) {
 	padding: 5px;
 	display: grid;
-	grid-template-columns: 300px 1fr;
 	gap: 15px;
+}
+
+@media (min-width: 700px) {
+	.puzzfinder > :deep(.window-body) {
+		grid-template-columns: 300px 1fr;
+	}
+}
+
+.tabs {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+
+.tabs :deep([role="tabpanel"]) {
+	flex-grow: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.tabs :deep([role="tabpanel"] > .window-body) {
+	flex-grow: 1;
+	min-height: 0;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 .centered {
@@ -129,5 +156,6 @@ const pagination = computed(() => puzzles.value?.pagination ?? null);
 .puzzles-scroll {
 	overflow-y: auto;
 	flex-grow: 1;
+	min-height: 0;
 }
 </style>
