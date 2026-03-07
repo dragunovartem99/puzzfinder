@@ -89,15 +89,16 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 				<b>Page:</b> {{ puzzles.pagination.page }} of
 				{{ puzzles.pagination.totalPages.toLocaleString() }}
 			</span>
-			<span>
+			<span class="pages">
+				<b>Navigate:</b>
 				<a
-					v-if="puzzles.pagination.page > 1"
+					:class="{ 'disabled-link': puzzles.pagination.page === 1 }"
 					href="#"
 					@click.prevent="prevPage"
 					>Prev</a
 				>
 				<a
-					v-if="puzzles.pagination.page < puzzles.pagination.totalPages"
+					:class="{ 'disabled-link': puzzles.pagination.page === puzzles.pagination.totalPages }"
 					href="#"
 					@click.prevent="nextPage"
 					>Next</a
@@ -110,5 +111,16 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 <style scoped>
 .search {
 	margin-bottom: 15px;
+}
+
+.pages {
+	display: flex;
+	gap: 10px;
+}
+
+.disabled-link {
+	pointer-events: none;
+	outline: none;
+	color: var(--dialog-gray);
 }
 </style>
