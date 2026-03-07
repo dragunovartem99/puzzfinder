@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { SORT_OPTIONS } from "../static";
 import type { API } from "@/shared";
 
-const model = defineModel<Partial<API.Search>>({ required: true });
+const model = defineModel<API.Search>({ required: true });
 
 const selectedOption = ref(SORT_OPTIONS[0]!.key);
 

@@ -22,38 +22,30 @@ const PUZZFINDER_WINDOW: UI.Window = {
 
 const activeTab = ref<UI.Tab>(TABS[0]!);
 
-const search = ref<Partial<API.Search>>({
+const search = ref<API.Search>({
 	sort: {
 		field: "rating",
 		order: "desc",
 	},
 	pagination: {
 		page: 1,
-		limit: 10,
+		limit: 12,
 	},
 });
 
 watch(
 	() => search.value.sort,
-	() => {
-		if (search.value.pagination) {
-			search.value.pagination.page = 1;
-		}
-	}
+	() => (search.value.pagination.page = 1),
 );
 
 const { isPending, data: puzzles } = queryPuzzles(search);
 
 function prevPage() {
-	if (search.value.pagination) {
-		search.value.pagination.page--;
-	}
+	search.value.pagination.page--;
 }
 
 function nextPage() {
-	if (search.value.pagination) {
-		search.value.pagination.page++;
-	}
+	search.value.pagination.page++;
 }
 
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
