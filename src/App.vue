@@ -48,6 +48,12 @@ body {
 	transform: translate(-50%, -50%);
 	width: 100%;
 	max-width: 1440px;
-	height: 90dvh;
+	height: 100dvh;
+}
+
+@media (min-width: 768px) {
+	.active-window {
+		height: 90dvh;
+	}
 }
 </style>
