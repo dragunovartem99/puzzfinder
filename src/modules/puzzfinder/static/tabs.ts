@@ -9,4 +9,8 @@ export const TABS: UI.Tab[] = [
 		id: "github",
 		label: "GitHub",
 	},
+	{
+		id: "description",
+		label: "Description",
+	},
 ];

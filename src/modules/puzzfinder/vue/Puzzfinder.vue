@@ -10,6 +10,7 @@ import GitHub from "./GitHub.vue";
 import Search from "./Search.vue";
 import Puzzles from "./Puzzles.vue";
 import Description from "./Description.vue";
+import Pagination from "./Pagination.vue";
 
 const emit = defineEmits<{
 	close: [];
@@ -56,21 +57,14 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 });
 
 const pagination = computed(() => puzzles.value?.pagination ?? null);
-
-const currentPage = computed(() => {
-	if (!pagination?.value?.totalPages) return 0;
-
-	return pagination.value.page;
-});
 </script>
 
 <template>
 	<Window
+		class="puzzfinder"
 		@close="emit('close')"
 		:window="PUZZFINDER_WINDOW"
 	>
-		<Description />
-
 		<Search
 			class="search"
 			v-model="search"
@@ -99,41 +93,32 @@ const currentPage = computed(() => {
 				/>
 			</template>
 			<GitHub v-if="activeTab.id === 'github'" />
+			<Description v-if="activeTab.id === 'description'" />
 		</Tabs>
 
-		<template
-			#status-bar
-			v-if="pagination"
-		>
-			<span><b>Results:</b> {{ pagination.total.toLocaleString() }}</span>
-			<span>
-				<b>Page:</b> {{ currentPage }} of
-				{{ pagination.totalPages.toLocaleString() }}
-			</span>
-			<span class="pages">
-				<b>Navigate:</b>
-				<a
-					:class="{ 'disabled-link': pagination.page <= 1 }"
-					href="#"
-					@click.prevent="prevPage"
-				>
-					Prev
-				</a>
-				<a
-					:class="{ 'disabled-link': pagination.page >= pagination.totalPages }"
-					href="#"
-					@click.prevent="nextPage"
-				>
-					Next
-				</a>
-			</span>
+		<template #status-bar>
+			<p
+				v-if="isPending"
+				class="status-bar-field centered"
+			>
+				Loading, please wait...
+			</p>
+			<Pagination
+				v-else-if="pagination"
+				:pagination="pagination"
+				@prev="prevPage"
+				@next="nextPage"
+			/>
 		</template>
 	</Window>
 </template>
 
-<style scoped>
-.search {
-	margin-bottom: 15px;
+<style lang="css" scoped>
+.puzzfinder > :deep(.window-body) {
+	padding: 5px;
+	display: grid;
+	grid-template-columns: 300px 1fr;
+	gap: 15px;
 }
 
 .centered {
@@ -144,16 +129,5 @@ const currentPage = computed(() => {
 .puzzles-scroll {
 	overflow-y: auto;
 	flex-grow: 1;
-}
-
-.pages {
-	display: flex;
-	gap: 10px;
-}
-
-.disabled-link {
-	pointer-events: none;
-	outline: none;
-	color: var(--dialog-gray);
 }
 </style>

@@ -26,7 +26,7 @@ function submitForm() {
 					id="themes"
 					v-model="themes"
 					:groups="THEMES"
-					:size="5"
+					:size="12"
 				/>
 			</div>
 			<div class="field-row">
@@ -59,5 +59,9 @@ section {
 	flex-direction: column;
 	gap: var(--grouped-element-spacing);
 	align-items: stretch;
+}
+
+.field-row label {
+	font-weight: bold;
 }
 </style>

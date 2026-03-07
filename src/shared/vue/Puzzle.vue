@@ -24,8 +24,8 @@ const PUZZLE_WINDOW: UI.Window = {
 		<p><b>Rating:</b> {{ puzzle.rating }}</p>
 		<p><b>Themes:</b> {{ puzzle.themes }}</p>
 		<template #status-bar>
-			<span><b>Played:</b> {{ puzzle.timesPlayed }}</span>
-			<span><b>Popularity:</b> {{ puzzle.popularity }}</span>
+			<p class="status-bar-field"><b>Played:</b> {{ puzzle.timesPlayed }}</p>
+			<p class="status-bar-field"><b>Popularity:</b> {{ puzzle.popularity }}</p>
 		</template>
 	</Window>
 </template>
