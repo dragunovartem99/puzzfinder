@@ -54,6 +54,14 @@ function nextPage() {
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	return puzzles.value?.data.map(mapPuzzle) ?? [];
 });
+
+const pagination = computed(() => puzzles.value?.pagination ?? null);
+
+const currentPage = computed(() => {
+	if (!pagination?.value?.totalPages) return 0;
+
+	return pagination.value.page;
+});
 </script>
 
 <template>
@@ -81,7 +89,9 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 				<span
 					v-else-if="uiPuzzles.length === 0"
 					class="centered"
-				>No puzzles found</span>
+				>
+					No puzzles found
+				</span>
 				<Puzzles
 					v-else
 					class="puzzles-scroll"
@@ -93,31 +103,29 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 
 		<template
 			#status-bar
-			v-if="puzzles?.pagination"
+			v-if="pagination"
 		>
-			<span><b>Results:</b> {{ puzzles.pagination.total.toLocaleString() }}</span>
+			<span><b>Results:</b> {{ pagination.total.toLocaleString() }}</span>
 			<span>
-				<b>Page:</b> {{ puzzles.pagination.page }} of
-				{{ puzzles.pagination.totalPages.toLocaleString() }}
+				<b>Page:</b> {{ currentPage }} of
+				{{ pagination.totalPages.toLocaleString() }}
 			</span>
 			<span class="pages">
 				<b>Navigate:</b>
 				<a
-					:class="{
-						'disabled-link': puzzles.pagination.page === 1,
-					}"
+					:class="{ 'disabled-link': pagination.page <= 1 }"
 					href="#"
 					@click.prevent="prevPage"
-					>Prev</a
 				>
+					Prev
+				</a>
 				<a
-					:class="{
-						'disabled-link': puzzles.pagination.page === puzzles.pagination.totalPages,
-					}"
+					:class="{ 'disabled-link': pagination.page >= pagination.totalPages }"
 					href="#"
 					@click.prevent="nextPage"
-					>Next</a
 				>
+					Next
+				</a>
 			</span>
 		</template>
 	</Window>
