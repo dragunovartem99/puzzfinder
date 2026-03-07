@@ -157,5 +157,11 @@ const pagination = computed(() => puzzles.value?.pagination ?? null);
 	overflow-y: auto;
 	flex-grow: 1;
 	min-height: 0;
+	scrollbar-width: none;
+}
+
+.puzzles-scroll::-webkit-scrollbar {
+	width: 0;
+	height: 0;
 }
 </style>

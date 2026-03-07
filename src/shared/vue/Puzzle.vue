@@ -44,4 +44,8 @@ const PUZZLE_WINDOW: UI.Window = {
 a {
 	text-decoration: none;
 }
+
+p {
+	margin: 10px 0 0;
+}
 </style>

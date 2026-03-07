@@ -7,7 +7,7 @@ type Response = {
 	pagination: API.Pagination;
 };
 
-export function queryPuzzles(search: Ref<Partial<API.Search>>) {
+export function queryPuzzles(search: Ref<API.Search>) {
 	const queryKey = ["puzzles", search];
 
 	return useQuery({
