@@ -1,2 +1,2 @@
-export { ORDER_OPTIONS } from './order-options';
+export { SORT_OPTIONS } from './sort-options';
 export { TABS } from './tabs';

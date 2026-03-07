@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { ORDER_OPTIONS } from "../static";
+import { SORT_OPTIONS } from "../static";
 import type { API } from "@/shared";
 
 const model = defineModel<Partial<API.Search>>({ required: true });
 
-const selectedOption = ref(ORDER_OPTIONS[0]!.key);
+const selectedOption = ref(SORT_OPTIONS[0]!.key);
 
 function submitForm() {
 	const [field = "", order = ""] = selectedOption.value.split("-");
@@ -18,13 +18,13 @@ function submitForm() {
 	<form @submit.prevent="submitForm">
 		<section>
 			<div class="field-row">
-				<label for="order-select">Order by</label>
+				<label for="sort-options">Sort by</label>
 				<select
-					id="order-select"
+					id="sort-options"
 					v-model="selectedOption"
 				>
 					<option
-						v-for="option in ORDER_OPTIONS"
+						v-for="option in SORT_OPTIONS"
 						:key="option.key"
 						:value="option.key"
 					>
