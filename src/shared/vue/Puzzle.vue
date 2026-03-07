@@ -22,11 +22,6 @@ const PUZZLE_WINDOW: UI.Window = {
 			/>
 		</a>
 		<p><b>Rating:</b> {{ puzzle.rating }}</p>
-		<p><b>Themes:</b> {{ puzzle.themes }}</p>
-		<template #status-bar>
-			<p class="status-bar-field"><b>Played:</b> {{ puzzle.timesPlayed }}</p>
-			<p class="status-bar-field"><b>Popularity:</b> {{ puzzle.popularity }}</p>
-		</template>
 	</Window>
 </template>
 
@@ -41,11 +36,15 @@ const PUZZLE_WINDOW: UI.Window = {
 	background: linear-gradient(90deg, var(--text-color), var(--dialog-gray));
 }
 
-a {
-	text-decoration: none;
+:deep(.window-body) {
+	margin: 0 0 10px;
 }
 
-p {
-	margin: 10px 0 0;
+:deep(.window-body p) {
+	margin: 10px var(--element-spacing) 0;
+}
+
+a {
+	text-decoration: none;
 }
 </style>

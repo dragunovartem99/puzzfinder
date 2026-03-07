@@ -38,11 +38,7 @@ export type Puzzle = {
 	id: string;
 	fen: string;
 	url: string;
-	gameUrl: string;
 	flipped: boolean;
 	rating: number;
-	themes: string;
 	duration: string;
-	popularity: number;
-	timesPlayed: number;
 };

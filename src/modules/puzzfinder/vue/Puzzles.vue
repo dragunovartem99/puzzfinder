@@ -19,7 +19,14 @@ defineProps<{
 <style lang="css" scoped>
 .puzzles {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 15px;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 5px;
+}
+
+@media (min-width: 768px) {
+	.puzzles {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 15px;
+	}
 }
 </style>

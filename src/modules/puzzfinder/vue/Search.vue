@@ -25,7 +25,6 @@ function submitForm() {
 				id="themes"
 				v-model="themes"
 				:groups="THEMES"
-				:size="12"
 			/>
 		</div>
 		<div class="field-row">
@@ -51,21 +50,32 @@ function submitForm() {
 form {
 	display: flex;
 	flex-direction: column;
-	gap: 15px;
+	gap: 10px;
 }
 
 button {
 	margin-top: auto;
 }
 
-.field-row {
+form .field-row {
 	display: flex;
 	flex-direction: column;
 	gap: var(--grouped-element-spacing);
 	align-items: stretch;
+	margin: 0;
 }
 
 .field-row label {
 	font-weight: bold;
+}
+
+#themes {
+	height: 125px;
+}
+
+@media (min-width: 768px) {
+	#themes {
+		height: 250px;
+	}
 }
 </style>

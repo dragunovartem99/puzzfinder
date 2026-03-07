@@ -3,7 +3,6 @@ import type { UI } from "@/shared";
 
 defineProps<{
 	groups: UI.OptionGroup[];
-	size?: number;
 }>();
 
 const model = defineModel<string[]>({ required: true });
@@ -18,7 +17,6 @@ function onChange(event: Event) {
 <template>
 	<select
 		multiple
-		:size="size"
 		@change="onChange"
 	>
 		<optgroup

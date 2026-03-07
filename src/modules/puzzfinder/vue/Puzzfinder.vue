@@ -114,13 +114,13 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 
 <style lang="css" scoped>
 .puzzfinder > :deep(.window-body) {
-	padding: 5px;
 	display: grid;
 	gap: 15px;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	.puzzfinder > :deep(.window-body) {
+		padding: 5px;
 		grid-template-columns: 300px 1fr;
 	}
 }
