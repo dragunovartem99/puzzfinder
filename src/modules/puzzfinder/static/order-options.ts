@@ -1,6 +1,6 @@
 import type { UI } from "@/shared";
 
-export const orderOptions: UI.Option[] = [
+export const ORDER_OPTIONS: UI.Option[] = [
 	{ label: "Highest rating", key: "rating-desc" },
 	{ label: "Highest moves number", key: "movesNumber-desc" },
 	{ label: "Highest popularity", key: "popularity-desc" },

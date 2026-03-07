@@ -1,8 +1,10 @@
 import { createApp } from "vue";
+import { VueQueryPlugin } from "@tanstack/vue-query";
+
 import App from "./App.vue";
 import "./98.css";
 
 import { HTMLDiagram } from "html-diagram";
 customElements.define("html-diagram", HTMLDiagram);
 
-createApp(App).mount("#app");
+createApp(App).use(VueQueryPlugin).mount("#app");

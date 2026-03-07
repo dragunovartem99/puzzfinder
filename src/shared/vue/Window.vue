@@ -43,3 +43,9 @@ const slots = useSlots();
 		</div>
 	</div>
 </template>
+
+<style scoped>
+.status-bar {
+	margin-top: auto;
+}
+</style>

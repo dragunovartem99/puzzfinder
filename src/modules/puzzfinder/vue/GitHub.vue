@@ -18,19 +18,23 @@ const links: UI.Link[] = [
 </script>
 
 <template>
-	<p>The project consists of three components:</p>
-	<ul>
-		<li
-			v-for="(link, index) of links"
-			:key="index"
-		>
-			<a
-				:href="link.url"
-				target="_blank"
+	<section>
+		<p>The project consists of three components:</p>
+		<ul>
+			<li
+				v-for="(link, index) of links"
+				:key="index"
 			>
-				{{ link.label }}
-			</a>
-		</li>
-	</ul>
-	<p>Any server-side advice/help will be very welcomed! This is my first full-stack project.</p>
+				<a
+					:href="link.url"
+					target="_blank"
+				>
+					{{ link.label }}
+				</a>
+			</li>
+		</ul>
+		<p>
+			Any server-side advice/help will be very welcomed! This is my first full-stack project.
+		</p>
+	</section>
 </template>

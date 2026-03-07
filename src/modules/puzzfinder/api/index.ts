@@ -1,1 +1,1 @@
-export { searchPuzzles } from './searchPuzzles';
+export { queryPuzzles } from './queryPuzzles';

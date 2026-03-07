@@ -1,25 +1,16 @@
 <script setup lang="ts">
-import { searchPuzzles } from "../api";
-import { usePagination, usePuzzles } from "../state";
 import { ref } from "vue";
-import { orderOptions } from "../static";
+import { ORDER_OPTIONS } from "../static";
+import type { API } from "@/shared";
 
-const selectedOption = ref(orderOptions[0]!.key);
+const model = defineModel<Partial<API.Search>>({ required: true });
 
-async function submitForm() {
+const selectedOption = ref(ORDER_OPTIONS[0]!.key);
+
+function submitForm() {
 	const [field = "", order = ""] = selectedOption.value.split("-");
 
-	const response = await searchPuzzles({
-		sort: {
-			field,
-			order,
-		},
-	});
-
-	if (response) {
-		usePuzzles().setState(response.data);
-		usePagination().setState(response.pagination);
-	}
+	model.value.sort = { field, order };
 }
 </script>
 
@@ -33,7 +24,7 @@ async function submitForm() {
 					v-model="selectedOption"
 				>
 					<option
-						v-for="option in orderOptions"
+						v-for="option in ORDER_OPTIONS"
 						:key="option.key"
 						:value="option.key"
 					>

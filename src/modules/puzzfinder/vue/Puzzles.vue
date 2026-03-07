@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { Puzzle } from "@/shared";
-import { usePuzzles } from "../state";
-import { mapPuzzle } from "../map";
+import { Puzzle, type UI } from "@/shared";
 
-const { state } = usePuzzles();
-
-const puzzles = computed(() => state.value.map(mapPuzzle));
+defineProps<{
+	puzzles: UI.Puzzle[]
+}>();
 </script>
 
 <template>
