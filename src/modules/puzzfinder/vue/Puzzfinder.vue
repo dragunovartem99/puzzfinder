@@ -75,16 +75,8 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			@tab-select="(tab) => (activeTab = tab)"
 		>
 			<template v-if="activeTab.id === 'puzzles'">
-				<Loader
-					v-if="isPending"
-					class="centered"
-				/>
-				<b
-					v-else-if="uiPuzzles.length === 0"
-					class="centered"
-				>
-					No puzzles found
-				</b>
+				<Loader v-if="isPending" />
+				<b v-else-if="uiPuzzles.length === 0"> No puzzles found </b>
 				<Puzzles
 					v-else
 					class="puzzles-scroll"
@@ -98,7 +90,7 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 		<template #status-bar>
 			<p
 				v-if="isPending"
-				class="status-bar-field centered"
+				class="status-bar-field"
 			>
 				Loading, please wait...
 			</p>
@@ -113,48 +105,39 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 </template>
 
 <style lang="css" scoped>
+.puzzfinder {
+	display: flex;
+	flex-direction: column;
+}
+
 .puzzfinder > :deep(.window-body) {
+	overflow: hidden;
 	display: grid;
 	gap: 15px;
 }
 
 @media (min-width: 768px) {
 	.puzzfinder > :deep(.window-body) {
+		flex-grow: 1;
 		padding: 5px;
 		grid-template-columns: 300px 1fr;
 	}
 }
 
-.tabs {
-	display: flex;
-	flex-direction: column;
-	min-height: 0;
+.puzzfinder > :deep(.status-bar) {
+	margin-top: auto;
 }
 
-.tabs :deep([role="tabpanel"]) {
-	flex-grow: 1;
-	min-height: 0;
-	display: flex;
-	flex-direction: column;
-}
-
+.tabs,
+.tabs :deep([role="tabpanel"]),
 .tabs :deep([role="tabpanel"] > .window-body) {
-	flex-grow: 1;
 	min-height: 0;
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-}
-
-.centered {
-	margin-block: auto;
-	text-align: center;
 }
 
 .puzzles-scroll {
 	overflow-y: auto;
-	flex-grow: 1;
-	min-height: 0;
 	scrollbar-width: none;
 }
 

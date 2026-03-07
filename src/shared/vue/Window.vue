@@ -31,17 +31,3 @@ const emit = defineEmits<{
 		</div>
 	</div>
 </template>
-
-<style lang="css" scoped>
-.window {
-	display: flex;
-	flex-direction: column;
-}
-
-.window-body {
-	flex-grow: 1;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-}
-</style>
