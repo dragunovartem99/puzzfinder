@@ -105,16 +105,16 @@
 
 @font-face {
 	font-family: "Pixelated MS Sans Serif";
-	src: url("./fonts/ms_sans_serif.woff") format("woff");
-	src: url("./fonts/ms_sans_serif.woff2") format("woff2");
+	src: url("/fonts/ms_sans_serif.woff") format("woff");
+	src: url("/fonts/ms_sans_serif.woff2") format("woff2");
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
 	font-family: "Pixelated MS Sans Serif";
-	src: url("./fonts/ms_sans_serif_bold.woff") format("woff");
-	src: url("./fonts/ms_sans_serif_bold.woff2") format("woff2");
+	src: url("/fonts/ms_sans_serif_bold.woff") format("woff");
+	src: url("/fonts/ms_sans_serif_bold.woff2") format("woff2");
 	font-weight: bold;
 	font-style: normal;
 }
@@ -289,7 +289,7 @@ input[type="reset"]:disabled,
 
 .title-bar-controls button[aria-label="Minimize"],
 .title-bar-controls button[aria-label].minimize {
-	background-image: url("./icon/minimize.svg");
+	background-image: url("/icon/minimize.svg");
 	background-repeat: no-repeat;
 	background-position: bottom calc(3px * var(--ui-scale)) left calc(4px * var(--ui-scale));
 	background-size: calc(6px * var(--ui-scale)) calc(2px * var(--ui-scale));
@@ -297,7 +297,7 @@ input[type="reset"]:disabled,
 
 .title-bar-controls button[aria-label="Maximize"],
 .title-bar-controls button[aria-label].maximize {
-	background-image: url("./icon/maximize.svg");
+	background-image: url("/icon/maximize.svg");
 	background-repeat: no-repeat;
 	background-position: top calc(2px * var(--ui-scale)) left calc(3px * var(--ui-scale));
 	background-size: calc(9px * var(--ui-scale)) calc(9px * var(--ui-scale));
@@ -305,7 +305,7 @@ input[type="reset"]:disabled,
 
 .title-bar-controls button[aria-label="Maximize"]:disabled,
 .title-bar-controls button[aria-label].maximize:disabled {
-	background-image: url("./icon/maximize-disabled.svg");
+	background-image: url("/icon/maximize-disabled.svg");
 	background-repeat: no-repeat;
 	background-position: top calc(2px * var(--ui-scale)) left calc(3px * var(--ui-scale));
 	background-size: calc(9px * var(--ui-scale)) calc(9px * var(--ui-scale));
@@ -313,7 +313,7 @@ input[type="reset"]:disabled,
 
 .title-bar-controls button[aria-label="Restore"],
 .title-bar-controls button[aria-label].restore {
-	background-image: url("./icon/restore.svg");
+	background-image: url("/icon/restore.svg");
 	background-repeat: no-repeat;
 	background-position: top calc(2px * var(--ui-scale)) left calc(3px * var(--ui-scale));
 	background-size: calc(8px * var(--ui-scale)) calc(9px * var(--ui-scale));
@@ -321,7 +321,7 @@ input[type="reset"]:disabled,
 
 .title-bar-controls button[aria-label="Help"],
 .title-bar-controls button[aria-label].help {
-	background-image: url("./icon/help.svg");
+	background-image: url("/icon/help.svg");
 	background-repeat: no-repeat;
 	background-position: top calc(2px * var(--ui-scale)) left calc(5px * var(--ui-scale));
 	background-size: calc(6px * var(--ui-scale)) calc(9px * var(--ui-scale));
@@ -330,7 +330,7 @@ input[type="reset"]:disabled,
 .title-bar-controls button[aria-label="Close"],
 .title-bar-controls button[aria-label].close {
 	margin-left: calc(2px * var(--ui-scale));
-	background-image: url("./icon/close.svg");
+	background-image: url("/icon/close.svg");
 	background-repeat: no-repeat;
 	background-position: top calc(3px * var(--ui-scale)) left calc(4px * var(--ui-scale));
 	background-size: calc(8px * var(--ui-scale)) calc(7px * var(--ui-scale));
@@ -423,12 +423,12 @@ input[type="radio"] + label::before {
 	width: var(--radio-width);
 	height: var(--radio-width);
 	margin-right: var(--radio-label-spacing);
-	background: url("./icon/radio-border.svg");
+	background: url("/icon/radio-border.svg");
 	background-size: var(--radio-width) var(--radio-width);
 }
 
 input[type="radio"]:active + label::before {
-	background: url("./icon/radio-border-disabled.svg");
+	background: url("/icon/radio-border-disabled.svg");
 }
 
 input[type="radio"]:checked + label::after {
@@ -439,7 +439,7 @@ input[type="radio"]:checked + label::after {
 	top: var(--radio-dot-top);
 	left: var(--radio-dot-left);
 	position: absolute;
-	background: url("./icon/radio-dot.svg");
+	background: url("/icon/radio-dot.svg");
 	background-size: var(--radio-dot-width) var(--radio-dot-width);
 }
 
@@ -449,11 +449,11 @@ input[type="checkbox"]:focus + label {
 }
 
 input[type="radio"][disabled] + label::before {
-	background: url("./icon/radio-border-disabled.svg");
+	background: url("/icon/radio-border-disabled.svg");
 }
 
 input[type="radio"][disabled]:checked + label::after {
-	background: url("./icon/radio-dot-disabled.svg");
+	background: url("/icon/radio-dot-disabled.svg");
 }
 
 input[type="checkbox"] + label {
@@ -484,7 +484,7 @@ input[type="checkbox"]:checked + label::after {
 	height: var(--checkmark-width);
 	position: absolute;
 	left: calc(-1 * (var(--checkbox-total-width-precalc)) + var(--checkmark-left));
-	background: url("./icon/checkmark.svg");
+	background: url("/icon/checkmark.svg");
 	background-size: var(--checkmark-width) var(--checkmark-width);
 }
 
@@ -493,7 +493,7 @@ input[type="checkbox"][disabled] + label::before {
 }
 
 input[type="checkbox"][disabled]:checked + label::after {
-	background: url("./icon/checkmark-disabled.svg");
+	background: url("/icon/checkmark-disabled.svg");
 }
 
 input[type="text"],
@@ -583,7 +583,7 @@ select {
 	-moz-appearance: none;
 	position: relative;
 	padding-right: calc(32px * var(--ui-scale));
-	background-image: url("./icon/button-down.svg");
+	background-image: url("/icon/button-down.svg");
 	background-position: center right calc(2px * var(--ui-scale));
 	background-repeat: no-repeat;
 	background-size: calc(16px * var(--ui-scale)) calc(17px * var(--ui-scale));
@@ -616,7 +616,7 @@ input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: calc(21px * var(--ui-scale));
 	width: calc(11px * var(--ui-scale));
-	background: url("./icon/indicator-horizontal.svg");
+	background: url("/icon/indicator-horizontal.svg");
 	background-size: calc(11px * var(--ui-scale)) calc(21px * var(--ui-scale));
 	transform: translateY(calc(-8px * var(--ui-scale)));
 	box-shadow: none;
@@ -624,7 +624,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="range"].has-box-indicator::-webkit-slider-thumb {
-	background: url("./icon/indicator-rectangle-horizontal.svg");
+	background: url("/icon/indicator-rectangle-horizontal.svg");
 	background-size: calc(11px * var(--ui-scale)) calc(21px * var(--ui-scale));
 	transform: translateY(calc(-10px * var(--ui-scale)));
 }
@@ -634,13 +634,13 @@ input[type="range"]::-moz-range-thumb {
 	width: calc(11px * var(--ui-scale));
 	border: 0;
 	border-radius: 0;
-	background: url("./icon/indicator-horizontal.svg");
+	background: url("/icon/indicator-horizontal.svg");
 	background-size: calc(11px * var(--ui-scale)) calc(21px * var(--ui-scale));
 	transform: translateY(calc(2px * var(--ui-scale)));
 }
 
 input[type="range"].has-box-indicator::-moz-range-thumb {
-	background: url("./icon/indicator-rectangle-horizontal.svg");
+	background: url("/icon/indicator-rectangle-horizontal.svg");
 	background-size: calc(11px * var(--ui-scale)) calc(21px * var(--ui-scale));
 	transform: translateY(0px);
 }
@@ -752,7 +752,7 @@ select:focus option {
 }
 
 select:active {
-	background-image: url("./icon/button-down-active.svg");
+	background-image: url("/icon/button-down-active.svg");
 }
 
 a {
@@ -888,7 +888,7 @@ summary:focus {
 }
 
 ::-webkit-scrollbar-track {
-	background-image: url("./icon/scrollbar-background.svg");
+	background-image: url("/icon/scrollbar-background.svg");
 }
 
 ::-webkit-scrollbar-thumb {
@@ -905,22 +905,22 @@ summary:focus {
 
 ::-webkit-scrollbar-button:vertical:start {
 	height: calc(17px * var(--ui-scale));
-	background-image: url("./icon/button-up.svg");
+	background-image: url("/icon/button-up.svg");
 	background-size: calc(16px * var(--ui-scale)) calc(17px * var(--ui-scale));
 }
 ::-webkit-scrollbar-button:vertical:end {
 	height: calc(17px * var(--ui-scale));
-	background-image: url("./icon/button-down.svg");
+	background-image: url("/icon/button-down.svg");
 	background-size: calc(16px * var(--ui-scale)) calc(17px * var(--ui-scale));
 }
 ::-webkit-scrollbar-button:horizontal:start {
 	width: calc(16px * var(--ui-scale));
-	background-image: url("./icon/button-left.svg");
+	background-image: url("/icon/button-left.svg");
 	background-size: calc(16px * var(--ui-scale)) calc(17px * var(--ui-scale));
 }
 ::-webkit-scrollbar-button:horizontal:end {
 	width: calc(16px * var(--ui-scale));
-	background-image: url("./icon/button-right.svg");
+	background-image: url("/icon/button-right.svg");
 	background-size: calc(16px * var(--ui-scale)) calc(17px * var(--ui-scale));
 }
 
@@ -974,7 +974,7 @@ menu[role="tablist"].multirows > li {
 .sunken-panel {
 	box-sizing: border-box;
 	border: calc(2px * var(--ui-scale)) groove transparent;
-	border-image: url("./icon/sunken-panel-border.svg") 2;
+	border-image: url("/icon/sunken-panel-border.svg") 2;
 	overflow: auto;
 	background-color: #fff;
 }
