@@ -24,8 +24,8 @@ const activeTab = ref<UI.Tab>(TABS[0]!);
 
 const search = ref<Partial<API.Search>>({
 	sort: {
-		field: "",
-		order: "",
+		field: "rating",
+		order: "desc",
 	},
 });
 
