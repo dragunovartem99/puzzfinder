@@ -23,6 +23,9 @@ const PUZZFINDER_WINDOW: UI.Window = {
 const activeTab = ref<UI.Tab>(TABS[0]!);
 
 const search = ref<API.Search>({
+	filters: {
+		themes: [],
+	},
 	sort: {
 		field: "rating",
 		order: "desc",
@@ -35,7 +38,7 @@ const search = ref<API.Search>({
 
 watch(
 	() => search.value.sort,
-	() => (search.value.pagination.page = 1),
+	() => (search.value.pagination.page = 1)
 );
 
 const { isPending, data: puzzles } = queryPuzzles(search);
@@ -92,13 +95,17 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			<span class="pages">
 				<b>Navigate:</b>
 				<a
-					:class="{ 'disabled-link': puzzles.pagination.page === 1 }"
+					:class="{
+						'disabled-link': puzzles.pagination.page === 1,
+					}"
 					href="#"
 					@click.prevent="prevPage"
 					>Prev</a
 				>
 				<a
-					:class="{ 'disabled-link': puzzles.pagination.page === puzzles.pagination.totalPages }"
+					:class="{
+						'disabled-link': puzzles.pagination.page === puzzles.pagination.totalPages,
+					}"
 					href="#"
 					@click.prevent="nextPage"
 					>Next</a

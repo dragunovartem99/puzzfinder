@@ -19,7 +19,12 @@ export type Pagination = {
 	totalPages: number;
 };
 
+type SearchFilters = {
+	themes: string[];
+};
+
 export type Search = {
+	filters: SearchFilters;
 	sort: {
 		field: string;
 		order: string;

@@ -46,8 +46,8 @@ body {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	height: 90dvh;
 	width: 100%;
 	max-width: 1000px;
+	min-height: 90dvh;
 }
 </style>

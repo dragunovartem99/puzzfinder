@@ -2,7 +2,7 @@
 import { Puzzle, type UI } from "@/shared";
 
 defineProps<{
-	puzzles: UI.Puzzle[]
+	puzzles: UI.Puzzle[];
 }>();
 </script>
 
@@ -19,7 +19,7 @@ defineProps<{
 <style lang="css" scoped>
 .puzzles {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 20px;
 
 	max-height: 500px;

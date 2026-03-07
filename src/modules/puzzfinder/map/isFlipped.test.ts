@@ -6,5 +6,7 @@ it("returns true when white is to move", () => {
 });
 
 it("returns false when black is to move", () => {
-	expect(isFlipped("r2qr1k1/b1p2ppp/pp4n1/P1P1p3/4P1n1/B2P2Pb/3NBP1P/RN1QR1K1 b - - 1 16")).toBe(false);
+	expect(isFlipped("r2qr1k1/b1p2ppp/pp4n1/P1P1p3/4P1n1/B2P2Pb/3NBP1P/RN1QR1K1 b - - 1 16")).toBe(
+		false
+	);
 });
