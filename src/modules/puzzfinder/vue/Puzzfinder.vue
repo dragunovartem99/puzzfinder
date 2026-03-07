@@ -114,12 +114,12 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	overflow: hidden;
 	display: grid;
 	gap: 15px;
+	padding-block: 5px;
 }
 
 @media (min-width: 768px) {
 	.puzzfinder > :deep(.window-body) {
 		flex-grow: 1;
-		padding: 5px;
 		grid-template-columns: 300px 1fr;
 	}
 }
