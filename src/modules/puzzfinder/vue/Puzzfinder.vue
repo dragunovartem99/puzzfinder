@@ -74,7 +74,10 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			@tab-select="(tab) => (activeTab = tab)"
 		>
 			<template v-if="activeTab.id === 'puzzles'">
-				<Loader v-if="isPending" />
+				<Loader
+					v-if="isPending"
+					class="loader-centered"
+				/>
 				<Puzzles
 					v-else
 					class="puzzles-scroll"
@@ -119,6 +122,10 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 <style scoped>
 .search {
 	margin-bottom: 15px;
+}
+
+.loader-centered {
+	margin-block: auto;
 }
 
 .puzzles-scroll {
