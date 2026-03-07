@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type API, Window, Tabs, type UI } from "@/shared";
+import { type API, type UI, Loader, Tabs, Window } from "@/shared";
 import { computed, ref } from "vue";
 
 import { queryPuzzles } from "../api";
@@ -29,7 +29,7 @@ const search = ref<Partial<API.Search>>({
 	},
 });
 
-const { data: puzzles } = queryPuzzles(search);
+const { isPending, data: puzzles } = queryPuzzles(search);
 
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	return puzzles.value?.data.map(mapPuzzle) ?? [];
@@ -53,10 +53,13 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
 		>
-			<Puzzles
-				v-if="activeTab.id === 'puzzles'"
-				:puzzles="uiPuzzles"
-			/>
+			<template v-if="activeTab.id === 'puzzles'">
+				<Loader v-if="isPending" />
+				<Puzzles
+					v-else
+					:puzzles="uiPuzzles"
+				/>
+			</template>
 			<GitHub v-if="activeTab.id === 'github'" />
 		</Tabs>
 
@@ -64,10 +67,10 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			#status-bar
 			v-if="puzzles?.pagination"
 		>
-			<span><b>Results:</b> {{ puzzles.pagination.total }}</span>
+			<span><b>Results:</b> {{ puzzles.pagination.total.toLocaleString() }}</span>
 			<span
 				><b>Page:</b> {{ puzzles.pagination.page }} of
-				{{ puzzles.pagination.totalPages }}</span
+				{{ puzzles.pagination.totalPages.toLocaleString() }}</span
 			>
 		</template>
 	</Window>

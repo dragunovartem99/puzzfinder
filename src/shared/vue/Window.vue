@@ -45,7 +45,12 @@ const slots = useSlots();
 </template>
 
 <style scoped>
-.status-bar {
-	margin-top: auto;
+.window {
+	display: flex;
+	flex-direction: column;
+}
+
+.window-body {
+	flex-grow: 1;
 }
 </style>
