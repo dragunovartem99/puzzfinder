@@ -22,7 +22,7 @@ const windows: Record<UI.AppWindow["id"], Component> = {
 	</template>
 </template>
 
-<style>
+<style lang="css">
 @font-face {
 	font-family: "Diagram Smart";
 	src: url("/DiagramSmart.woff2") format("woff2");

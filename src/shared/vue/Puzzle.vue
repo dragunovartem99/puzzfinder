@@ -30,7 +30,7 @@ const PUZZLE_WINDOW: UI.Window = {
 	</Window>
 </template>
 
-<style scoped>
+<style lang="css" scoped>
 .window {
 	background-color: var(--button-face);
 	display: flex;
