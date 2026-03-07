@@ -3,7 +3,7 @@ import type { UI } from "@/shared";
 import Shortcut from "./Shortcut.vue";
 
 const emit = defineEmits<{
-	"shortcut-click": [windowID: UI.Window["id"]];
+	"shortcut-click": [windowID: UI.AppWindow["id"]];
 }>();
 
 const shortcuts: UI.Shortcut[] = [
