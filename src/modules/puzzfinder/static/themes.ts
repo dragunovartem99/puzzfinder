@@ -36,7 +36,7 @@ export const THEMES: UI.OptionGroup[] = [
 		],
 	},
 	{
-		label: "Dev experiments",
+		label: "Duration",
 		options: [
 			{ key: "mateIn1", label: "Mate in 1" },
 			{ key: "mateIn2", label: "Mate in 2" },

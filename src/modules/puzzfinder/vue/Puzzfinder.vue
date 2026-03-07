@@ -76,8 +76,12 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			<template v-if="activeTab.id === 'puzzles'">
 				<Loader
 					v-if="isPending"
-					class="loader-centered"
+					class="centered"
 				/>
+				<span
+					v-else-if="uiPuzzles.length === 0"
+					class="centered"
+				>No puzzles found</span>
 				<Puzzles
 					v-else
 					class="puzzles-scroll"
@@ -124,8 +128,9 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	margin-bottom: 15px;
 }
 
-.loader-centered {
+.centered {
 	margin-block: auto;
+	text-align: center;
 }
 
 .puzzles-scroll {
