@@ -120,7 +120,7 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 @media (min-width: 768px) {
 	.puzzfinder > :deep(.window-body) {
 		flex-grow: 1;
-		grid-template-columns: 300px 1fr;
+		grid-template-columns: 260px 1fr;
 	}
 }
 
