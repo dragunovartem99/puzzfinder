@@ -1,5 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`uses plural form for multiple moves 1`] = `"3 moves"`;
-
-exports[`uses singular form for one move 1`] = `"1 move"`;
