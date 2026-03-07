@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { UI } from "../types";
+import Pair from "./Pair.vue";
 import Window from "./Window.vue";
 
 const props = defineProps<{ puzzle: UI.Puzzle }>();
@@ -21,7 +22,7 @@ const PUZZLE_WINDOW: UI.Window = {
 				:flipped="puzzle.flipped ? 'flipped' : null"
 			/>
 		</a>
-		<p><b>Rating:</b> {{ puzzle.rating }}</p>
+		<Pair label="Rating:"> {{ puzzle.rating }} </Pair>
 	</Window>
 </template>
 
