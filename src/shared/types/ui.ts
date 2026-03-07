@@ -8,6 +8,11 @@ export type Option = {
 	key: string;
 };
 
+export type OptionGroup = {
+	label: string;
+	options: Option[];
+};
+
 export type Link = {
 	label: string;
 	url: string;

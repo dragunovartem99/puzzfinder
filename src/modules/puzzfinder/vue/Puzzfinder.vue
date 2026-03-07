@@ -77,6 +77,7 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 				<Loader v-if="isPending" />
 				<Puzzles
 					v-else
+					class="puzzles-scroll"
 					:puzzles="uiPuzzles"
 				/>
 			</template>
@@ -118,6 +119,11 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 <style scoped>
 .search {
 	margin-bottom: 15px;
+}
+
+.puzzles-scroll {
+	overflow-y: auto;
+	flex-grow: 1;
 }
 
 .pages {

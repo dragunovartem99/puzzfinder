@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { SORT_OPTIONS } from "../static";
+import { SORT_OPTIONS, THEMES } from "../static";
+import { MultiSelect } from "@/shared";
 import type { API } from "@/shared";
 
 const model = defineModel<API.Search>({ required: true });
 
 const sort = ref(SORT_OPTIONS[0]!.key);
-const themes = ref("");
+const themes = ref<string[]>([]);
 
 function submitForm() {
 	const [field = "", order = ""] = sort.value.split("-");
 
-	model.value.filters.themes = themes.value.split(",");
+	model.value.filters.themes = themes.value;
 	model.value.sort = { field, order };
 }
 </script>
@@ -21,10 +22,11 @@ function submitForm() {
 		<section>
 			<div class="field-row">
 				<label for="themes">Themes</label>
-				<input
-					type="text"
+				<MultiSelect
 					id="themes"
 					v-model="themes"
+					:groups="THEMES"
+					:size="5"
 				/>
 			</div>
 			<div class="field-row">
@@ -50,5 +52,12 @@ function submitForm() {
 <style lang="css" scoped>
 section {
 	margin-bottom: 15px;
+}
+
+.field-row {
+	display: flex;
+	flex-direction: column;
+	gap: var(--grouped-element-spacing);
+	align-items: stretch;
 }
 </style>
