@@ -6,11 +6,11 @@ import { queryPuzzles } from "../api";
 import { mapPuzzle } from "../map";
 import { TABS } from "../static";
 
+import About from "./About.vue";
 import GitHub from "./GitHub.vue";
-import Search from "./Search.vue";
-import Puzzles from "./Puzzles.vue";
-import Description from "./Description.vue";
 import Pagination from "./Pagination.vue";
+import Puzzles from "./Puzzles.vue";
+import Search from "./Search.vue";
 
 const emit = defineEmits<{
 	close: [];
@@ -55,8 +55,6 @@ function nextPage() {
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	return puzzles.value?.data.map(mapPuzzle) ?? [];
 });
-
-const pagination = computed(() => puzzles.value?.pagination ?? null);
 </script>
 
 <template>
@@ -81,20 +79,20 @@ const pagination = computed(() => puzzles.value?.pagination ?? null);
 					v-if="isPending"
 					class="centered"
 				/>
-				<span
+				<b
 					v-else-if="uiPuzzles.length === 0"
 					class="centered"
 				>
 					No puzzles found
-				</span>
+				</b>
 				<Puzzles
 					v-else
 					class="puzzles-scroll"
 					:puzzles="uiPuzzles"
 				/>
 			</template>
+			<About v-if="activeTab.id === 'about'" />
 			<GitHub v-if="activeTab.id === 'github'" />
-			<Description v-if="activeTab.id === 'description'" />
 		</Tabs>
 
 		<template #status-bar>
@@ -105,8 +103,8 @@ const pagination = computed(() => puzzles.value?.pagination ?? null);
 				Loading, please wait...
 			</p>
 			<Pagination
-				v-else-if="pagination"
-				:pagination="pagination"
+				v-else-if="puzzles?.pagination"
+				:pagination="puzzles.pagination"
 				@prev="prevPage"
 				@next="nextPage"
 			/>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type API } from "@/shared";
 
-const props = defineProps<{
+defineProps<{
 	pagination: API.Pagination;
 }>();
 
@@ -15,14 +15,14 @@ const emit = defineEmits<{
 	<p class="status-bar-field pages">
 		<b>Navigate:</b>
 		<a
-			:class="{ 'disabled-link': props.pagination.page <= 1 }"
+			:class="{ 'disabled-link': pagination.page <= 1 }"
 			href="#"
 			@click.prevent="emit('prev')"
 		>
 			Prev
 		</a>
 		<a
-			:class="{ 'disabled-link': props.pagination.page >= props.pagination.totalPages }"
+			:class="{ 'disabled-link': pagination.page >= pagination.totalPages }"
 			href="#"
 			@click.prevent="emit('next')"
 		>
@@ -30,10 +30,10 @@ const emit = defineEmits<{
 		</a>
 	</p>
 	<p class="status-bar-field">
-		<b>Page:</b> {{ props.pagination.page }} of
-		{{ props.pagination.totalPages.toLocaleString() }}
+		<b>Page:</b> {{ Math.min(pagination.page, pagination.totalPages) }} of
+		{{ pagination.totalPages.toLocaleString() }}
 	</p>
-	<p class="status-bar-field"><b>Results:</b> {{ props.pagination.total.toLocaleString() }}</p>
+	<p class="status-bar-field"><b>Results:</b> {{ pagination.total.toLocaleString() }}</p>
 </template>
 
 <style lang="css" scoped>
