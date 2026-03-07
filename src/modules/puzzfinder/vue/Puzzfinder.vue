@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type API, type UI, Loader, Tabs, Window } from "@/shared";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 
 import { queryPuzzles } from "../api";
 import { mapPuzzle } from "../map";
@@ -27,9 +27,34 @@ const search = ref<Partial<API.Search>>({
 		field: "rating",
 		order: "desc",
 	},
+	pagination: {
+		page: 1,
+		limit: 10,
+	},
 });
 
+watch(
+	() => search.value.sort,
+	() => {
+		if (search.value.pagination) {
+			search.value.pagination.page = 1;
+		}
+	}
+);
+
 const { isPending, data: puzzles } = queryPuzzles(search);
+
+function prevPage() {
+	if (search.value.pagination) {
+		search.value.pagination.page--;
+	}
+}
+
+function nextPage() {
+	if (search.value.pagination) {
+		search.value.pagination.page++;
+	}
+}
 
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	return puzzles.value?.data.map(mapPuzzle) ?? [];
@@ -68,10 +93,24 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			v-if="puzzles?.pagination"
 		>
 			<span><b>Results:</b> {{ puzzles.pagination.total.toLocaleString() }}</span>
-			<span
-				><b>Page:</b> {{ puzzles.pagination.page }} of
-				{{ puzzles.pagination.totalPages.toLocaleString() }}</span
-			>
+			<span>
+				<b>Page:</b> {{ puzzles.pagination.page }} of
+				{{ puzzles.pagination.totalPages.toLocaleString() }}
+			</span>
+			<span>
+				<a
+					v-if="puzzles.pagination.page > 1"
+					href="#"
+					@click.prevent="prevPage"
+					>Prev</a
+				>
+				<a
+					v-if="puzzles.pagination.page < puzzles.pagination.totalPages"
+					href="#"
+					@click.prevent="nextPage"
+					>Next</a
+				>
+			</span>
 		</template>
 	</Window>
 </template>
