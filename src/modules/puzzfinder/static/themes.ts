@@ -2,6 +2,20 @@ import type { UI } from "@/shared";
 
 export const THEMES: UI.OptionGroup[] = [
 	{
+		label: "Phases",
+		options: [
+			{ key: "opening", label: "Opening" },
+			{ key: "middlegame", label: "Middlegame" },
+			{ key: "endgame", label: "Endgame" },
+			{ key: "pawnEndgame", label: "Pawn endgame" },
+			{ key: "knightEndgame", label: "Knight endgame" },
+			{ key: "bishopEndgame", label: "Bishop endgame" },
+			{ key: "rookEndgame", label: "Rook endgame" },
+			{ key: "queenEndgame", label: "Queen endgame" },
+			{ key: "queenRookEndgame", label: "Queen and rook endgame" },
+		],
+	},
+	{
 		label: "Motifs",
 		options: [
 			{ key: "advancedPawn", label: "Advanced pawn" },
@@ -36,23 +50,19 @@ export const THEMES: UI.OptionGroup[] = [
 		],
 	},
 	{
-		label: "Duration",
+		label: "Mates",
 		options: [
+			{ key: "mate", label: "Checkmate" },
 			{ key: "mateIn1", label: "Mate in 1" },
 			{ key: "mateIn2", label: "Mate in 2" },
 			{ key: "mateIn3", label: "Mate in 3" },
 			{ key: "mateIn4", label: "Mate in 4" },
 			{ key: "mateIn5", label: "Mate in 5" },
-			{ key: "oneMove", label: "One move" },
-			{ key: "short", label: "Short" },
-			{ key: "long", label: "Long" },
-			{ key: "veryLong", label: "Very Long" },
 		],
 	},
 	{
-		label: "Mate patterns",
+		label: "Mate themes",
 		options: [
-			{ key: "mate", label: "Mate" },
 			{ key: "anastasiaMate", label: "Anastasia mate" },
 			{ key: "arabianMate", label: "Arabian mate" },
 			{ key: "backRankMate", label: "Back rank mate" },
@@ -75,25 +85,6 @@ export const THEMES: UI.OptionGroup[] = [
 		],
 	},
 	{
-		label: "Endgame",
-		options: [
-			{ key: "pawnEndgame", label: "Pawn endgame" },
-			{ key: "knightEndgame", label: "Knight endgame" },
-			{ key: "bishopEndgame", label: "Bishop endgame" },
-			{ key: "rookEndgame", label: "Rook endgame" },
-			{ key: "queenEndgame", label: "Queen endgame" },
-			{ key: "queenRookEndgame", label: "Queen and rook endgame" },
-		],
-	},
-	{
-		label: "Phases",
-		options: [
-			{ key: "opening", label: "Opening" },
-			{ key: "middlegame", label: "Middlegame" },
-			{ key: "endgame", label: "Endgame" },
-		],
-	},
-	{
 		label: "Special moves",
 		options: [
 			{ key: "castling", label: "Castling" },
@@ -108,6 +99,15 @@ export const THEMES: UI.OptionGroup[] = [
 			{ key: "equality", label: "Equality" },
 			{ key: "advantage", label: "Advantage" },
 			{ key: "crushing", label: "Crushing" },
+		],
+	},
+	{
+		label: "Lengths",
+		options: [
+			{ key: "oneMove", label: "One move" },
+			{ key: "short", label: "Short" },
+			{ key: "long", label: "Long" },
+			{ key: "veryLong", label: "Very Long" },
 		],
 	},
 	{

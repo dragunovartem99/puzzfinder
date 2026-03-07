@@ -74,8 +74,12 @@ form .field-row {
 }
 
 @media (min-width: 768px) {
+	.field-row:first-of-type {
+		flex-grow: 1;
+	}
+
 	#themes {
-		height: 250px;
+		height: 100%;
 	}
 }
 </style>
