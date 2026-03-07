@@ -40,5 +40,5 @@ export type Puzzle = {
 	url: string;
 	flipped: boolean;
 	rating: number;
-	duration: string;
+	length: string;
 };

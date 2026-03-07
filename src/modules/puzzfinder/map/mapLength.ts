@@ -1,5 +1,5 @@
 import type { API, UI } from "@/shared";
 
-export function mapDuration(movesNumber: API.Puzzle["movesNumber"]): UI.Puzzle["duration"] {
+export function mapLength(movesNumber: API.Puzzle["movesNumber"]): UI.Puzzle["length"] {
 	return `${movesNumber} ${movesNumber > 1 ? "moves" : "move"}`;
 }

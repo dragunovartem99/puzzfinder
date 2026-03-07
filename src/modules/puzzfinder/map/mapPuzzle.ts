@@ -1,7 +1,7 @@
 import type { API, UI } from "@/shared";
 
 import { isFlipped } from "./isFlipped";
-import { mapDuration } from "./mapDuration";
+import { mapLength } from "./mapLength";
 import { mapUrl } from "./mapUrl";
 
 export function mapPuzzle(puzzle: API.Puzzle): UI.Puzzle {
@@ -11,6 +11,6 @@ export function mapPuzzle(puzzle: API.Puzzle): UI.Puzzle {
 		rating: puzzle.rating,
 		url: mapUrl(puzzle.puzzleId),
 		flipped: isFlipped(puzzle.fen),
-		duration: mapDuration(puzzle.movesNumber),
+		length: mapLength(puzzle.movesNumber),
 	};
 }

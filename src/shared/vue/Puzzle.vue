@@ -6,7 +6,7 @@ import Window from "./Window.vue";
 const props = defineProps<{ puzzle: UI.Puzzle }>();
 
 const PUZZLE_WINDOW: UI.Window = {
-	title: props.puzzle.duration,
+	title: props.puzzle.length,
 	controls: {},
 };
 </script>
