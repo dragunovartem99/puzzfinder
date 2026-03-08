@@ -17,6 +17,20 @@ function format(num: number) {
 
 <template>
 	<Pair
+		label="Results:"
+		class="status-bar-field"
+	>
+		{{ format(pagination.total) }}
+	</Pair>
+	<Pair
+		label="Page:"
+		class="status-bar-field"
+	>
+		{{ Math.min(pagination.page, pagination.totalPages) }}
+		of
+		{{ format(pagination.totalPages) }}
+	</Pair>
+	<Pair
 		label="Navigate:"
 		class="status-bar-field"
 	>
@@ -35,20 +49,6 @@ function format(num: number) {
 			Next
 		</a>
 	</Pair>
-	<Pair
-		label="Page:"
-		class="status-bar-field"
-	>
-		{{ Math.min(pagination.page, pagination.totalPages) }}
-		of
-		{{ format(pagination.totalPages) }}
-	</Pair>
-	<Pair
-		label="Results:"
-		class="status-bar-field"
-	>
-		{{ format(pagination.total) }}
-	</Pair>
 </template>
 
 <style lang="css" scoped>
@@ -58,7 +58,15 @@ function format(num: number) {
 	color: var(--dialog-gray);
 }
 
+.status-bar-field {
+	justify-content: center;
+}
+
+.status-bar-field:first-of-type {
+	flex-grow: 6;
+}
+
 a + a {
-	margin-left: 10px;
+	margin-left: 5px;
 }
 </style>

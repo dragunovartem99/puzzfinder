@@ -63,11 +63,6 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 		@close="emit('close')"
 		:window="PUZZFINDER_WINDOW"
 	>
-		<Search
-			class="search"
-			v-model="search"
-		/>
-
 		<Tabs
 			class="tabs"
 			:tabs="TABS"
@@ -86,6 +81,11 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			<About v-if="activeTab.id === 'about'" />
 			<GitHub v-if="activeTab.id === 'github'" />
 		</Tabs>
+
+		<Search
+			class="search"
+			v-model="search"
+		/>
 
 		<template #status-bar>
 			<p
@@ -120,7 +120,7 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 @media (min-width: 768px) {
 	.puzzfinder > :deep(.window-body) {
 		flex-grow: 1;
-		grid-template-columns: 260px 1fr;
+		grid-template-columns: 1fr 260px;
 	}
 }
 
