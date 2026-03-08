@@ -46,5 +46,6 @@ select {
 select:focus {
 	color: #000;
 	background-color: #fff;
+	background-image: none;
 }
 </style>

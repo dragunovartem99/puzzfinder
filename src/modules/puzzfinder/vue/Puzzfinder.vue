@@ -145,4 +145,8 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	width: 0;
 	height: 0;
 }
+
+.status-bar-field {
+	text-align: center;
+}
 </style>
