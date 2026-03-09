@@ -4,7 +4,7 @@ import { computed, ref, watch } from "vue";
 
 import { queryPuzzles } from "../api";
 import { mapPuzzle } from "../map";
-import { TABS } from "../static";
+import { INITIAL_SEARCH, TABS } from "../static";
 
 import About from "./About.vue";
 import GitHub from "./GitHub.vue";
@@ -23,19 +23,7 @@ const PUZZFINDER_WINDOW: UI.Window = {
 
 const activeTab = ref<UI.Tab>(TABS[0]!);
 
-const search = ref<API.Search>({
-	filters: {
-		themes: [],
-	},
-	sort: {
-		field: "rating",
-		order: "desc",
-	},
-	pagination: {
-		page: 1,
-		limit: 12,
-	},
-});
+const search = ref<API.Search>(structuredClone(INITIAL_SEARCH));
 
 watch(
 	() => search.value.sort,
