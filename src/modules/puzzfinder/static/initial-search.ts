@@ -2,6 +2,9 @@ import type { API } from "@/shared";
 
 export const INITIAL_SEARCH: API.Search = {
 	filters: {
+		rating: {},
+		popularity: {},
+		movesNumber: {},
 		themes: [],
 	},
 	sort: {

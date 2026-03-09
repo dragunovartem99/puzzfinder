@@ -19,7 +19,16 @@ export type Pagination = {
 	totalPages: number;
 };
 
+export type Range = {
+	min?: number;
+	max?: number;
+	equals?: number;
+};
+
 type SearchFilters = {
+	rating: Range;
+	movesNumber: Range;
+	popularity: Range;
 	themes: string[];
 };
 

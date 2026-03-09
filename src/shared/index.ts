@@ -6,5 +6,6 @@ export { default as Puzzle } from "./vue/Puzzle.vue";
 export { default as Loader } from "./vue/Loader.vue";
 export { default as MultiSelect } from "./vue/MultiSelect.vue";
 export { default as Pair } from "./vue/Pair.vue";
+export { default as Range } from "./vue/Range.vue";
 
 export { httpRequest } from "./api/httpRequest";
