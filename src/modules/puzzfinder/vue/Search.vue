@@ -12,7 +12,6 @@ const sort = ref(SORT_OPTIONS[0]!.key);
 const themes = ref<string[]>([]);
 const rating = ref<API.Range>({});
 const movesNumber = ref<API.Range>({});
-const popularity = ref<API.Range>({});
 
 const SEARCH_TABS: UI.Tab[] = [
 	{ id: "select", label: "Select" },
@@ -28,7 +27,6 @@ function submitForm() {
 	model.value.filters.themes = themes.value;
 	model.value.filters.rating = rating.value;
 	model.value.filters.movesNumber = movesNumber.value;
-	model.value.filters.popularity = popularity.value;
 }
 </script>
 
@@ -69,7 +67,6 @@ function submitForm() {
 				<Filters
 					v-model:rating="rating"
 					v-model:moves-number="movesNumber"
-					v-model:popularity="popularity"
 				/>
 			</template>
 		</Tabs>

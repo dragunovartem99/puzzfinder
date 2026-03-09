@@ -4,7 +4,6 @@ import type { API } from "@/shared";
 
 const rating = defineModel<API.Range>("rating", { required: true });
 const movesNumber = defineModel<API.Range>("movesNumber", { required: true });
-const popularity = defineModel<API.Range>("popularity", { required: true });
 </script>
 
 <template>
@@ -16,10 +15,6 @@ const popularity = defineModel<API.Range>("popularity", { required: true });
 		<Range
 			label="Moves"
 			v-model="movesNumber"
-		/>
-		<Range
-			label="Popularity"
-			v-model="popularity"
 		/>
 	</div>
 </template>

@@ -28,7 +28,6 @@ export type Range = {
 type SearchFilters = {
 	rating: Range;
 	movesNumber: Range;
-	popularity: Range;
 	themes: string[];
 };
 
