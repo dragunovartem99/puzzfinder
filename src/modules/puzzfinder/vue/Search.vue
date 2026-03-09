@@ -14,7 +14,7 @@ const rating = ref<API.Range>({});
 const movesNumber = ref<API.Range>({});
 
 const SEARCH_TABS: UI.Tab[] = [
-	{ id: "select", label: "Select" },
+	{ id: "themes", label: "Themes" },
 	{ id: "filters", label: "Filters" },
 ];
 
@@ -38,30 +38,12 @@ function submitForm() {
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
 		>
-			<template v-if="activeTab.id === 'select'">
-				<div class="field-row">
-					<label for="themes">Themes</label>
-					<MultiSelect
-						id="themes"
-						v-model="themes"
-						:groups="THEMES"
-					/>
-				</div>
-				<div class="field-row">
-					<label for="sort-options">Sort by</label>
-					<select
-						id="sort-options"
-						v-model="sort"
-					>
-						<option
-							v-for="option in SORT_OPTIONS"
-							:key="option.key"
-							:value="option.key"
-						>
-							{{ option.label }}
-						</option>
-					</select>
-				</div>
+			<template v-if="activeTab.id === 'themes'">
+				<MultiSelect
+					id="themes"
+					v-model="themes"
+					:groups="THEMES"
+				/>
 			</template>
 			<template v-else-if="activeTab.id === 'filters'">
 				<Filters
@@ -70,6 +52,21 @@ function submitForm() {
 				/>
 			</template>
 		</Tabs>
+		<div class="field-row">
+			<label for="sort-options">Sort by</label>
+			<select
+				id="sort-options"
+				v-model="sort"
+			>
+				<option
+					v-for="option in SORT_OPTIONS"
+					:key="option.key"
+					:value="option.key"
+				>
+					{{ option.label }}
+				</option>
+			</select>
+		</div>
 		<button>Search</button>
 	</form>
 </template>
@@ -98,6 +95,7 @@ button {
 }
 
 #themes {
+	width: 100%;
 	height: 125px;
 }
 
