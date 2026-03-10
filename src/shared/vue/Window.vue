@@ -31,3 +31,11 @@ const emit = defineEmits<{
 		</div>
 	</div>
 </template>
+
+<style lang="css" scoped>
+.window,
+.window-body {
+	display: flex;
+	flex-direction: column;
+}
+</style>

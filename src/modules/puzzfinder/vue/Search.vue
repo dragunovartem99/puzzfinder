@@ -96,25 +96,13 @@ button {
 
 #themes {
 	width: 100%;
-	height: 125px;
+	flex-grow: 1;
+	min-height: 127px;
 }
 
 @media (min-width: 768px) {
-	.search-tabs,
-	.search-tabs :deep([role="tabpanel"]),
-	.search-tabs :deep([role="tabpanel"] > .window-body) {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.search-tabs :deep(.field-row:first-of-type) {
-		flex: 1;
-		min-height: 0;
-	}
-
-	#themes {
-		height: 100%;
+	.search-tabs {
+		--flex-grow: 1;
 	}
 }
 </style>

@@ -12,7 +12,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-	<div>
+	<div class="tabs">
 		<menu role="tablist">
 			<li
 				v-for="(tab, index) in tabs"
@@ -34,3 +34,15 @@ const emit = defineEmits<{
 		</div>
 	</div>
 </template>
+
+<style lang="css" scoped>
+.tabs,
+.window,
+.window-body {
+	flex-grow: var(--flex-grow, 0);
+
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+</style>

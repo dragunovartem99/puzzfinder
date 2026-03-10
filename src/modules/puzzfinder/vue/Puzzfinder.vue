@@ -52,7 +52,6 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 		:window="PUZZFINDER_WINDOW"
 	>
 		<Tabs
-			class="tabs"
 			:tabs="TABS"
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
@@ -70,10 +69,7 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 			<GitHub v-if="activeTab.id === 'github'" />
 		</Tabs>
 
-		<Search
-			class="search"
-			v-model="search"
-		/>
+		<Search v-model="search" />
 
 		<template #status-bar>
 			<p
@@ -93,35 +89,16 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 </template>
 
 <style lang="css" scoped>
-.puzzfinder {
-	display: flex;
-	flex-direction: column;
-}
-
 .puzzfinder > :deep(.window-body) {
+	justify-content: space-between;
 	overflow: hidden;
-	display: grid;
+	flex-grow: 1;
 	gap: 15px;
 	padding-block: 5px;
 }
 
-@media (min-width: 768px) {
-	.puzzfinder > :deep(.window-body) {
-		flex-grow: 1;
-		grid-template-columns: 1fr 260px;
-	}
-}
-
-.puzzfinder > :deep(.status-bar) {
-	margin-top: auto;
-}
-
-.tabs,
-.tabs :deep([role="tabpanel"]),
-.tabs :deep([role="tabpanel"] > .window-body) {
-	min-height: 0;
-	display: flex;
-	flex-direction: column;
+.status-bar-field {
+	text-align: center;
 }
 
 .puzzles-scroll {
@@ -134,7 +111,10 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	height: 0;
 }
 
-.status-bar-field {
-	text-align: center;
+@media (min-width: 768px) {
+	.puzzfinder > :deep(.window-body) {
+		display: grid;
+		grid-template-columns: 1fr 260px;
+	}
 }
 </style>
