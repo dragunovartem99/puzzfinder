@@ -3,17 +3,16 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "run-p type-check \"build-only {@}\" --",
-		"build-only": "vite build",
+		"build": "vue-tsc -b && vite build",
 		"dev": "vite",
 		"format": "oxfmt",
 		"format:check": "oxfmt --check",
-		"lint": "oxlint",
-		"lint:fix": "oxlint --fix src",
+		"lint": "oxlint --fix",
+		"lint:check": "oxlint",
 		"prepare": "husky",
 		"preview": "vite preview",
 		"test": "vitest",
-		"type-check": "vue-tsc --build"
+		"types:check": "vue-tsc -b --noEmit"
 	},
 	"dependencies": {
 		"@tanstack/vue-query": "^5.92.9",
