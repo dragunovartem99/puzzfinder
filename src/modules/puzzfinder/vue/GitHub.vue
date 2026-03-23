@@ -12,7 +12,7 @@ const links: UI.Link[] = [
 	},
 	{
 		url: "https://github.com/dragunovartem99/puzzfinder-db",
-		label: "SQLite database with chess puzzles",
+		label: "DuckDB database with chess puzzles",
 	},
 ];
 </script>

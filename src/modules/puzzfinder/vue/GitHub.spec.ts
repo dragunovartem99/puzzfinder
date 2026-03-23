@@ -9,6 +9,6 @@ describe("GitHub", () => {
 		expect(links).toHaveLength(3);
 		expect(wrapper.text()).toContain("Client-side web interface");
 		expect(wrapper.text()).toContain("Application programming interface");
-		expect(wrapper.text()).toContain("SQLite database with chess puzzles");
+		expect(wrapper.text()).toContain("DuckDB database with chess puzzles");
 	});
 });
