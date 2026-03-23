@@ -38,19 +38,17 @@ function submitForm() {
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
 		>
-			<template v-if="activeTab.id === 'themes'">
-				<MultiSelect
-					id="themes"
-					v-model="themes"
-					:groups="THEMES"
-				/>
-			</template>
-			<template v-else-if="activeTab.id === 'filters'">
-				<Filters
-					v-model:rating="rating"
-					v-model:moves-number="movesNumber"
-				/>
-			</template>
+			<MultiSelect
+				v-show="activeTab.id === 'themes'"
+				id="themes"
+				v-model="themes"
+				:groups="THEMES"
+			/>
+			<Filters
+				v-show="activeTab.id === 'filters'"
+				v-model:rating="rating"
+				v-model:moves-number="movesNumber"
+			/>
 		</Tabs>
 		<div class="field-row">
 			<label for="sort-options">Sort by</label>
