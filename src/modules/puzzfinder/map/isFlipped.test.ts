@@ -1,4 +1,5 @@
 import { expect, it } from "vitest";
+
 import { isFlipped } from "./isFlipped";
 
 it("returns true when white is to move", () => {

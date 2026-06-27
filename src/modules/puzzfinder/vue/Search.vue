@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { SORT_OPTIONS, THEMES } from "../static";
+
 import { MultiSelect, Tabs } from "@/shared";
 import type { API, UI } from "@/shared";
 
+import { SORT_OPTIONS, THEMES } from "../static";
 import Filters from "./Filters.vue";
 
 const model = defineModel<API.Search>({ required: true });

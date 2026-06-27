@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { UI } from "@/shared";
+
 import Shortcut from "./Shortcut.vue";
 
 const emit = defineEmits<{

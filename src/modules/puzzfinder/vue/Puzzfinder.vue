@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { type API, type UI, Loader, Tabs, Window } from "@/shared";
 import { computed, ref, watch } from "vue";
+
+import { type API, type UI, Loader, Tabs, Window } from "@/shared";
 
 import { queryPuzzles } from "../api";
 import { mapPuzzle } from "../map";
 import { INITIAL_SEARCH, TABS } from "../static";
-
 import About from "./About.vue";
 import GitHub from "./GitHub.vue";
 import Pagination from "./Pagination.vue";
