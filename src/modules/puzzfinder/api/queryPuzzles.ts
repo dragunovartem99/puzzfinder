@@ -1,6 +1,7 @@
-import { httpRequest, type API } from "@/shared";
 import { useQuery } from "@tanstack/vue-query";
 import { type Ref } from "vue";
+
+import { httpRequest, type API } from "@/shared";
 
 type Response = {
 	data: API.Puzzle[];

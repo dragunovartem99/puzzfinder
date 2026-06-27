@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, type Component } from "vue";
+
 import { Desktop, Puzzfinder } from "@/modules";
+
 import type { UI } from "./shared";
 
 const activeWindow = ref<UI.AppWindow["id"] | null>("puzzfinder");

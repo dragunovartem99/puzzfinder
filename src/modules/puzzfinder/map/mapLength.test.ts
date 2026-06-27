@@ -1,4 +1,5 @@
 import { expect, it } from "vitest";
+
 import { mapLength } from "./mapLength";
 
 it("uses singular form for one move", () => {
