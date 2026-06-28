@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import Pair from "./Pair.vue";
+import Pair from "../Pair.vue";
 
 describe("Pair", () => {
 	it("renders label and slot content", () => {

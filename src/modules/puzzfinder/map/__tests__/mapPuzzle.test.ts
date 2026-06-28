@@ -1,6 +1,6 @@
 import { expect, it } from "vitest";
 
-import { mapPuzzle } from "./mapPuzzle";
+import { mapPuzzle } from "../mapPuzzle";
 
 it("maps puzzle with full set of fields", () => {
 	const puzzle = mapPuzzle({
