@@ -22,7 +22,7 @@
 	},
 	"devDependencies": {
 		"@dragunovartem99/oxfmt-config": "^2.1.0",
-		"@dragunovartem99/oxlint-config": "^1.0.0",
+		"@dragunovartem99/oxlint-config": "^2.0.0",
 		"@tsconfig/node24": "^24.0.4",
 		"@types/jsdom": "^28.0.0",
 		"@types/node": "^24.11.0",

@@ -1,6 +1,6 @@
 import { expect, it } from "vitest";
 
-import { isFlipped } from "./isFlipped";
+import { isFlipped } from "../isFlipped";
 
 it("returns true when white is to move", () => {
 	expect(isFlipped("6k1/5p1p/4p3/4q3/3nN3/2Q3P1/PP3P1P/6K1 w - - 2 37")).toBe(true);

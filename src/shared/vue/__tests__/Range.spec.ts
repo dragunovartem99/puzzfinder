@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import Range from "./Range.vue";
+import Range from "../Range.vue";
 
 describe("Range", () => {
 	it("renders label and min/max inputs by default", () => {
@@ -28,6 +28,6 @@ describe("Range", () => {
 		const wrapper = mount(Range, { props: { label: "Rating", modelValue: {} } });
 		await wrapper.find("input[type='checkbox']").trigger("change");
 		await wrapper.find("input[type='number']").setValue(1500);
-		expect(wrapper.emitted("update:modelValue")?.slice(-1)[0]).toEqual([{ equals: 1500 }]);
+		expect(wrapper.emitted("update:modelValue")!.at(-1)).toEqual([{ equals: 1500 }]);
 	});
 });

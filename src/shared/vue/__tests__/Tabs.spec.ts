@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import Tabs from "./Tabs.vue";
+import Tabs from "../Tabs.vue";
 
 const tabs = [
 	{ id: "a", label: "Tab A" },

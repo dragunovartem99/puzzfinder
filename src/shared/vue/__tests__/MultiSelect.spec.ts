@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import MultiSelect from "./MultiSelect.vue";
+import MultiSelect from "../MultiSelect.vue";
 
 const groups = [
 	{

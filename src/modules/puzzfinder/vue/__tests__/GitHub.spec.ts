@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import GitHub from "./GitHub.vue";
+import GitHub from "../GitHub.vue";
 
 describe("GitHub", () => {
 	it("renders all three repository links", () => {
