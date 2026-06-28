@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import Window from "./Window.vue";
+import Window from "../Window.vue";
 
 describe("Window", () => {
 	it("renders title", () => {

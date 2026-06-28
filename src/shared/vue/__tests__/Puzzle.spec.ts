@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
-import Puzzle from "./Puzzle.vue";
+import Puzzle from "../Puzzle.vue";
 
 const puzzle = {
 	id: "abc",
