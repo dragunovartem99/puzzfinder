@@ -1,4 +1,4 @@
-const API = "https://puzzfinder.99x.space/api";
+const API = "https://puzzfinder.dragunov.dev/api";
 
 type Params =
 	| { endpoint: string; method?: "GET" }
