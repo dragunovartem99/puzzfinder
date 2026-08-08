@@ -15,9 +15,9 @@ const shortcuts: UI.Shortcut[] = [
 		onclick: () => emit("shortcut-click", "puzzfinder"),
 	},
 	{
-		icon: "shortcut/lichess-accuracy.png",
-		label: "Lichess Accuracy",
-		url: "https://dragunovartem99.github.io/lichess-accuracy/",
+		icon: "shortcut/chessdocs.png",
+		label: "Chessdocs",
+		url: "https://chessdocs.org/",
 	},
 	{
 		icon: "shortcut/vue-pgn-viewer.png",
