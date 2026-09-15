@@ -16,7 +16,7 @@ const shortcuts: UI.Shortcut[] = [
 	},
 	{
 		icon: "shortcut/chessdocs.png",
-		label: "Chessdocs",
+		label: "ChessDocs",
 		url: "https://chessdocs.org/",
 	},
 	{
