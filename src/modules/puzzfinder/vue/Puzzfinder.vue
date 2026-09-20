@@ -42,7 +42,7 @@ function nextPage() {
 	search.value.pagination.page++;
 }
 
-const FAVORITES_PER_PAGE = 6;
+const FAVORITES_PER_PAGE = 12;
 
 const { favorites } = useFavorites();
 const requestedFavoritesPage = ref(1);
