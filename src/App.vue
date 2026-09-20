@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, type Component } from "vue";
+import { ref } from "vue";
+import type { Component } from "vue";
 
 import { Desktop, Puzzfinder } from "@/modules";
 

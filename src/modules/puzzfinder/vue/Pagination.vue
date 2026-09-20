@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type API, Pair } from "@/shared";
+import { Pair } from "@/shared";
+import type { API } from "@/shared";
 
 defineProps<{
 	pagination: API.Pagination;

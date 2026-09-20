@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { type API, type UI, Loader, Tabs, Window, useFavorites } from "@/shared";
+import { Loader, Tabs, Window, useFavorites } from "@/shared";
+import type { API, UI } from "@/shared";
 
 import { queryPuzzles } from "../api";
 import { mapPuzzle } from "../map";

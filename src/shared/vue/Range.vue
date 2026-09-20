@@ -16,7 +16,9 @@ const equals = ref<number | "">("");
 function onModeChange() {
 	isExact.value = !isExact.value;
 
-	min.value = max.value = equals.value = "";
+	min.value = "";
+	max.value = "";
+	equals.value = "";
 
 	model.value = {};
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { Puzzle, type UI } from "@/shared";
+import { Puzzle } from "@/shared";
+import type { UI } from "@/shared";
 
 defineProps<{
 	puzzles: UI.Puzzle[];
