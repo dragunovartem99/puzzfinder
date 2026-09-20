@@ -115,14 +115,13 @@ a {
 }
 
 .favorite {
-	background-image: url("/icon/heart.png");
+	background-image: url("/icon/heart.svg");
 	background-repeat: no-repeat;
 	background-position: center;
-	image-rendering: pixelated;
 	background-size: auto 60%;
 }
 
 .favorite[aria-pressed="true"] {
-	background-image: url("/icon/heart-filled.png");
+	background-image: url("/icon/heart-filled.svg");
 }
 </style>
