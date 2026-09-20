@@ -6,6 +6,10 @@ export const TABS: UI.Tab[] = [
 		label: "Puzzles",
 	},
 	{
+		id: "favorites",
+		label: "Favorites",
+	},
+	{
 		id: "about",
 		label: "About",
 	},

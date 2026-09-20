@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { type API, type UI, Loader, Tabs, Window } from "@/shared";
+import { type API, type UI, Loader, Tabs, Window, useFavorites } from "@/shared";
 
 import { queryPuzzles } from "../api";
 import { mapPuzzle } from "../map";
@@ -9,6 +9,7 @@ import { INITIAL_SEARCH, TABS } from "../static";
 import About from "./About.vue";
 import GitHub from "./GitHub.vue";
 import Pagination from "./Pagination.vue";
+import Print from "./Print.vue";
 import Puzzles from "./Puzzles.vue";
 import Search from "./Search.vue";
 
@@ -40,6 +41,27 @@ function nextPage() {
 	search.value.pagination.page++;
 }
 
+const FAVORITES_PER_PAGE = 6;
+
+const { favorites } = useFavorites();
+const requestedFavoritesPage = ref(1);
+
+const favoritesPagination = computed<API.Pagination>(() => {
+	const totalPages = Math.max(1, Math.ceil(favorites.value.length / FAVORITES_PER_PAGE));
+
+	return {
+		limit: FAVORITES_PER_PAGE,
+		total: favorites.value.length,
+		totalPages,
+		page: Math.min(requestedFavoritesPage.value, totalPages),
+	};
+});
+
+const favoritesOnPage = computed(() => {
+	const start = (favoritesPagination.value.page - 1) * FAVORITES_PER_PAGE;
+	return favorites.value.slice(start, start + FAVORITES_PER_PAGE);
+});
+
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	return puzzles.value?.data.map(mapPuzzle) ?? [];
 });
@@ -52,6 +74,7 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 		:window="PUZZFINDER_WINDOW"
 	>
 		<Tabs
+			class="main-tabs"
 			:tabs="TABS"
 			:active-tab
 			@tab-select="(tab) => (activeTab = tab)"
@@ -65,6 +88,18 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 					:puzzles="uiPuzzles"
 				/>
 			</template>
+			<template v-if="activeTab.id === 'favorites'">
+				<b v-if="favorites.length === 0"
+					>Press the heart button on a puzzle to add it here</b
+				>
+				<template v-else>
+					<Puzzles
+						class="puzzles-scroll"
+						:puzzles="favoritesOnPage"
+					/>
+					<Print />
+				</template>
+			</template>
 			<About v-if="activeTab.id === 'about'" />
 			<GitHub v-if="activeTab.id === 'github'" />
 		</Tabs>
@@ -72,8 +107,14 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 		<Search v-model="search" />
 
 		<template #status-bar>
+			<Pagination
+				v-if="activeTab.id === 'favorites'"
+				:pagination="favoritesPagination"
+				@prev="requestedFavoritesPage = favoritesPagination.page - 1"
+				@next="requestedFavoritesPage = favoritesPagination.page + 1"
+			/>
 			<p
-				v-if="isPending"
+				v-else-if="isPending"
 				class="status-bar-field"
 			>
 				Loading, please wait...
@@ -102,6 +143,9 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 }
 
 .puzzles-scroll {
+	flex: 1 1 0;
+	min-height: 0;
+	align-content: start;
 	overflow-y: auto;
 	scrollbar-width: none;
 }
@@ -112,9 +156,14 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 }
 
 @media (min-width: 768px) {
+	.main-tabs {
+		--flex-grow: 1;
+	}
+
 	.puzzfinder > :deep(.window-body) {
 		display: grid;
 		grid-template-columns: 1fr 260px;
+		grid-template-rows: minmax(0, 1fr);
 	}
 }
 </style>

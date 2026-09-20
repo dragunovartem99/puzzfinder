@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
+import { useFavorites } from "../composables/useFavorites";
 import type { UI } from "../types";
 import Window from "./Window.vue";
 
@@ -13,6 +14,8 @@ const PUZZLE_WINDOW: UI.Window = {
 
 const last = props.puzzle.positions.length - 1;
 const step = ref(0);
+const { has, toggle } = useFavorites();
+const isFavorite = computed(() => has(props.puzzle.id));
 const fen = computed(() => props.puzzle.positions[step.value] ?? props.puzzle.fen);
 </script>
 
@@ -61,6 +64,14 @@ const fen = computed(() => props.puzzle.positions[step.value] ?? props.puzzle.fe
 				&raquo;
 			</button>
 		</div>
+		<template #controls>
+			<button
+				class="favorite"
+				:aria-label="isFavorite ? 'Remove from favorites' : 'Add to favorites'"
+				:aria-pressed="isFavorite"
+				@click="toggle(puzzle)"
+			></button>
+		</template>
 		<template #status-bar>
 			<p class="status-bar-field">Rating: {{ puzzle.rating }}</p>
 		</template>
@@ -101,5 +112,17 @@ a {
 	min-width: 0;
 	padding: 0;
 	font-weight: bold;
+}
+
+.favorite {
+	background-image: url("/icon/heart.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	image-rendering: pixelated;
+	background-size: auto 60%;
+}
+
+.favorite[aria-pressed="true"] {
+	background-image: url("/icon/heart-filled.png");
 }
 </style>

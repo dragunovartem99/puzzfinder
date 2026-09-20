@@ -8,4 +8,5 @@ export { default as MultiSelect } from "./vue/MultiSelect.vue";
 export { default as Pair } from "./vue/Pair.vue";
 export { default as Range } from "./vue/Range.vue";
 
+export { useFavorites } from "./composables/useFavorites";
 export { httpRequest } from "./api/httpRequest";

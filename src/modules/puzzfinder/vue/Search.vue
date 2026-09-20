@@ -75,6 +75,7 @@ form {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	min-height: 0;
 }
 
 button {

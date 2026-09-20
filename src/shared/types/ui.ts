@@ -42,4 +42,5 @@ export type Puzzle = {
 	rating: number;
 	length: string;
 	positions: string[];
+	solution: string;
 };

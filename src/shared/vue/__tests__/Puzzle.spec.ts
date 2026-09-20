@@ -1,6 +1,7 @@
 import { mount } from "@vue/test-utils";
 import { describe, it, expect } from "vitest";
 
+import { useFavorites } from "../../composables/useFavorites";
 import Puzzle from "../Puzzle.vue";
 
 const puzzle = {
@@ -10,6 +11,7 @@ const puzzle = {
 	flipped: false,
 	rating: 1500,
 	length: "Short (2)",
+	solution: "1. e5",
 	positions: [
 		"rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
 		"rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2",
@@ -50,5 +52,22 @@ describe("Puzzle", () => {
 
 		await wrapper.find('[aria-label="Last move"]').trigger("click");
 		expect(diagram()).toBe(puzzle.positions[1]);
+	});
+});
+
+describe("Puzzle favorite", () => {
+	it("toggles favorite from the title bar", async () => {
+		useFavorites().clear();
+		const wrapper = mount(Puzzle, { props: { puzzle } });
+		const heart = () => wrapper.find(".title-bar-controls .favorite");
+
+		expect(heart().attributes("aria-pressed")).toBe("false");
+
+		await heart().trigger("click");
+		expect(heart().attributes("aria-pressed")).toBe("true");
+		expect(useFavorites().favorites.value.map((p) => p.id)).toEqual(["abc"]);
+
+		await heart().trigger("click");
+		expect(heart().attributes("aria-pressed")).toBe("false");
 	});
 });

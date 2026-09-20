@@ -16,6 +16,7 @@ const emit = defineEmits<{
 				class="title-bar-controls"
 				v-if="window.controls"
 			>
+				<slot name="controls" />
 				<button
 					aria-label="Close"
 					v-if="window.controls.close"
