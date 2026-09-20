@@ -9,6 +9,11 @@ const emit = defineEmits<{
 
 const shortcuts: UI.Shortcut[] = [
 	{
+		icon: "shortcut/dragunovartem99.png",
+		label: "dragunovartem99",
+		url: "https://dragunovartem99.github.io/",
+	},
+	{
 		icon: "logo.png",
 		label: "Puzzfinder",
 		url: "#",
