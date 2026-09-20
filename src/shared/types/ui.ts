@@ -41,4 +41,5 @@ export type Puzzle = {
 	flipped: boolean;
 	rating: number;
 	length: string;
+	positions: string[];
 };

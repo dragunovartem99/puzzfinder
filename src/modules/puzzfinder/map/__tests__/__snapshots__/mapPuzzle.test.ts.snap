@@ -6,6 +6,12 @@ exports[`maps puzzle with full set of fields 1`] = `
   "flipped": false,
   "id": "0009B",
   "length": "2 moves",
+  "positions": [
+    "r2qr1k1/b1p2ppp/p5n1/P1p1p3/4P1n1/B2P2Pb/3NBP1P/RN1QR1K1 w - - 0 17",
+    "r2qr1k1/b1p2ppp/p5n1/P1p1p3/4P1B1/B2P2Pb/3N1P1P/RN1QR1K1 b - - 0 17",
+    "r2qr1k1/b1p2ppp/p5n1/P1p1p3/4P1b1/B2P2P1/3N1P1P/RN1QR1K1 w - - 0 18",
+    "r2qr1k1/b1p2ppp/p5n1/P1p1p3/4P1Q1/B2P2P1/3N1P1P/RN2R1K1 b - - 0 18",
+  ],
   "rating": 1103,
   "url": "https://lichess.org/training/0009B",
 }
