@@ -10,7 +10,7 @@ const emit = defineEmits<{
 const shortcuts: UI.Shortcut[] = [
 	{
 		icon: "shortcut/dragunovartem99.png",
-		label: "dragunovartem99",
+		label: "Artem Dragunov",
 		url: "https://dragunovartem99.github.io/",
 	},
 	{
