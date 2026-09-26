@@ -32,6 +32,7 @@ const windows: Record<UI.AppWindow["id"], Component> = {
 }
 
 :root {
+	--scale: 1.5;
 	--diagram-font: "Diagram Smart";
 }
 
@@ -41,7 +42,6 @@ const windows: Record<UI.AppWindow["id"], Component> = {
 
 body {
 	margin: 0;
-	--ui-scale: 1.5;
 }
 
 .active-window {
