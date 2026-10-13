@@ -19,7 +19,7 @@
 		"99.css": "^0.3.1",
 		"@tanstack/vue-query": "^5.92.9",
 		"chessops": "^0.15.1",
-		"html-diagram": "^0.5.8",
+		"html-diagram": "^0.6.0",
 		"vue": "^3.5.29"
 	},
 	"devDependencies": {
