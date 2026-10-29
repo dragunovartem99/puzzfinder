@@ -1,4 +1,4 @@
-const API = "https://puzzfinder.dragunov.dev/api";
+const API = import.meta.env.VITE_API_URL ?? "https://puzzfinder.dragunov.dev/api";
 
 type Params =
 	| { endpoint: string; method?: "GET" }

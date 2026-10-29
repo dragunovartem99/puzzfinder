@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 
-import { Loader, Tabs, Window, useFavorites } from "@/shared";
+import { Loader, Pair, Tabs, Window, useFolders } from "@/shared";
 import type { API, UI } from "@/shared";
 
-import { queryPuzzles } from "../api";
-import { mapPuzzle } from "../map";
+import { queryPuzzles, queryPuzzlesByIds } from "../api";
+import { mapPuzzle, parseShareHash } from "../map";
 import { INITIAL_SEARCH, TABS } from "../static";
 import About from "./About.vue";
+import Favorites from "./Favorites.vue";
+import Folders from "./Folders.vue";
 import GitHub from "./GitHub.vue";
 import Pagination from "./Pagination.vue";
-import Print from "./Print.vue";
 import Puzzles from "./Puzzles.vue";
 import Search from "./Search.vue";
 
@@ -32,7 +33,7 @@ watch(
 	() => (search.value.pagination.page = 1)
 );
 
-const { isPending, data: puzzles } = queryPuzzles(search);
+const { isPending, isError, data: puzzles } = queryPuzzles(search);
 
 function prevPage() {
 	search.value.pagination.page--;
@@ -42,30 +43,25 @@ function nextPage() {
 	search.value.pagination.page++;
 }
 
-const FAVORITES_PER_PAGE = 12;
-
-const { favorites } = useFavorites();
-const requestedFavoritesPage = ref(1);
-
-const favoritesPagination = computed<API.Pagination>(() => {
-	const totalPages = Math.max(1, Math.ceil(favorites.value.length / FAVORITES_PER_PAGE));
-
-	return {
-		limit: FAVORITES_PER_PAGE,
-		total: favorites.value.length,
-		totalPages,
-		page: Math.min(requestedFavoritesPage.value, totalPages),
-	};
-});
-
-const favoritesOnPage = computed(() => {
-	const start = (favoritesPagination.value.page - 1) * FAVORITES_PER_PAGE;
-	return favorites.value.slice(start, start + FAVORITES_PER_PAGE);
-});
-
 const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	return puzzles.value?.data.map(mapPuzzle) ?? [];
 });
+
+const { folders, selected, importShared } = useFolders();
+
+const folderIds = computed(() => selected.value.puzzles);
+const folderQuery = queryPuzzlesByIds(folderIds);
+// The query keeps its previous data while disabled, so an emptied folder must not show it
+const folderPuzzles = computed(() =>
+	folderIds.value.length > 0 ? (folderQuery.data.value?.map(mapPuzzle) ?? []) : []
+);
+
+const shared = parseShareHash(location.hash);
+if (shared.length > 0) {
+	importShared(shared);
+	activeTab.value = TABS.find((tab) => tab.id === "favorites") ?? activeTab.value;
+	history.replaceState(null, "", location.pathname + location.search);
+}
 </script>
 
 <template>
@@ -82,38 +78,49 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 		>
 			<template v-if="activeTab.id === 'puzzles'">
 				<Loader v-if="isPending" />
-				<b v-else-if="uiPuzzles.length === 0"> No puzzles found </b>
+				<b v-else-if="isError">Failed to load puzzles, please try again</b>
+				<b v-else-if="uiPuzzles.length === 0">No puzzles found</b>
 				<Puzzles
 					v-else
 					class="puzzles-scroll"
 					:puzzles="uiPuzzles"
 				/>
 			</template>
-			<template v-if="activeTab.id === 'favorites'">
-				<b v-if="favorites.length === 0"
-					>Press the heart button on a puzzle to add it here</b
-				>
-				<template v-else>
-					<Puzzles
-						class="puzzles-scroll"
-						:puzzles="favoritesOnPage"
-					/>
-					<Print />
-				</template>
-			</template>
+			<Favorites
+				v-if="activeTab.id === 'favorites'"
+				:folder="selected"
+				:puzzles="folderPuzzles"
+				:is-pending="folderQuery.isPending.value"
+				:is-error="folderQuery.isError.value"
+			/>
 			<About v-if="activeTab.id === 'about'" />
 			<GitHub v-if="activeTab.id === 'github'" />
 		</Tabs>
 
-		<Search v-model="search" />
+		<Folders
+			v-if="activeTab.id === 'favorites'"
+			:puzzles="folderPuzzles"
+		/>
+		<Search
+			v-show="activeTab.id !== 'favorites'"
+			v-model="search"
+		/>
 
 		<template #status-bar>
-			<Pagination
-				v-if="activeTab.id === 'favorites'"
-				:pagination="favoritesPagination"
-				@prev="requestedFavoritesPage = favoritesPagination.page - 1"
-				@next="requestedFavoritesPage = favoritesPagination.page + 1"
-			/>
+			<template v-if="activeTab.id === 'favorites'">
+				<Pair
+					label="Puzzles:"
+					class="status-bar-field"
+				>
+					{{ selected.puzzles.length }}
+				</Pair>
+				<Pair
+					label="Folders:"
+					class="status-bar-field"
+				>
+					{{ folders.length }}
+				</Pair>
+			</template>
 			<p
 				v-else-if="isPending"
 				class="status-bar-field"
@@ -141,9 +148,10 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 
 .status-bar-field {
 	text-align: center;
+	justify-content: center;
 }
 
-.puzzles-scroll {
+:deep(.puzzles-scroll) {
 	flex: 1 1 0;
 	min-height: 0;
 	align-content: start;
@@ -151,16 +159,16 @@ const uiPuzzles = computed<UI.Puzzle[]>(() => {
 	scrollbar-width: none;
 }
 
-.puzzles-scroll::-webkit-scrollbar {
+:deep(.puzzles-scroll::-webkit-scrollbar) {
 	width: 0;
 	height: 0;
 }
 
-@media (min-width: 768px) {
-	.main-tabs {
-		--flex-grow: 1;
-	}
+.main-tabs {
+	--flex-grow: 1;
+}
 
+@media (min-width: 768px) {
 	.puzzfinder > :deep(.window-body) {
 		display: grid;
 		grid-template-columns: 1fr 260px;

@@ -44,3 +44,9 @@ export type Puzzle = {
 	positions: string[];
 	solution: string;
 };
+
+export type Folder = {
+	id: string;
+	name: string;
+	puzzles: Puzzle["id"][];
+};

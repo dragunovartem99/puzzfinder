@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
-import { describe, it, expect } from "vitest";
+import { beforeEach, describe, it, expect } from "vitest";
 
-import { useFavorites } from "../../composables/useFavorites";
+import { useFolders } from "../../composables/useFolders";
 import Puzzle from "../Puzzle.vue";
 
 const puzzle = {
@@ -55,9 +55,10 @@ describe("Puzzle", () => {
 	});
 });
 
-describe("Puzzle favorite", () => {
-	it("toggles favorite from the title bar", async () => {
-		useFavorites().clear();
+describe("Puzzle heart", () => {
+	beforeEach(() => useFolders().reset());
+
+	it("toggles the only folder from the title bar", async () => {
 		const wrapper = mount(Puzzle, { props: { puzzle } });
 		const heart = () => wrapper.find(".title-bar-controls .favorite");
 
@@ -65,9 +66,35 @@ describe("Puzzle favorite", () => {
 
 		await heart().trigger("click");
 		expect(heart().attributes("aria-pressed")).toBe("true");
-		expect(useFavorites().favorites.value.map((p) => p.id)).toEqual(["abc"]);
+		expect(useFolders().selected.value.puzzles).toEqual(["abc"]);
 
 		await heart().trigger("click");
 		expect(heart().attributes("aria-pressed")).toBe("false");
+	});
+
+	it("opens a folder menu when there are several folders", () => {
+		useFolders().create("Second");
+		const wrapper = mount(Puzzle, { props: { puzzle }, attachTo: document.body });
+		const heart = wrapper.find(".title-bar-controls .favorite");
+
+		expect(heart.attributes("popovertarget")).toBe("folder-menu-abc");
+		expect(document.querySelector("body > .folder-menu")?.getAttribute("popover")).toBe("auto");
+		const boxes = document.querySelectorAll("body > .folder-menu input[type=checkbox]");
+		expect(boxes).toHaveLength(2);
+
+		boxes[1]?.dispatchEvent(new Event("change"));
+		expect(useFolders().isSaved("abc")).toBe(true);
+		wrapper.unmount();
+	});
+
+	it("removes from the given folder directly", async () => {
+		const { create, toggle, has } = useFolders();
+		create("Second");
+		const folderId = useFolders().folders.value[0]!.id;
+		toggle({ folderId, puzzleId: "abc" });
+		const wrapper = mount(Puzzle, { props: { puzzle, folderId } });
+
+		await wrapper.find(".favorite").trigger("click");
+		expect(has({ folderId, puzzleId: "abc" })).toBe(false);
 	});
 });
