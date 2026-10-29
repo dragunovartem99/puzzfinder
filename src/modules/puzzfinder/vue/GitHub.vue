@@ -38,3 +38,9 @@ const links: UI.Link[] = [
 		</p>
 	</section>
 </template>
+
+<style lang="css" scoped>
+p:first-child {
+	margin-top: 0;
+}
+</style>

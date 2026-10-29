@@ -4,6 +4,7 @@ import type { UI } from "@/shared";
 
 defineProps<{
 	puzzles: UI.Puzzle[];
+	folderId?: UI.Folder["id"];
 }>();
 </script>
 
@@ -13,6 +14,7 @@ defineProps<{
 			v-for="puzzle of puzzles"
 			:key="puzzle.id"
 			:puzzle
+			:folder-id
 		/>
 	</section>
 </template>

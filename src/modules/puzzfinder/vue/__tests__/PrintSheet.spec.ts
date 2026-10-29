@@ -18,7 +18,9 @@ const puzzles = Array.from({ length: 7 }, (_, i) => makePuzzle(i + 1));
 
 describe("PrintSheet", () => {
 	it("puts six diagrams on a page", () => {
-		const wrapper = mount(PrintSheet, { props: { puzzles, withSolutions: false } });
+		const wrapper = mount(PrintSheet, {
+			props: { puzzles, withSolutions: false, title: "Lesson" },
+		});
 		const pages = wrapper.findAll(".diagrams");
 
 		expect(pages).toHaveLength(2);
@@ -27,7 +29,9 @@ describe("PrintSheet", () => {
 	});
 
 	it("names the side to move", () => {
-		const wrapper = mount(PrintSheet, { props: { puzzles, withSolutions: false } });
+		const wrapper = mount(PrintSheet, {
+			props: { puzzles, withSolutions: false, title: "Lesson" },
+		});
 		const captions = wrapper.findAll("figcaption").map((c) => c.text());
 
 		expect(captions[0]).toContain("1. White to move");
@@ -35,7 +39,9 @@ describe("PrintSheet", () => {
 	});
 
 	it("adds numbered solutions on separate pages when enabled", () => {
-		const wrapper = mount(PrintSheet, { props: { puzzles, withSolutions: true } });
+		const wrapper = mount(PrintSheet, {
+			props: { puzzles, withSolutions: true, title: "Lesson" },
+		});
 		const items = wrapper.findAll(".solutions li");
 
 		expect(items).toHaveLength(7);
@@ -43,7 +49,9 @@ describe("PrintSheet", () => {
 	});
 
 	it("omits solutions when disabled", () => {
-		const wrapper = mount(PrintSheet, { props: { puzzles, withSolutions: false } });
+		const wrapper = mount(PrintSheet, {
+			props: { puzzles, withSolutions: false, title: "Lesson" },
+		});
 		expect(wrapper.find(".solutions").exists()).toBe(false);
 	});
 });

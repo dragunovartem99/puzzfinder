@@ -13,3 +13,9 @@
 		<p>Chessboards: "Smart" (1992) by <b>Christoph Wirth</b>.</p>
 	</section>
 </template>
+
+<style lang="css" scoped>
+p:first-child {
+	margin-top: 0;
+}
+</style>

@@ -1,5 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`joins multiple themes 1`] = `"advantage, middlegame, short"`;
-
-exports[`joins single theme 1`] = `"endgame"`;

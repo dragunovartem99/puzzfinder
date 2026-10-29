@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-const props = defineProps<{
+const { fen, flipped } = defineProps<{
 	fen: string;
 	flipped: boolean;
 }>();
@@ -24,14 +24,14 @@ const GLYPHS: Record<string, [string, string]> = {
 };
 
 const cells = computed(() => {
-	const placement = props.fen.split(" ")[0] ?? "";
+	const placement = fen.split(" ")[0] ?? "";
 	const squares = [...placement.split("/").join("")].flatMap((char) =>
 		/\d/u.test(char) ? Array.from({ length: Number(char) }, () => " ") : char
 	);
 
 	return Array.from({ length: 64 }, (_, index) => {
 		const isDark = ((index * 9) & 8) !== 0;
-		const piece = squares[props.flipped ? 63 - index : index] ?? " ";
+		const piece = squares[flipped ? 63 - index : index] ?? " ";
 		return GLYPHS[piece]![isDark ? 1 : 0]!;
 	});
 });
@@ -65,6 +65,7 @@ const cells = computed(() => {
 	line-height: 1;
 	color: #000;
 	user-select: none;
+	outline: 0.3mm solid #000;
 }
 
 span {

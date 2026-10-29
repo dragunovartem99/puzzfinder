@@ -1,7 +1,5 @@
 import { mount } from "@vue/test-utils";
-import { beforeEach, describe, it, expect } from "vitest";
-
-import { useFavorites } from "@/shared";
+import { describe, it, expect } from "vitest";
 
 import Print from "../Print.vue";
 
@@ -17,22 +15,21 @@ const puzzle = {
 };
 
 describe("Print", () => {
-	beforeEach(() => useFavorites().clear());
-
-	it("shows the favorites count", async () => {
-		const wrapper = mount(Print);
-		useFavorites().toggle(puzzle);
-		await wrapper.vm.$nextTick();
+	it("shows the puzzle count", () => {
+		const wrapper = mount(Print, { props: { puzzles: [puzzle], title: "Lesson" } });
 
 		expect(wrapper.find("button").text()).toBe("Print (1)");
+		wrapper.unmount();
 	});
 
-	it("only renders the print sheet when there are favorites", async () => {
-		const wrapper = mount(Print, { attachTo: document.body });
+	it("only renders the print sheet when there are puzzles", async () => {
+		const wrapper = mount(Print, {
+			props: { puzzles: [], title: "Lesson" },
+			attachTo: document.body,
+		});
 		expect(document.querySelector(".print-sheet")).toBeNull();
 
-		useFavorites().toggle(puzzle);
-		await wrapper.vm.$nextTick();
+		await wrapper.setProps({ puzzles: [puzzle] });
 		expect(document.querySelector(".print-sheet")).not.toBeNull();
 
 		wrapper.unmount();

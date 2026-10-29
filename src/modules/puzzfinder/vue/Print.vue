@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { useFavorites } from "@/shared";
+import type { UI } from "@/shared";
 
 import PrintSheet from "./PrintSheet.vue";
 
-const { favorites } = useFavorites();
+defineProps<{ puzzles: UI.Puzzle[]; title: string }>();
 
 const withSolutions = ref(true);
 
@@ -24,17 +24,22 @@ function print() {
 			/>
 			<label for="print-solutions">Solutions on separate pages</label>
 		</div>
-		<button
-			type="button"
-			@click="print"
-		>
-			Print ({{ favorites.length }})
-		</button>
+		<div class="actions">
+			<button
+				type="button"
+				:disabled="puzzles.length === 0"
+				@click="print"
+			>
+				Print ({{ puzzles.length }})
+			</button>
+			<slot />
+		</div>
 		<Teleport to="body">
 			<PrintSheet
-				v-if="favorites.length > 0"
-				:puzzles="favorites"
+				v-if="puzzles.length > 0"
+				:puzzles
 				:with-solutions
+				:title
 			/>
 		</Teleport>
 	</div>
@@ -43,17 +48,20 @@ function print() {
 <style lang="css" scoped>
 .print {
 	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	gap: 15px;
-	margin-top: 10px;
-}
-
-button {
-	min-width: 120px;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .field-row {
 	margin: 0;
+}
+
+.actions {
+	display: flex;
+	gap: 10px;
+}
+
+.actions > :deep(*) {
+	flex: 1;
 }
 </style>
